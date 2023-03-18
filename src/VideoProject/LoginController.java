@@ -35,7 +35,9 @@ public class LoginController implements ActionListener {
 		if((JButton)e.getSource() == view.getBtn_connect()) {
 			if ((model.validateUsername(view.getTxt_username().getText())) && (model.validatePassword(view.getTxt_password().getText()))) {
 				
-				if (loginCheck(view.getTxt_username().getText(), view.getTxt_password().getText() )) {
+				DBManager login = new DBManager();
+				
+				if (login.loginCheck(view.getTxt_username().getText(), view.getTxt_password().getText() )) {
 					System.out.println("database works");
 				} else {
 					System.out.println("error");
@@ -50,42 +52,18 @@ public class LoginController implements ActionListener {
 			System.exit(0);
 		} else if ((JButton)e.getSource() == view.getBtn_newClient()) {
 			
-			 CreateClientView create = new CreateClientView();
-			 create.setVisible(true);
+			AddClientMain newClient = new AddClientMain();
+			
+			newClient.runCreateNewClient();
+			
+			view.setVisible(false);
+			view.dispose();
+			
 		}
 		
 		
 	}
 	
-	public boolean loginCheck(String username , String password) {
-		//establish connection with database
-				
-		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
-			
-			//prepare a statement to check username and password from users
-			PreparedStatement checkCredentials = connection.prepareStatement("SELECT * FROM `users` "
-					+ "WHERE LOWER(username) =  ? and LOWER(password) = ?;");
-			checkCredentials.setString(1, username);
-			checkCredentials.setString(2, password);
-			
-			ResultSet resultSet = checkCredentials.executeQuery();
-			
-			if (resultSet.next()) {
-				JOptionPane.showMessageDialog(null, "test successful", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return true;
-			} else {
-				JOptionPane.showMessageDialog(null, "Incorrect username of password.", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return false;
-			}
-			
-			
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
-		}
-		
-		return false;
-	}
 	
 	
 }

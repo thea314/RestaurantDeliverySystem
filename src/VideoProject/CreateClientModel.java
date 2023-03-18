@@ -28,19 +28,8 @@ public class CreateClientModel {
 	private String phone1;
 	private String phone2;
 	
-	public CreateClientModel(String username, String password, String confirmPassword, String lastName, String firstName, String email, String areaCode,
-			String phone1, String phone2) {
-		this.username = username;
-		this.password = password;
-		this.confirmPassword = confirmPassword;
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.email = email;
-		this.areaCode = areaCode;
-		this.phone1 = phone1;
-		this.phone2 = phone2;
-				
-	}
+	
+	
 	
 	//confirm password and password match
 	public boolean confirmPasswords(String password, String confirmPassword) {
@@ -59,7 +48,10 @@ public class CreateClientModel {
 			if (username.equals("")) {
 				JOptionPane.showMessageDialog(null, "Username cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
-			} else
+			} else if (username.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Username cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
 				return true;
 			
 		}
@@ -70,7 +62,10 @@ public class CreateClientModel {
 			if (password.equals("")) {
 				JOptionPane.showMessageDialog(null, "Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
-			} else
+			} else if (password.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Password cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
 				return true;
 			
 		}
@@ -92,7 +87,10 @@ public class CreateClientModel {
 			if (lastName.equals("")) {
 				JOptionPane.showMessageDialog(null, "Last Name cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
-			} else
+			} else if (lastName.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Last name cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
 				return true;
 			
 		}
@@ -103,7 +101,10 @@ public class CreateClientModel {
 			if (firstName.equals("")) {
 				JOptionPane.showMessageDialog(null, "First Name cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
-			} else
+			} else if (firstName.length() < 4) {
+				JOptionPane.showMessageDialog(null, "First Name cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
 				return true;
 			
 		}
@@ -114,7 +115,10 @@ public class CreateClientModel {
 			if (address.equals("")) {
 				JOptionPane.showMessageDialog(null, "Address cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
-			} else
+			} else if (address.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Address cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
 				return true;
 					
 		}
@@ -125,7 +129,10 @@ public class CreateClientModel {
 				if (email.equals("")) {
 					JOptionPane.showMessageDialog(null, "Email cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
-				} else
+				} else if (email.length() < 4) {
+					JOptionPane.showMessageDialog(null, "Email cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}	else
 					return true;
 						
 			}
@@ -136,7 +143,10 @@ public class CreateClientModel {
 				if (areaCode.equals("")) {
 					JOptionPane.showMessageDialog(null, "Area Code cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
-				} else
+				} else if (areaCode.length() != 3) {
+					JOptionPane.showMessageDialog(null, "Area Code must be 3 numbers.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}	else
 					return true;
 						
 			}
@@ -147,7 +157,10 @@ public class CreateClientModel {
 				if (phone1.equals("")) {
 					JOptionPane.showMessageDialog(null, "First part of phone number cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
-				} else
+				} else if (phone1.length() != 3) {
+					JOptionPane.showMessageDialog(null, "First part of phone number must be 3 numbers.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}	else
 					return true;
 						
 			}
@@ -157,7 +170,10 @@ public class CreateClientModel {
 				if (phone2.equals("")) {
 					JOptionPane.showMessageDialog(null, "Second part of phone number cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
-				} else
+				} else if (phone2.length() != 4) {
+					JOptionPane.showMessageDialog(null, "Last part of phone number must have 4 numbers.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}	else
 					return true;
 						
 			}

@@ -17,6 +17,8 @@ public class CreateClientController implements ActionListener {
 	private CreateClientView view;
 	private CreateClientModel model;
 	
+	DBManager newClient = new DBManager();
+	
 	//constructor
 	public CreateClientController(CreateClientView view, CreateClientModel model) {
 		this.view = view;
@@ -32,54 +34,51 @@ public class CreateClientController implements ActionListener {
 	//add logic for buttons
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if ((JButton)e.getSource() == view.getBtn_usernameValidate()) {
-			userNameCheck(view.getTxt_username().getText());
-				
+		//button to validate unique username
+		if ((JButton)e.getSource() == view.getBtn_usernameValidate()) {		
+			if (newClient.userNameCheck(view.getTxt_username().getText())) {
+				JOptionPane.showMessageDialog(null, "Username available.", "Success", JOptionPane.INFORMATION_MESSAGE);
+				view.btn_save.setEnabled(true);
+			} else
+				JOptionPane.showMessageDialog(null, "Username already taken, try again", "Error", JOptionPane.INFORMATION_MESSAGE);				
 			} 
+		// quit button
 		 else if((JButton)e.getSource() == view.getBtn_quit()) {
 			System.exit(0);
 		}
+		//return button
+		 else if ((JButton)e.getSource() == view.getBtn_return()) {
+			
+			 Main main = new Main();
+			 
+			 main.main(null);
+			 
+				view.setVisible(false);
+				view.dispose();
+		//add new client button	 
+		 } else if ((JButton)e.getSource() == view.getBtn_save()) {
+			 if (newClient.userNameCheck(view.getTxt_username().getText())) {				 
+				 if ((model.confirmPasswords(view.getTxt_password().getText(), view.getTxt_confirmPassword().getText()))) {
+					 if ((model.validateUsername(view.getTxt_username().getText()) && (model.validatePassword(view.getTxt_password().getText()) && (model.validateLastName(view.getTxt_lastname().getText()) && (model.validateFirstName(view.getTxt_firstname().getText()) && (model.validateAddress(view.getTxt_address().getText()) && (model.validateEmail(view.getTxt_email().getText()) && (model.validateareaCode(view.getTxt_areacode().getText()) && (model.validatePhone1(view.getTxt_phone1().getText()) && (model.validatePhone2(view.getTxt_phone2().getText()))))))))))){
+						 
+						 //add new client to client and user tables in database
+						 
+						 newClient.addClient(view.getTxt_username().getText(), view.getTxt_password().getText(), view.getTxt_lastname().getText(), view.getTxt_firstname().getText(), view.getTxt_address().getText(), view.getTxt_email().getText(), view.getTxt_areacode().getText(), view.getTxt_phone1().getText(), view.getTxt_phone2().getText());
+						 newClient.addUser(view.getTxt_username().getText(), view.getTxt_password().getText(), 2);
+						 
+						 JOptionPane.showMessageDialog(null, "Client successfully created, you may login..", "Success", JOptionPane.INFORMATION_MESSAGE);
+					 } else
+						 JOptionPane.showMessageDialog(null, "Please fill out form.", "Error", JOptionPane.INFORMATION_MESSAGE);	
+					 
+			 }
+		 }
+				 
+			 
+		 }
 	}
 	
 	
-	public void userNameCheck(String username) {
-		//function for validating non-duplicate username
-		
-		try {
-			
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
-			
-			//prepare query statement
-			PreparedStatement checkUsername = connection.prepareStatement("SELECT * FROM `users` WHERE LOWER(username) =  ?;"); 
-			checkUsername.setString(1, username);
-			
-			ResultSet resultSet = checkUsername.executeQuery();
-			
-			if (resultSet.next()) {
-				JOptionPane.showMessageDialog(null, "Username already taken, try again", "Error", JOptionPane.INFORMATION_MESSAGE);
-				
-			} else {
-				JOptionPane.showMessageDialog(null, "Username available.", "Error", JOptionPane.INFORMATION_MESSAGE);
-				
-			}
-			
-			
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
-		}
-		
-
-		
-	}
 	
-	public void addClient(String username, String password, String lastName, String firstName, String addressm, String email,
-			String areaCode, String phone1, String phone2, int type) {
-		//add new client to the db
-		
-		
-		
-		
-	}
 	
 	
 
