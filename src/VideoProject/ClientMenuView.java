@@ -48,8 +48,11 @@ public class ClientMenuView {
 		JMenu mnFile = new JMenu("File");
 		menu_client.add(mnFile);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnFile.add(mntmNewMenuItem);
+		JMenuItem item_Disconnect = new JMenuItem("Disconnect");
+		mnFile.add(item_Disconnect);
+		
+		JMenuItem item_quit = new JMenuItem("Quit");
+		mnFile.add(item_quit);
 		
 		JMenu mnAccount = new JMenu("Account");
 		menu_client.add(mnAccount);
