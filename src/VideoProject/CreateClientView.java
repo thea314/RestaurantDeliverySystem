@@ -168,29 +168,29 @@ public class CreateClientView extends JFrame{
 		mainPanel.add(lbl_openBracket);
 		
 		txt_areacode = new JTextField();
-		txt_areacode.setBounds(389, 424, 25, 20);
+		txt_areacode.setBounds(389, 424, 38, 20);
 		mainPanel.add(txt_areacode);
 		txt_areacode.setColumns(10);
 		
 		JLabel lbl_closedBracket = new JLabel(")");
 		lbl_closedBracket.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_closedBracket.setForeground(UIManager.getColor("Button.disabledShadow"));
-		lbl_closedBracket.setBounds(415, 428, 14, 14);
+		lbl_closedBracket.setBounds(426, 428, 14, 14);
 		mainPanel.add(lbl_closedBracket);
 		
 		txt_phone1 = new JTextField();
 		txt_phone1.setColumns(10);
-		txt_phone1.setBounds(431, 424, 25, 20);
+		txt_phone1.setBounds(450, 424, 38, 20);
 		mainPanel.add(txt_phone1);
 		
 		JLabel lbl_hyphenText = new JLabel("-");
 		lbl_hyphenText.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_hyphenText.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_hyphenText.setBounds(466, 427, 14, 14);
+		lbl_hyphenText.setBounds(490, 428, 14, 14);
 		mainPanel.add(lbl_hyphenText);
 		
 		txt_phone2 = new JTextField();
-		txt_phone2.setBounds(485, 424, 43, 20);
+		txt_phone2.setBounds(503, 424, 53, 20);
 		mainPanel.add(txt_phone2);
 		txt_phone2.setColumns(10);
 		
