@@ -3,11 +3,11 @@ package VideoProject;
 public class ClientController {
 	
 	private ClientMenuView view;
-	private ClientModel model;
+	private User user;
 	
-	public ClientController (ClientMenuView view, ClientModel model) {
+	public ClientController (ClientMenuView view, User user) {
 		this.view = view;
-		this.model = model;
+		this.user = user;
 	}
 	
 	

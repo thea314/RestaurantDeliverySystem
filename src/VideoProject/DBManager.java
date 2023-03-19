@@ -33,8 +33,7 @@ public class DBManager {
 			
 			ResultSet resultSet = checkCredentials.executeQuery();
 			
-			if (resultSet.next()) {
-				JOptionPane.showMessageDialog(null, "test successful", "Error", JOptionPane.INFORMATION_MESSAGE);
+			if (resultSet.next()) {				
 				return true;
 			} else {
 				JOptionPane.showMessageDialog(null, "Incorrect username of password.", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -128,6 +127,35 @@ public class DBManager {
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	
+	public int checkUserType(String username) {
+		
+		//determine the logged in user's type
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+			PreparedStatement userType = connection.prepareStatement("SELECT type FROM `users` WHERE LOWER(username) =  ?;");
+			userType.setString(1, username);
+			
+			ResultSet typeOfUser = userType.executeQuery();
+			
+			typeOfUser.next();
+			
+			
+			int loggedUser = typeOfUser.getInt("type");
+			
+			return loggedUser;
+			
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		return -1;
+		
 	}
 	
 	

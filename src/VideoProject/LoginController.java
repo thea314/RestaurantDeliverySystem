@@ -17,6 +17,8 @@ public class LoginController implements ActionListener {
 	//properties
 	private LoginModel model;
 	private LoginView view;
+	public User loggedUser;
+		
 	
 	//constructor
 	public LoginController (LoginModel model, LoginView view) {
@@ -38,9 +40,22 @@ public class LoginController implements ActionListener {
 				DBManager login = new DBManager();
 				
 				if (login.loginCheck(view.getTxt_username().getText(), view.getTxt_password().getText() )) {
-					System.out.println("database works");
-				} else {
-					System.out.println("error");
+					
+					// find user type and set logged in user 
+					
+					if (login.checkUserType(view.getTxt_username().getText()) == 2) {
+						
+						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 2);
+												
+						ClientMenuView clientMenu = new ClientMenuView();
+						
+						ClientController controlClientMenu = new ClientController(clientMenu, loggedUser);
+						
+						
+						
+					}
+					
+			} else {
 				}
 				
 			} else {
