@@ -1,6 +1,11 @@
 package VideoProject;
 
-public class EditClientController {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+public class EditClientController implements ActionListener {
 	
 	//properties
 	private EditClientView view;
@@ -12,6 +17,18 @@ public class EditClientController {
 		this.model = model;
 		
 		//add actionlisteners
+		
+		
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if ((JButton)e.getSource() == view.getBtn_save()) {
+			
+		}
+		
+		
+	}
+	
+	
 
 }

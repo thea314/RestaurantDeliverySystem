@@ -24,6 +24,8 @@ public class EditClientView extends JFrame{
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
 	private JTextField txt_newPassword;
+	private JButton btn_save;
+	private JButton btn_return;
 
 	/**
 	 * Launch the application.
@@ -40,6 +42,22 @@ public class EditClientView extends JFrame{
 //			}
 //		});
 //	}
+
+	public JButton getBtn_save() {
+		return btn_save;
+	}
+
+	public void setBtn_save(JButton btn_save) {
+		this.btn_save = btn_save;
+	}
+
+	public JButton getBtn_return() {
+		return btn_return;
+	}
+
+	public void setBtn_return(JButton btn_return) {
+		this.btn_return = btn_return;
+	}
 
 	/**
 	 * Create the application.
@@ -183,14 +201,14 @@ public class EditClientView extends JFrame{
 		txt_phone2.setColumns(10);
 		mainPanel.add(txt_phone2);
 		
-		JButton btn_save = new JButton("Save");
+		btn_save = new JButton("Save");
 		btn_save.setBounds(258, 384, 89, 36);
 		btn_save.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_save.setEnabled(false);
 		btn_save.setBackground(new Color(244, 164, 96));
 		mainPanel.add(btn_save);
 		
-		JButton btn_return = new JButton("Return");
+		btn_return = new JButton("Return");
 		btn_return.setBounds(467, 384, 89, 36);
 		btn_return.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_return.setBackground(new Color(244, 164, 96));
@@ -201,16 +219,18 @@ public class EditClientView extends JFrame{
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editClient.png"));
 		mainPanel.add(lbl_title);
 		
-		JLabel lblNewLabel = new JLabel("New Password:");
-		lblNewLabel.setBounds(113, 175, 128, 14);
-		lblNewLabel.setForeground(SystemColor.window);
-		lblNewLabel.setFont(new Font("Consolas", Font.PLAIN, 14));
-		mainPanel.add(lblNewLabel);
+		JLabel lvl_newPassword = new JLabel("New Password:");
+		lvl_newPassword.setBounds(113, 175, 128, 14);
+		lvl_newPassword.setForeground(SystemColor.window);
+		lvl_newPassword.setFont(new Font("Consolas", Font.PLAIN, 14));
+		mainPanel.add(lvl_newPassword);
 		
 		txt_newPassword = new JTextField();
 		txt_newPassword.setBounds(379, 171, 177, 20);
 		mainPanel.add(txt_newPassword);
 		txt_newPassword.setColumns(10);
+		
+		
 		
 
 		

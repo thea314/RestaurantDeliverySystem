@@ -158,7 +158,44 @@ public class DBManager {
 		
 	}
 	
+	/**
+	 * Edit Client 
+	 *
+	 */
 	
+	public Client populateClientInfoEdit(String username) {
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+			PreparedStatement getClient = connection.prepareStatement("SELECT * FROM clients WHERE username = ?");
+			getClient.setString(1, username);
+			
+			ResultSet populate = getClient.executeQuery();
+			
+			populate.next();
+			String user = populate.getString("username");
+			String password = populate.getString("password");
+			String lastName = populate.getString("lastName");
+			String firstName = populate.getString("firstName");
+			String address = populate.getString("address");
+			String email = populate.getString("email");
+			String areaCode = populate.getString("areaCode");
+			String phone1 = populate.getString("phone1");
+			String phone2 = populate.getString("phone2");
+			
+			Client returnedClient = new Client(user, password, lastName, firstName, address, email, areaCode, phone1, phone2, 2);
+			
+			return returnedClient;
+			
+					
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		return null;
+	}
 	
 
 }
