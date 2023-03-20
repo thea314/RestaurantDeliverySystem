@@ -17,7 +17,8 @@ public class LoginController implements ActionListener {
 	//properties
 	private LoginModel model;
 	private LoginView view;
-	public User loggedUser;
+	public static User loggedUser;
+	public static Client loggedClient;
 		
 	
 	//constructor
@@ -45,13 +46,14 @@ public class LoginController implements ActionListener {
 					
 					if (login.checkUserType(view.getTxt_username().getText()) == 2) {
 						
+						view.setVisible(false);
+						view.dispose();
+						
 						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 2);
 												
 						ClientMenuView clientMenu = new ClientMenuView();
 						
-						ClientController controlClientMenu = new ClientController(clientMenu, loggedUser);
-						
-						
+						ClientController controlClientMenu = new ClientController(clientMenu, loggedUser);					
 						
 					}
 					
