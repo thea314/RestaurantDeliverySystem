@@ -164,7 +164,7 @@ public class DBManager {
 	 */
 	
 	public Client populateClientInfoEdit(String username) {
-		
+		//populate edit window with client data
 		try {
 			
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
@@ -195,6 +195,106 @@ public class DBManager {
 		}
 		
 		return null;
+	}
+	
+	public void updateUserWithPassword(String username, String password, String lastName, String firstName, String address, String email, String areaCode, String phone1, String phone2) {
+		//update user including password
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+			
+			PreparedStatement insertEdits = connection.prepareStatement("UPDATE `clients` SET `password`= ?,`lastName`= ?,`firstName`= ?,`address`= ?,`email`= ?,`areaCode`= ?,`phone1`= ?,`phone2`= ? WHERE username = ?");
+			insertEdits.setString(1, password);
+			insertEdits.setString(2, lastName);
+			insertEdits.setString(3, firstName);
+			insertEdits.setString(4, address);
+			insertEdits.setString(5, email);
+			insertEdits.setString(6, areaCode);
+			insertEdits.setString(7, phone1);
+			insertEdits.setString(8, phone2);
+			insertEdits.setString(9, username);
+			
+			insertEdits.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		
+	}
+	
+	public String passwordMatch(String username) {
+		
+		//returns the user's password so passwords can be matched
+				try {
+					
+					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+					
+					PreparedStatement getPassword = connection.prepareStatement("SELECT `password` FROM clients WHERE username = ?");
+					getPassword.setString(1, username);
+					
+					ResultSet populate = getPassword.executeQuery();
+					
+					populate.next();
+					String password = populate.getString("password");
+					
+					return password;
+					
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				return null;
+	}
+	
+	public void updateUserWithoutPassword(String username, String lastName, String firstName, String address, String email, String areaCode, String phone1, String phone2) {
+		//update user including password
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+			
+			PreparedStatement insertEdits = connection.prepareStatement("UPDATE `clients` SET `lastName`= ?,`firstName`= ?,`address`= ?,`email`= ?,`areaCode`= ?,`phone1`= ?,`phone2`= ? WHERE username = ?;");
+			insertEdits.setString(1, lastName);
+			insertEdits.setString(2, firstName);
+			insertEdits.setString(3, address);
+			insertEdits.setString(4, email);
+			insertEdits.setString(5, areaCode);
+			insertEdits.setString(6, phone1);
+			insertEdits.setString(7, phone2);
+			insertEdits.setString(8, username);
+			
+			insertEdits.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		
+	}
+	
+	public void updateUserPasswordTable(String username, String password) {
+		// update the password in the username table
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+						
+			PreparedStatement insertPassword = connection.prepareStatement("UPDATE `users` SET `password` = ? WHERE username = ?;");
+			insertPassword.setString(1, password);
+			insertPassword.setString(2, username);
+			
+			insertPassword.executeUpdate();
+						
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		
 	}
 	
 

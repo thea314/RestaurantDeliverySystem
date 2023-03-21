@@ -7,8 +7,6 @@ package VideoProject;
 public class Client extends User {
 	
 	//properties
-	private String username;
-	private String password;
 	private String lastName;
 	private String firstName;
 	private String address;
@@ -16,37 +14,19 @@ public class Client extends User {
 	private String areaCode;
 	private String phone1;
 	private String phone2;
-	private int type;
 	
 	//constructor
 	public Client(String username, String password, String lastName, String firstName, String address, String email,
 			String areaCode, String phone1, String phone2, int type) {
 		super(username, password, type);
-		this.username = username;
-		this.password = password;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.address = address;
 		this.email = email;
+		this.areaCode = areaCode;
 		this.phone1 = phone1;
 		this.phone2 = phone2;
 		
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getLastName() {
@@ -103,14 +83,6 @@ public class Client extends User {
 
 	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 }

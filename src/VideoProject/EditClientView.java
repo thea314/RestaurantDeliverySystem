@@ -202,14 +202,13 @@ public class EditClientView extends JFrame{
 		mainPanel.add(txt_phone2);
 		
 		btn_save = new JButton("Save");
-		btn_save.setBounds(258, 384, 89, 36);
+		btn_save.setBounds(191, 384, 89, 36);
 		btn_save.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_save.setEnabled(false);
 		btn_save.setBackground(new Color(244, 164, 96));
 		mainPanel.add(btn_save);
 		
 		btn_return = new JButton("Return");
-		btn_return.setBounds(467, 384, 89, 36);
+		btn_return.setBounds(389, 384, 89, 36);
 		btn_return.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_return.setBackground(new Color(244, 164, 96));
 		mainPanel.add(btn_return);
@@ -230,10 +229,13 @@ public class EditClientView extends JFrame{
 		mainPanel.add(txt_newPassword);
 		txt_newPassword.setColumns(10);
 		
+		JLabel lbl_advice = new JLabel("* new and confirm new passwords can be left blank.");
+		lbl_advice.setForeground(SystemColor.window);
+		lbl_advice.setFont(new Font("Consolas", Font.PLAIN, 11));
+		lbl_advice.setBounds(110, 438, 330, 14);
+		mainPanel.add(lbl_advice);
 		
-		
-
-		
+	
 		this.setVisible(true);	
 	}
 

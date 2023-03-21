@@ -27,13 +27,22 @@ public class EditClientModel {
 				return false;
 		}
 		
+		public boolean areWeChangingPasswords(String newPassword, String confirmNewPassword) {
+			
+			if (!newPassword.equals("") && !confirmNewPassword.equals("")) {
+				return true;
+			} else
+				return false;
+			
+		}
+		
 		// validate all fields are filled in		
 			
 			//validate password complete
 			public boolean validateOldPassword (String password) {
 				
 				if (password.equals("")) {
-					JOptionPane.showMessageDialog(null, "Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Current Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
 				} else if (password.length() < 4) {
 					JOptionPane.showMessageDialog(null, "Password cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -46,7 +55,7 @@ public class EditClientModel {
 			public boolean validatePassword (String password) {
 				
 				if (password.equals("")) {
-					JOptionPane.showMessageDialog(null, "Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "New Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
 				} else if (password.length() < 4) {
 					JOptionPane.showMessageDialog(null, "Password cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -62,7 +71,10 @@ public class EditClientModel {
 				if (confirmNewpassword.equals("")) {
 					JOptionPane.showMessageDialog(null, "Confirm password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
 					return false;
-				} else
+				} else if (confirmNewpassword.length() < 4) {
+					JOptionPane.showMessageDialog(null, "Password cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}else
 					return true;
 				
 			}

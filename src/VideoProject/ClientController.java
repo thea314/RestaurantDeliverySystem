@@ -55,7 +55,7 @@ public class ClientController implements ActionListener {
 			
 			EditClientModel editModel = new EditClientModel();
 			
-			EditClientController editController = new EditClientController(editView, editModel);
+			EditClientController editController = new EditClientController(editView, editModel, user);
 			
 		}
 		
