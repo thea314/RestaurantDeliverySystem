@@ -95,21 +95,21 @@ public class CreateRestaurantModel {
 			return true;
 		
 	}
+	
+	//validate combobox open and close hours
+	public boolean compareHoursofOpening(int openHr, int closeHr) {
+		
+		if (openHr > closeHr) {
+			JOptionPane.showMessageDialog(null, "Restaurant cannot open after it closes", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} else if ((openHr == closeHr)) {
+			JOptionPane.showMessageDialog(null, "Restaurant must be open for at least 1 hour", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} else
+			return true;
+		
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	public String getRestaurantName() {

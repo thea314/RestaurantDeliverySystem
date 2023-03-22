@@ -869,4 +869,28 @@ public class CreateRestaurantView extends JFrame{
 	public void setBtn_modifyAll(JButton btn_modifyAll) {
 		this.btn_modifyAll = btn_modifyAll;
 	}
+
+	public JTextField getTxt_restaurantAreaCode() {
+		return txt_restaurantAreaCode;
+	}
+
+	public void setTxt_restaurantAreaCode(JTextField txt_restaurantAreaCode) {
+		this.txt_restaurantAreaCode = txt_restaurantAreaCode;
+	}
+
+	public JTextField getTxt_restaurantPhone1() {
+		return txt_restaurantPhone1;
+	}
+
+	public void setTxt_restaurantPhone1(JTextField txt_restaurantPhone1) {
+		this.txt_restaurantPhone1 = txt_restaurantPhone1;
+	}
+
+	public JTextField getTxt_restaurantPhone2() {
+		return txt_restaurantPhone2;
+	}
+
+	public void setTxt_restaurantPhone2(JTextField txt_restaurantPhone2) {
+		this.txt_restaurantPhone2 = txt_restaurantPhone2;
+	}
 }
