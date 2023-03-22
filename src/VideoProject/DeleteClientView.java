@@ -22,6 +22,8 @@ public class DeleteClientView extends JFrame {
 	private JTextField txt_areaCode;
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
+	private JButton btn_delete;
+	private JButton btn_cancel;
 
 
 
@@ -40,6 +42,7 @@ public class DeleteClientView extends JFrame {
 //			}
 //		});
 //	}
+
 
 	/**
 	 * Create the application.
@@ -81,43 +84,43 @@ public class DeleteClientView extends JFrame {
 		mainPanel.add(lbl_lastName);
 		
 		JLabel lbl_firstName = new JLabel("First Name:");
-		lbl_firstName.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_firstName.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_firstName.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_firstName.setBounds(51, 167, 97, 14);
 		mainPanel.add(lbl_firstName);
 		
 		JLabel lbl_address = new JLabel("Address:");
-		lbl_address.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_address.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_address.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_address.setBounds(51, 192, 81, 14);
 		mainPanel.add(lbl_address);
 		
 		JLabel lbl_email = new JLabel("Email:");
-		lbl_email.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_email.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_email.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_email.setBounds(51, 217, 81, 14);
 		mainPanel.add(lbl_email);
 		
 		JLabel lbl_phone = new JLabel("Phone number:");
-		lbl_phone.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_phone.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_phone.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_phone.setBounds(51, 242, 114, 14);
 		mainPanel.add(lbl_phone);
 		
 		JLabel lbl_startBracket = new JLabel("(");
-		lbl_startBracket.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_startBracket.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_startBracket.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_startBracket.setBounds(175, 242, 8, 14);
 		mainPanel.add(lbl_startBracket);
 		
 		JLabel lbl_closeBracket = new JLabel(")");
-		lbl_closeBracket.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_closeBracket.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_closeBracket.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_closeBracket.setBounds(214, 242, 19, 14);
 		mainPanel.add(lbl_closeBracket);
 		
 		JLabel lbl_dash = new JLabel("-");
-		lbl_dash.setForeground(UIManager.getColor("Button.disabledShadow"));
+		lbl_dash.setForeground(UIManager.getColor("Button.highlight"));
 		lbl_dash.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_dash.setBounds(263, 242, 8, 14);
 		mainPanel.add(lbl_dash);
@@ -170,17 +173,19 @@ public class DeleteClientView extends JFrame {
 		mainPanel.add(txt_phone2);
 		txt_phone2.setColumns(10);
 		
-		JButton btnh_delete = new JButton("Close");
-		btnh_delete.setFont(new Font("Consolas", Font.BOLD, 16));
-		btnh_delete.setBackground(new Color(244, 164, 96));
-		btnh_delete.setBounds(106, 281, 89, 35);
-		mainPanel.add(btnh_delete);
+		btn_delete = new JButton("Close");
+		btn_delete.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_delete.setBackground(new Color(244, 164, 96));
+		btn_delete.setBounds(106, 281, 89, 35);
+		mainPanel.add(btn_delete);
 		
-		JButton btn_cancel = new JButton("Cancel");
+		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
 		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_cancel.setBounds(263, 281, 89, 35);
 		mainPanel.add(btn_cancel);
+		
+		this.setVisible(true);
 	}
 
 	public JTextField getTxt_username() {
@@ -246,4 +251,21 @@ public class DeleteClientView extends JFrame {
 	public void setTxt_phone2(JTextField txt_phone2) {
 		this.txt_phone2 = txt_phone2;
 	}
+	
+	public JButton getBtn_delete() {
+		return btn_delete;
+	}
+
+	public void setBtn_delete(JButton btn_delete) {
+		this.btn_delete = btn_delete;
+	}
+
+	public JButton getBtn_cancel() {
+		return btn_cancel;
+	}
+
+	public void setBtn_cancel(JButton btn_cancel) {
+		this.btn_cancel = btn_cancel;
+	}
+
 }

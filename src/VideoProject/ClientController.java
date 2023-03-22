@@ -57,6 +57,15 @@ public class ClientController implements ActionListener {
 			
 			EditClientController editController = new EditClientController(editView, editModel, user);
 			
+		} else if ((JMenuItem)e.getSource() == view.getItem_delete()) {
+			
+			DeleteClientView deleteView = new DeleteClientView();
+			
+			DeleteClientModel deleteModel = new DeleteClientModel();
+			
+			DeleteClientController deleteController = new DeleteClientController(deleteView, deleteModel, user);
+			
+			
 		}
 		
 		

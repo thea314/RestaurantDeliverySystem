@@ -59,7 +59,7 @@ public class EditClientController implements ActionListener {
 							//update DB after confirmation
 							 	askPassword.updateUserWithoutPassword(view.getTxt_username().getText(), view.getTxt_lastname().getText(), view.getTxt_firstname().getText(), view.getTxt_address().getText(), 
 										view.getTxt_email().getText(), view.getTxt_areaCode().getText(), view.getTxt_phone1().getText(), view.getTxt_phone2().getText());
-								JOptionPane.showMessageDialog(null, "Update Sucsessful!", "Succes", JOptionPane.INFORMATION_MESSAGE);			
+								JOptionPane.showMessageDialog(null, "Update Sucsessful!", "Success", JOptionPane.INFORMATION_MESSAGE);			
 							 } else if (confirmNewClient == JOptionPane.NO_OPTION) {
 								 JOptionPane.showMessageDialog(null, "Please make your updates and try again.", "Incomplete", JOptionPane.INFORMATION_MESSAGE);
 							 } else {

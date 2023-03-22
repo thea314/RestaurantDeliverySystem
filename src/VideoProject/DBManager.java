@@ -297,7 +297,26 @@ public class DBManager {
 		
 	}
 	
-
+	/**
+	 * Delete Client 
+	 *
+	 */
 	
-
+	public void setAccountInactive(String username) {
+	
+		//set user's account status to inactive
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+			PreparedStatement setInactive = connection.prepareStatement("UPDATE `users` SET `active` = 2 WHERE username = ?;");
+			setInactive.setString(1, username);
+			
+			setInactive.executeUpdate();
+	
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	
+	}
 }
