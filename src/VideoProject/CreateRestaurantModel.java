@@ -109,6 +109,20 @@ public class CreateRestaurantModel {
 			return true;
 		
 	}
+	
+	//function to validate usernames entered
+		public boolean validateUsername(String username) {
+				
+			if (username.equals("")) {
+				JOptionPane.showMessageDialog(null, "Username cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			} else if (username.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Username cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
+				return true;
+				
+		}
 
 	
 	

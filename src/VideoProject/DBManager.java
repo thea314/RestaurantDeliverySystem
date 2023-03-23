@@ -319,4 +319,11 @@ public class DBManager {
 		}
 	
 	}
+	
+	
+	/**
+	 * Create Restaurant 
+	 *
+	 */
+	
 }

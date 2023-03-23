@@ -48,7 +48,7 @@ public class CreateRestaurantView extends JFrame{
 	private JComboBox combo_SunHrOpen;
 	private JComboBox combo_SunMinOpen;
 	private JComboBox combo_SunHrClose;
-	private JComboBox combo_HumMinClose;
+	private JComboBox combo_SunMinClose;
 	private JButton btn_validateRestauranteurUsername;
 	private JButton btn_addDeliveryArea;
 	private JButton btn_validateManagerUsesname;
@@ -58,29 +58,8 @@ public class CreateRestaurantView extends JFrame{
 	private JTextField txt_restaurantAreaCode;
 	private JTextField txt_restaurantPhone1;
 	private JTextField txt_restaurantPhone2;
+	private JButton btn_cancel;
 	
-	
-	
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					CreateRestaurantView window = new CreateRestaurantView();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-
-
-
 
 	/**
 	 * Create the application.
@@ -413,6 +392,7 @@ public class CreateRestaurantView extends JFrame{
 		
 		JTextArea txtA_deliveryArea = new JTextArea();
 		txtA_deliveryArea.setBounds(97, 588, 362, 107);
+		txtA_deliveryArea.setEditable(false);
 		mainPanel.add(txtA_deliveryArea);
 		
 		JLabel lbl_deliveryAreaTitle = new JLabel("Delivery Area:");
@@ -440,7 +420,7 @@ public class CreateRestaurantView extends JFrame{
 		
 		btn_saveButton = new JButton("Save");
 		btn_saveButton.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_saveButton.setBounds(430, 964, 104, 30);
+		btn_saveButton.setBounds(119, 967, 104, 30);
 		btn_saveButton.setEnabled(false);
 		mainPanel.add(btn_saveButton);
 		
@@ -487,6 +467,7 @@ public class CreateRestaurantView extends JFrame{
 		btn_validateRestauranteurUsername.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_validateRestauranteurUsername.setBackground(new Color(244, 164, 96));
 		btn_validateRestauranteurUsername.setBounds(387, 887, 124, 30);
+		btn_validateRestauranteurUsername.setEnabled(false);
 		mainPanel.add(btn_validateRestauranteurUsername);
 		
 		JLabel lbl_restauranteurPassword = new JLabel("Rest. Password:");
@@ -538,6 +519,12 @@ public class CreateRestaurantView extends JFrame{
 		txt_restaurantPhone2.setColumns(10);
 		txt_restaurantPhone2.setBounds(374, 138, 83, 20);
 		mainPanel.add(txt_restaurantPhone2);
+		
+		btn_cancel = new JButton("Cancel");
+		btn_cancel.setBackground(new Color(244, 164, 96));
+		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_cancel.setBounds(328, 967, 89, 30);
+		mainPanel.add(btn_cancel);
 		
 		this.setVisible(true);
 	}
@@ -814,12 +801,12 @@ public class CreateRestaurantView extends JFrame{
 		this.combo_SunHrClose = combo_SunHrClose;
 	}
 
-	public JComboBox getCombo_HumMinClose() {
-		return combo_HumMinClose;
+	public JComboBox getCombo_SunMinClose() {
+		return combo_SunMinClose;
 	}
 
-	public void setCombo_HumMinClose(JComboBox combo_HumMinClose) {
-		this.combo_HumMinClose = combo_HumMinClose;
+	public void setCombo_SunMinClose(JComboBox combo_HumMinClose) {
+		this.combo_SunMinClose = combo_HumMinClose;
 	}
 
 	public JButton getBtn_validateRestauranteurUsername() {
@@ -892,5 +879,13 @@ public class CreateRestaurantView extends JFrame{
 
 	public void setTxt_restaurantPhone2(JTextField txt_restaurantPhone2) {
 		this.txt_restaurantPhone2 = txt_restaurantPhone2;
+	}
+	
+	public JButton getBtn_cancel() {
+		return btn_cancel;
+	}
+
+	public void setBtn_cancel(JButton btn_cancel) {
+		this.btn_cancel = btn_cancel;
 	}
 }
