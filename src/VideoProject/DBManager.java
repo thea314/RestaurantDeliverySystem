@@ -386,4 +386,73 @@ public class DBManager {
 		
 	}
 	
+	//return restaurant id 
+	public int getRestaurantId(String restoName, String restoAddress, String restoAreaCode) {
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getId = connection.prepareStatement("SELECT id FROM restaurant WHERE restoName = ? AND restoAddress = ? AND areaCode = ?;");
+			getId.setString(1, restoName);
+			getId.setString(2, restoAddress);
+			getId.setString(3, restoAreaCode);
+					
+			ResultSet restoId = getId.executeQuery();
+			
+			restoId.next();
+			
+			
+			int id = restoId.getInt("id");
+			
+			return id;
+		
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+			return -1;
+			
+	}
+	
+	//add manager to managers table
+	public void addManager(String username, String password, int restoId) {
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+		
+			PreparedStatement newUser = connection.prepareStatement("INSERT INTO `manager`(`username`, `password`, `restaurant_id`) VALUES (?, ?, ?);");
+			newUser.setString(1,  username);
+			newUser.setString(2, password);
+			newUser.setLong(3, restoId);
+			
+			newUser.executeUpdate();	
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		
+	}
+	
+	//add restauranteur to managers table
+		public void addRestauranteur(String username, String password, int restoId) {
+			
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+				PreparedStatement newUser = connection.prepareStatement("INSERT INTO `manager`(`username`, `password`, `restaurant_id`) VALUES (?, ?, ?);");
+				newUser.setString(1,  username);
+				newUser.setString(2, password);
+				newUser.setLong(3, restoId);
+				
+				newUser.executeUpdate();	
+				
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			
+		}
 }

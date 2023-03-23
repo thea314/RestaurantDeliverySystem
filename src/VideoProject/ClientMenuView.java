@@ -1,11 +1,14 @@
 package VideoProject;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JDesktopPane;
+import java.awt.FlowLayout;
 
 public class ClientMenuView extends JFrame {
 	
@@ -77,6 +80,8 @@ public class ClientMenuView extends JFrame {
 		
 		item_orderHistory = new JMenuItem("Order History");
 		mnOrder.add(item_orderHistory);
+		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		getContentPane().setBackground(Color.DARK_GRAY);
 		
 		this.setVisible(true);
 	}
@@ -128,5 +133,4 @@ public class ClientMenuView extends JFrame {
 	public void setItem_orderHistory(JMenuItem item_orderHistory) {
 		this.item_orderHistory = item_orderHistory;
 	}
-
 }
