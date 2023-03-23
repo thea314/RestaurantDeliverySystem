@@ -123,6 +123,20 @@ public class CreateRestaurantModel {
 				return true;
 				
 		}
+		
+		public boolean validatePassword (String password) {
+			
+			if (password.equals("")) {
+				JOptionPane.showMessageDialog(null, "New Password cannot be blank", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			} else if (password.length() < 4) {
+				JOptionPane.showMessageDialog(null, "Password cannot be less than 4 letters", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}	else
+				return true;
+			
+		}
+		
 
 	
 	

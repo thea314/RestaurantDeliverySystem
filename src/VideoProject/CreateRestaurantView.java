@@ -59,7 +59,10 @@ public class CreateRestaurantView extends JFrame{
 	private JTextField txt_restaurantPhone1;
 	private JTextField txt_restaurantPhone2;
 	private JButton btn_cancel;
+	private JTextArea txtA_deliveryArea;
 	
+
+
 
 	/**
 	 * Create the application.
@@ -390,7 +393,7 @@ public class CreateRestaurantView extends JFrame{
 		lbl_deliveryArea.setBounds(197, 555, 208, 30);
 		mainPanel.add(lbl_deliveryArea);
 		
-		JTextArea txtA_deliveryArea = new JTextArea();
+		txtA_deliveryArea = new JTextArea();
 		txtA_deliveryArea.setBounds(97, 588, 362, 107);
 		txtA_deliveryArea.setEditable(false);
 		mainPanel.add(txtA_deliveryArea);
@@ -887,5 +890,13 @@ public class CreateRestaurantView extends JFrame{
 
 	public void setBtn_cancel(JButton btn_cancel) {
 		this.btn_cancel = btn_cancel;
+	}
+	
+	public JTextArea getTxtA_deliveryArea() {
+		return txtA_deliveryArea;
+	}
+
+	public void setTxtA_deliveryArea(JTextArea txtA_deliveryArea) {
+		this.txtA_deliveryArea = txtA_deliveryArea;
 	}
 }

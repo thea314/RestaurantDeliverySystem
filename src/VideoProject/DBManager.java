@@ -326,4 +326,64 @@ public class DBManager {
 	 *
 	 */
 	
+	public void createRestaurant(String name, String address, String areaCode, String phone1, String phone2, String managerUsername, 
+			String managerPassword, String restauranteurUsername, String restauranteurPassword, String deliveryArea, int monHrOpen, int monMinOpen,
+			int monHrClose, int monMinClose, int tuesHrOpen, int tuesMinOpen, int tuesHrClose, int tuesMinClose, int wedHrOpen, int wedMinOpen,
+			int wedHrClose, int wedMinClose, int thursHrOpen, int thursMinOpen, int thursHrClose, int thursMinClose, int friHrOpen,
+			int friMinOpen, int friHrClose, int friMinClose, int satHrOpen, int satMinOpen, int satHrClose, int satMinClose,
+			int sunHrOpen, int sunMinOpen, int sunHrClose, int sunMinClose) {
+		
+		//create restaurant in db
+				try {
+					
+					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+		
+					PreparedStatement newResto = connection.prepareStatement("INSERT INTO `restaurant`(`restoName`, `restoAddress`, `areaCode`, `phone1`, `phone2`, `OpenSunAmHr`, `OpenSunMin`, `CloseSunHr`, `CloseSunMin`, `OpenMonHr`, `OpenMonMin`, `CloseMonHr`, `CloseMonMin`, `OpenTuesHr`, `OpenTuesMin`, `ClosedTuesHr`, `ClosedTuesMin`, `OpenWedHr`, `OpenWedMin`, `ClosedWedHr`, `ClosedWedMin`, `OpenThursHr`, `OpenThursMin`, `ClosedThursHr`, `ClosedThursMin`, `OpenFriHr`, `OpenFriMin`, `ClosedFriHr`, `ClosedFriMin`, `OpenSatHr`, `OpenSatMin`, `ClosedSatHr`, `ClosedSatMin`, `deliveryArea`, `managerUsername`, `managerPassword`, `restauranteurUsername`, `restauranteurPassword`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?;");
+					newResto.setString(1, name);
+					newResto.setString(2, address);
+					newResto.setString(3, areaCode);
+					newResto.setString(4, phone1);
+					newResto.setString(5, phone2);
+					newResto.setString(6, managerUsername);
+					newResto.setString(7, managerPassword);
+					newResto.setString(8, restauranteurUsername);
+					newResto.setString(9, restauranteurPassword);
+					newResto.setString(10, deliveryArea);
+					newResto.setLong(11, monHrOpen);
+					newResto.setLong(12, monMinOpen);
+					newResto.setLong(13, monHrClose);
+					newResto.setLong(14, monMinClose);
+					newResto.setLong(15, tuesHrOpen);
+					newResto.setLong(16, tuesMinOpen);
+					newResto.setLong(17, tuesHrClose);
+					newResto.setLong(18, tuesMinClose);
+					newResto.setLong(19, wedHrOpen);
+					newResto.setLong(20, wedMinOpen);
+					newResto.setLong(21, wedHrClose);
+					newResto.setLong(22, wedMinClose);
+					newResto.setLong(23, thursHrOpen);
+					newResto.setLong(24, thursMinOpen);
+					newResto.setLong(25, thursHrClose);
+					newResto.setLong(26, thursMinClose);
+					newResto.setLong(27, friHrOpen);
+					newResto.setLong(28, friMinOpen);
+					newResto.setLong(29, friHrClose);
+					newResto.setLong(30, friMinClose);
+					newResto.setLong(31, satHrOpen);
+					newResto.setLong(32, satMinOpen);
+					newResto.setLong(33, satHrClose);
+					newResto.setLong(34, satMinClose);
+					newResto.setLong(35, sunHrOpen);
+					newResto.setLong(36, sunMinOpen);
+					newResto.setLong(37, sunHrClose);
+					newResto.setLong(38, sunMinClose);
+					
+					newResto.executeUpdate();
+		
+				}catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Error connecting to database.", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+		
+	}
+	
 }
