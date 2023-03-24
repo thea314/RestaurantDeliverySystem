@@ -12,15 +12,13 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-public class CreateRestaurantView extends JFrame{
+public class EditRestaurantView extends JFrame{
 	private JTextField txt_restoName;
 	private JTextField txt_restoAddress;
 	private JTextField txt_deliveryArea;
-	private JTextField txt_managerUsername;
-	private JTextField txt_managerPassword;
-	private JTextField txt_restaraunteurUsername;
-	private JTextField txt_restauranteurPassword;
 	private JComboBox combo_MonHrOpen;
 	private JComboBox combo_MonMinOpen;
 	private JComboBox combo_MonHrClose;
@@ -49,9 +47,7 @@ public class CreateRestaurantView extends JFrame{
 	private JComboBox combo_SunMinOpen;
 	private JComboBox combo_SunHrClose;
 	private JComboBox combo_SunMinClose;
-	private JButton btn_validateRestauranteurUsername;
 	private JButton btn_addDeliveryArea;
-	private JButton btn_validateManagerUsesname;
 	private JButton btn_saveButton;
 	private JButton btn_deleteDeliveryArea;
 	private JButton btn_modifyAll;
@@ -60,6 +56,7 @@ public class CreateRestaurantView extends JFrame{
 	private JTextField txt_restaurantPhone2;
 	private JButton btn_cancel;
 	private JTextArea txtA_deliveryArea;
+	private JTable restoList;
 	
 
 
@@ -67,7 +64,7 @@ public class CreateRestaurantView extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public CreateRestaurantView() {
+	public EditRestaurantView() {
 		setTitle("Add New Restaurant");
 		initialize();
 	}
@@ -82,12 +79,12 @@ public class CreateRestaurantView extends JFrame{
 		String[] minutes = {"00", "30"};
 	
 		
-		this.setBounds(100, 100, 567, 1059);
+		this.setBounds(100, 100, 800, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBounds(0, 0, 551, 1020);
+		mainPanel.setBounds(0, 0, 784, 872);
 		mainPanel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
@@ -424,66 +421,9 @@ public class CreateRestaurantView extends JFrame{
 		btn_saveButton = new JButton("Save");
 		btn_saveButton.setBackground(new Color(244, 164, 96));
 		btn_saveButton.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_saveButton.setBounds(119, 967, 104, 30);
+		btn_saveButton.setBounds(150, 816, 104, 30);
 		btn_saveButton.setEnabled(false);
 		mainPanel.add(btn_saveButton);
-		
-		JLabel lbl_managerUsername = new JLabel("Manager Username:");
-		lbl_managerUsername.setForeground(SystemColor.window);
-		lbl_managerUsername.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_managerUsername.setBounds(79, 820, 158, 14);
-		mainPanel.add(lbl_managerUsername);
-		
-		txt_managerUsername = new JTextField();
-		txt_managerUsername.setBounds(238, 816, 129, 20);
-		mainPanel.add(txt_managerUsername);
-		txt_managerUsername.setColumns(10);
-		
-		btn_validateManagerUsesname = new JButton("Validate");
-		btn_validateManagerUsesname.setBackground(new Color(244, 164, 96));
-		btn_validateManagerUsesname.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_validateManagerUsesname.setBounds(387, 808, 124, 30);
-		mainPanel.add(btn_validateManagerUsesname);
-		
-		JLabel lbl_managerPassword = new JLabel("Manager Password:");
-		lbl_managerPassword.setForeground(SystemColor.window);
-		lbl_managerPassword.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_managerPassword.setBounds(79, 855, 145, 14);
-		mainPanel.add(lbl_managerPassword);
-		
-		txt_managerPassword = new JTextField();
-		txt_managerPassword.setBounds(238, 851, 129, 20);
-		mainPanel.add(txt_managerPassword);
-		txt_managerPassword.setColumns(10);
-		
-		JLabel lbl_restuaranteurUsername = new JLabel("Restauranteur:");
-		lbl_restuaranteurUsername.setForeground(SystemColor.window);
-		lbl_restuaranteurUsername.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_restuaranteurUsername.setBounds(79, 892, 145, 14);
-		mainPanel.add(lbl_restuaranteurUsername);
-		
-		txt_restaraunteurUsername = new JTextField();
-		txt_restaraunteurUsername.setBounds(238, 888, 129, 20);
-		mainPanel.add(txt_restaraunteurUsername);
-		txt_restaraunteurUsername.setColumns(10);
-		
-		btn_validateRestauranteurUsername = new JButton("Validate");
-		btn_validateRestauranteurUsername.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_validateRestauranteurUsername.setBackground(new Color(244, 164, 96));
-		btn_validateRestauranteurUsername.setBounds(387, 887, 124, 30);
-		btn_validateRestauranteurUsername.setEnabled(false);
-		mainPanel.add(btn_validateRestauranteurUsername);
-		
-		JLabel lbl_restauranteurPassword = new JLabel("Rest. Password:");
-		lbl_restauranteurPassword.setForeground(SystemColor.window);
-		lbl_restauranteurPassword.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_restauranteurPassword.setBounds(79, 932, 190, 14);
-		mainPanel.add(lbl_restauranteurPassword);
-		
-		txt_restauranteurPassword = new JTextField();
-		txt_restauranteurPassword.setBounds(238, 928, 129, 20);
-		mainPanel.add(txt_restauranteurPassword);
-		txt_restauranteurPassword.setColumns(10);
 		
 		JLabel lbl_restoPhone = new JLabel("Telephone Number:");
 		lbl_restoPhone.setForeground(SystemColor.window);
@@ -527,8 +467,15 @@ public class CreateRestaurantView extends JFrame{
 		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
 		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_cancel.setBounds(328, 967, 89, 30);
+		btn_cancel.setBounds(368, 816, 89, 30);
 		mainPanel.add(btn_cancel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(543, 123, 185, 462);
+		mainPanel.add(scrollPane);
+		
+		restoList = new JTable();
+		scrollPane.setColumnHeaderView(restoList);
 		
 		this.setVisible(true);
 	}
@@ -557,37 +504,6 @@ public class CreateRestaurantView extends JFrame{
 		this.txt_deliveryArea = txt_deliveryArea;
 	}
 
-	public JTextField getTxt_managerUsername() {
-		return txt_managerUsername;
-	}
-
-	public void setTxt_managerUsername(JTextField txt_managerUsername) {
-		this.txt_managerUsername = txt_managerUsername;
-	}
-
-	public JTextField getTxt_managerPassword() {
-		return txt_managerPassword;
-	}
-
-	public void setTxt_managerPassword(JTextField txt_managerPassword) {
-		this.txt_managerPassword = txt_managerPassword;
-	}
-
-	public JTextField getTxt_restaraunteurUsername() {
-		return txt_restaraunteurUsername;
-	}
-
-	public void setTxt_restaraunteurUsername(JTextField txt_restaraunteurUsername) {
-		this.txt_restaraunteurUsername = txt_restaraunteurUsername;
-	}
-
-	public JTextField getTxt_restauranteurPassword() {
-		return txt_restauranteurPassword;
-	}
-
-	public void setTxt_restauranteurPassword(JTextField txt_restauranteurPassword) {
-		this.txt_restauranteurPassword = txt_restauranteurPassword;
-	}
 
 	public JComboBox getCombo_MonHrOpen() {
 		return combo_MonHrOpen;
@@ -813,13 +729,6 @@ public class CreateRestaurantView extends JFrame{
 		this.combo_SunMinClose = combo_HumMinClose;
 	}
 
-	public JButton getBtn_validateRestauranteurUsername() {
-		return btn_validateRestauranteurUsername;
-	}
-
-	public void setBtn_validateRestauranteurUsername(JButton btn_validateRestauranteurUsername) {
-		this.btn_validateRestauranteurUsername = btn_validateRestauranteurUsername;
-	}
 
 	public JButton getBtn_addDeliveryArea() {
 		return btn_addDeliveryArea;
@@ -829,13 +738,6 @@ public class CreateRestaurantView extends JFrame{
 		this.btn_addDeliveryArea = btn_addDeliveryArea;
 	}
 
-	public JButton getBtn_validateManagerUsesname() {
-		return btn_validateManagerUsesname;
-	}
-
-	public void setBtn_validateManagerUsesname(JButton btn_validateManagerUsesname) {
-		this.btn_validateManagerUsesname = btn_validateManagerUsesname;
-	}
 
 	public JButton getBtn_saveButton() {
 		return btn_saveButton;

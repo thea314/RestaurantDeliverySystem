@@ -459,4 +459,11 @@ public class DBManager {
 			
 			
 		}
+		
+		/**
+		 * Edit Restaurant 
+		 *
+		 */
+		
+		
 }
