@@ -11,11 +11,11 @@ import javax.swing.JTable;
 public class CreateRestaurantController implements ActionListener {
 	
 	//properties
-	CreateRestaurantView view = new CreateRestaurantView();
-	CreateRestaurantModel model = new CreateRestaurantModel();
+	CreateRestaurantView view;
+	CreateRestaurantModel model;
 	private boolean managerValidated;
 	private boolean restauranteurValidated;
-	private String deliveryAreas;
+	private String deliveryAreas = "";
 	
 	//constructor
 	public CreateRestaurantController(CreateRestaurantView view, CreateRestaurantModel model) {
@@ -98,7 +98,7 @@ public class CreateRestaurantController implements ActionListener {
 		//add delivery area to the delivery area string
 		if ((JButton)e.getSource() == view.getBtn_addDeliveryArea()) {
 			
-			deliveryAreas = deliveryAreas + " " + view.getTxt_deliveryArea();
+			deliveryAreas = deliveryAreas + " " + view.getTxt_deliveryArea().getText();
 			view.getTxtA_deliveryArea().setText(deliveryAreas);			
 		}
 		//deletes last item in delivery area

@@ -57,6 +57,19 @@ public class LoginController implements ActionListener {
 						
 					}
 					
+					if (login.checkUserType(view.getTxt_username().getText()) == 1) {
+						
+						view.setVisible(false);
+						view.dispose();
+						
+						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 1);
+						
+						AdminView adminMenu = new AdminView();
+						
+						AdminController adminController = new AdminController(adminMenu, loggedUser);
+						
+					}
+					
 			} else {
 				}
 				

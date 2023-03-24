@@ -94,7 +94,7 @@ public class CreateRestaurantView extends JFrame{
 		
 		JLabel lbl_title = new JLabel();
 		lbl_title.setBounds(58, 11, 453, 53);
-		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteClient.png"));
+		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/addRestaurant.png"));
 		mainPanel.add(lbl_title);
 		
 		JLabel lbl_restoName = new JLabel("Restaurant Name:");
@@ -185,115 +185,115 @@ public class CreateRestaurantView extends JFrame{
 		lbl_day_title_7.setBounds(79, 467, 65, 14);
 		mainPanel.add(lbl_day_title_7);
 		
-		JComboBox combo_MonHrOpen = new JComboBox(hours);
+		combo_MonHrOpen = new JComboBox(hours);
 		combo_MonHrOpen.setBounds(191, 239, 46, 22);
 		mainPanel.add(combo_MonHrOpen);
 		
-		JComboBox combo_MonMinOpen = new JComboBox(minutes);
+		combo_MonMinOpen = new JComboBox(minutes);
 		combo_MonMinOpen.setBounds(264, 239, 46, 22);
 		mainPanel.add(combo_MonMinOpen);
 		
-		JComboBox combo_MonHrClose = new JComboBox(hours);
+		combo_MonHrClose = new JComboBox(hours);
 		combo_MonHrClose.setBounds(359, 239, 46, 22);
 		mainPanel.add(combo_MonHrClose);
 		
-		JComboBox combo_MonMinClose = new JComboBox(minutes);
+		combo_MonMinClose = new JComboBox(minutes);
 		combo_MonMinClose.setBounds(430, 239, 46, 22);
 		mainPanel.add(combo_MonMinClose);
 		
-		JComboBox combo_TuesHrOpen = new JComboBox(hours);
+		combo_TuesHrOpen = new JComboBox(hours);
 		combo_TuesHrOpen.setBounds(191, 274, 46, 22);
 		mainPanel.add(combo_TuesHrOpen);
 		
-		JComboBox combo_TuesMinOpen = new JComboBox(minutes);
+		combo_TuesMinOpen = new JComboBox(minutes);
 		combo_TuesMinOpen.setBounds(264, 274, 46, 22);
 		mainPanel.add(combo_TuesMinOpen);
 		
-		JComboBox combo_TuesHrClose = new JComboBox(hours);
+		combo_TuesHrClose = new JComboBox(hours);
 		combo_TuesHrClose.setBounds(359, 274, 46, 22);
 		mainPanel.add(combo_TuesHrClose);
 		
-		JComboBox combo_TuesMinClose = new JComboBox(minutes);
+		combo_TuesMinClose = new JComboBox(minutes);
 		combo_TuesMinClose.setBounds(430, 274, 46, 22);
 		mainPanel.add(combo_TuesMinClose);
 		
-		JComboBox combo_WedHrOpen = new JComboBox(hours);
+		combo_WedHrOpen = new JComboBox(hours);
 		combo_WedHrOpen.setBounds(191, 314, 46, 22);
 		mainPanel.add(combo_WedHrOpen);
 		
-		JComboBox combo_WedMinOpen = new JComboBox(minutes);
+		combo_WedMinOpen = new JComboBox(minutes);
 		combo_WedMinOpen.setBounds(264, 314, 46, 22);
 		mainPanel.add(combo_WedMinOpen);
 		
-		JComboBox combo_WedHrClose = new JComboBox(hours);
+		combo_WedHrClose = new JComboBox(hours);
 		combo_WedHrClose.setBounds(359, 314, 46, 22);
 		mainPanel.add(combo_WedHrClose);
 		
-		JComboBox combo_WedMinClose = new JComboBox(minutes);
+		combo_WedMinClose = new JComboBox(minutes);
 		combo_WedMinClose.setBounds(430, 314, 46, 22);
 		mainPanel.add(combo_WedMinClose);
 		
-		JComboBox combo_ThursHrOpen = new JComboBox(hours);
+		combo_ThursHrOpen = new JComboBox(hours);
 		combo_ThursHrOpen.setBounds(191, 353, 46, 22);
 		mainPanel.add(combo_ThursHrOpen);
 		
-		JComboBox combo_ThursMinOpen = new JComboBox(minutes);
+		combo_ThursMinOpen = new JComboBox(minutes);
 		combo_ThursMinOpen.setBounds(264, 353, 46, 22);
 		mainPanel.add(combo_ThursMinOpen);
 		
-		JComboBox combo_ThursHrClose = new JComboBox(hours);
+		combo_ThursHrClose = new JComboBox(hours);
 		combo_ThursHrClose.setBounds(359, 353, 46, 22);
 		mainPanel.add(combo_ThursHrClose);
 		
-		JComboBox combo_ThursMinClose = new JComboBox(minutes);
+		combo_ThursMinClose = new JComboBox(minutes);
 		combo_ThursMinClose.setBounds(430, 353, 46, 22);
 		mainPanel.add(combo_ThursMinClose);
 		
-		JComboBox combo_FriHrOpen = new JComboBox(hours);
+		combo_FriHrOpen = new JComboBox(hours);
 		combo_FriHrOpen.setBounds(191, 392, 46, 22);
 		mainPanel.add(combo_FriHrOpen);
 		
-		JComboBox combo_FriMinOpen = new JComboBox(minutes);
+		combo_FriMinOpen = new JComboBox(minutes);
 		combo_FriMinOpen.setBounds(264, 392, 46, 22);
 		mainPanel.add(combo_FriMinOpen);
 		
-		JComboBox combo_FridayHrClose = new JComboBox(hours);
-		combo_FridayHrClose.setBounds(360, 392, 46, 22);
-		mainPanel.add(combo_FridayHrClose);
+		combo_FriHrClose = new JComboBox(hours);
+		combo_FriHrClose.setBounds(360, 392, 46, 22);
+		mainPanel.add(combo_FriHrClose);
 		
-		JComboBox combo_FridayMinClose = new JComboBox(minutes);
-		combo_FridayMinClose.setBounds(430, 392, 46, 22);
-		mainPanel.add(combo_FridayMinClose);
+		combo_FriMinClose = new JComboBox(minutes);
+		combo_FriMinClose.setBounds(430, 392, 46, 22);
+		mainPanel.add(combo_FriMinClose);
 		
-		JComboBox combo_SatHrOpen = new JComboBox(hours);
+		combo_SatHrOpen = new JComboBox(hours);
 		combo_SatHrOpen.setBounds(191, 426, 46, 22);
 		mainPanel.add(combo_SatHrOpen);
 		
-		JComboBox combo_SatMinOpen = new JComboBox(minutes);
+		combo_SatMinOpen = new JComboBox(minutes);
 		combo_SatMinOpen.setBounds(264, 426, 46, 22);
 		mainPanel.add(combo_SatMinOpen);
 		
-		JComboBox combo_SatHrClose = new JComboBox(hours);
+		combo_SatHrClose = new JComboBox(hours);
 		combo_SatHrClose.setBounds(360, 426, 46, 22);
 		mainPanel.add(combo_SatHrClose);
 		
-		JComboBox combo_SatMinClose = new JComboBox(minutes);
+		combo_SatMinClose = new JComboBox(minutes);
 		combo_SatMinClose.setBounds(430, 426, 46, 22);
 		mainPanel.add(combo_SatMinClose);
 		
-		JComboBox combo_SunHrOpen = new JComboBox(hours);
+		combo_SunHrOpen = new JComboBox(hours);
 		combo_SunHrOpen.setBounds(191, 462, 46, 22);
 		mainPanel.add(combo_SunHrOpen);
 		
-		JComboBox combo_SunMinOpen = new JComboBox(minutes);
+		combo_SunMinOpen = new JComboBox(minutes);
 		combo_SunMinOpen.setBounds(264, 462, 46, 22);
 		mainPanel.add(combo_SunMinOpen);
 		
-		JComboBox combo_SunHrClose = new JComboBox(hours);
+		combo_SunHrClose = new JComboBox(hours);
 		combo_SunHrClose.setBounds(359, 462, 46, 22);
 		mainPanel.add(combo_SunHrClose);
 		
-		JComboBox combo_SunMinClose = new JComboBox(minutes);
+		combo_SunMinClose = new JComboBox(minutes);
 		combo_SunMinClose.setBounds(430, 462, 46, 22);
 		mainPanel.add(combo_SunMinClose);
 		
