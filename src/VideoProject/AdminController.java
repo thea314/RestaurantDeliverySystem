@@ -10,6 +10,7 @@ public class AdminController implements ActionListener {
 	//properties
 	private AdminView view;
 	private User user;
+	private Restaurant restaurant;
 	
 	//constructor
 	public AdminController(AdminView view, User user) {
@@ -55,7 +56,7 @@ public class AdminController implements ActionListener {
 				
 				EditRestaurantModel editRestoModel = new EditRestaurantModel();
 				
-				EditRestaurantController editRestoController = new EditRestaurantController(editRestoView, editRestoModel);
+				EditRestaurantController editRestoController = new EditRestaurantController(editRestoView, editRestoModel, restaurant);
 				
 				
 			}

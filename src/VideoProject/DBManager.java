@@ -495,8 +495,67 @@ public class DBManager {
 			}
 			
 			return null;
-						
-						
+															
+		}
+		
+		public Restaurant getRestautantFromId(int restoId) {
+			
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+				
+				PreparedStatement getResto = connection.prepareStatement("SELECT * FROM restaurant WHERE id = ?");
+				getResto.setLong(1, restoId);
+				
+				ResultSet populate = getResto.executeQuery();
+				
+				Restaurant restaurant = new Restaurant();
+				
+				populate.next();
+				restaurant.setRestaurantName(populate.getString("restoName"));
+				restaurant.setRestaurantAddress(populate.getString("restoAddress"));
+				restaurant.setRestaurantAreaCode(populate.getString("areaCode"));
+				restaurant.setRestaurantPhone1(populate.getString("phone1"));
+				restaurant.setRestaurantPhone2(populate.getString("phone2"));
+				restaurant.setDeliveryArea(populate.getString("deliveryArea"));
+				restaurant.setCombo_MonHrOpen(populate.getInt("OpenMonHr"));
+				restaurant.setCombo_MonMinOpen(populate.getInt("OpenMonMin"));
+				restaurant.setCombo_MonHrClose(populate.getInt("CloseMonHr")); 
+				restaurant.setCombo_MonMinClose(populate.getInt("CloseMonMin"));
+				restaurant.setCombo_TuesHrOpen(populate.getInt("OpenTuesHr"));
+				restaurant.setCombo_TuesMinOpen(populate.getInt("OpenTuesMin"));
+				restaurant.setCombo_TuesHrClose(populate.getInt("ClosedTuesHr"));
+				restaurant.setCombo_TuesMinClose(populate.getInt("ClosedTuesMin"));
+				restaurant.setCombo_WedHrOpen(populate.getInt("OpenWedHr"));
+				restaurant.setCombo_WedMinOpen(populate.getInt("OpenWedMin"));
+				restaurant.setCombo_WedHrClose(populate.getInt("ClosedWedHr"));
+				restaurant.setCombo_WedMinClose(populate.getInt("ClosedWedMin"));
+				restaurant.setCombo_ThursHrOpen(populate.getInt("OpenThursHr"));
+				restaurant.setCombo_ThursMinOpen(populate.getInt("OpenThursMin"));
+				restaurant.setCombo_ThursHrClose(populate.getInt("ClosedThursHr"));
+				restaurant.setCombo_ThursMinClose(populate.getInt("ClosedThursMin"));
+				restaurant.setCombo_FriHrOpen(populate.getInt("OpenFriHr"));
+				restaurant.setCombo_FriMinOpen(populate.getInt("OpenFriMin"));
+				restaurant.setCombo_FriHrClose(populate.getInt("ClosedFriHr"));
+				restaurant.setCombo_FriMinClose(populate.getInt("ClosedFriMin"));
+				restaurant.setCombo_SatHrOpen(populate.getInt("OpenSatHr"));
+				restaurant.setCombo_SatMinOpen(populate.getInt("OpenSatMin"));
+				restaurant.setCombo_SatHrClose(populate.getInt("ClosedSatHr"));
+				restaurant.setCombo_SatMinClose(populate.getInt("ClosedSatMin"));
+				restaurant.setCombo_SunHrOpen(populate.getInt("OpenSunAmHr"));
+				restaurant.setCombo_SunMinOpen(populate.getInt("OpenSunMin"));
+				restaurant.setCombo_SunHrClose(populate.getInt("CloseSunHr"));
+				restaurant.setCombo_SunMinClose(populate.getInt("CloseSunMin"));
+				restaurant.setActive(populate.getInt("active"));
+
+				return restaurant;
+
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+			
+			return null;
 			
 		}
 }

@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 public class Restaurant {
 	
 	//properties
+	private int id;
 	private String restaurantName;
 	private String restaurantAddress;
 	private String restaurantAreaCode;
@@ -39,7 +40,12 @@ public class Restaurant {
 	private int combo_SunMinOpen;
 	private int combo_SunHrClose;
 	private int combo_SunMinClose;
+	private int active;
 	
+	public Restaurant() {}
+	
+
+
 	//constructor
 	public Restaurant (String restaurantName, String restaurantAddress, String restaurantAreaCode, String restaurantPhone1, String restaurantPhone2,
 			String deliveryArea, int combo_MonHrOpen, int combo_MonMinOpen, int combo_MonHrClose, int c, int combo_TuesHrOpen,
@@ -83,6 +89,22 @@ public class Restaurant {
 		this.combo_SunHrClose = combo_SunHrClose;
 		this.combo_SunMinClose = combo_SunMinClose;
 		
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
 	}
 
 	public String getRestaurantName() {

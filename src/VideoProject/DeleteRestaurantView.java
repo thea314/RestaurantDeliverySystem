@@ -15,10 +15,9 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class EditRestaurantView extends JFrame{
+public class DeleteRestaurantView extends JFrame{
 	private JTextField txt_restoName;
 	private JTextField txt_restoAddress;
-	private JTextField txt_deliveryArea;
 	private JComboBox combo_MonHrOpen;
 	private JComboBox combo_MonMinOpen;
 	private JComboBox combo_MonHrClose;
@@ -47,10 +46,7 @@ public class EditRestaurantView extends JFrame{
 	private JComboBox combo_SunMinOpen;
 	private JComboBox combo_SunHrClose;
 	private JComboBox combo_SunMinClose;
-	private JButton btn_addDeliveryArea;
-	private JButton btn_saveButton;
-	private JButton btn_deleteDeliveryArea;
-	private JButton btn_modifyAll;
+	private JButton btn_deleteButton;
 	private JTextField txt_restaurantAreaCode;
 	private JTextField txt_restaurantPhone1;
 	private JTextField txt_restaurantPhone2;
@@ -64,8 +60,8 @@ public class EditRestaurantView extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public EditRestaurantView() {
-		setTitle("Edit Restaurant");
+	public DeleteRestaurantView() {
+		setTitle("Delete Restaurant");
 		initialize();
 	}
 
@@ -79,7 +75,7 @@ public class EditRestaurantView extends JFrame{
 		String[] minutes = {"00", "30"};
 	
 		
-		this.setBounds(100, 100, 800, 900);
+		this.setBounds(100, 100, 800, 769);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -91,7 +87,7 @@ public class EditRestaurantView extends JFrame{
 		
 		JLabel lbl_title = new JLabel();
 		lbl_title.setBounds(58, 11, 453, 53);
-		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editResto.png"));
+		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteResto.png"));
 		mainPanel.add(lbl_title);
 		
 		JLabel lbl_restoName = new JLabel("Restaurant Name:");
@@ -107,11 +103,13 @@ public class EditRestaurantView extends JFrame{
 		mainPanel.add(lbl_restoAddress);
 		
 		txt_restoName = new JTextField();
+		txt_restoName.setEnabled(false);
 		txt_restoName.setBounds(256, 75, 201, 20);
 		mainPanel.add(txt_restoName);
 		txt_restoName.setColumns(10);
 		
 		txt_restoAddress = new JTextField();
+		txt_restoAddress.setEnabled(false);
 		txt_restoAddress.setBounds(256, 107, 201, 20);
 		mainPanel.add(txt_restoAddress);
 		txt_restoAddress.setColumns(10);
@@ -183,114 +181,142 @@ public class EditRestaurantView extends JFrame{
 		mainPanel.add(lbl_day_title_7);
 		
 		combo_MonHrOpen = new JComboBox(hours);
+		combo_MonHrOpen.setEnabled(false);
 		combo_MonHrOpen.setBounds(191, 239, 46, 22);
 		mainPanel.add(combo_MonHrOpen);
 		
 		combo_MonMinOpen = new JComboBox(minutes);
+		combo_MonMinOpen.setEnabled(false);
 		combo_MonMinOpen.setBounds(264, 239, 46, 22);
 		mainPanel.add(combo_MonMinOpen);
 		
 		combo_MonHrClose = new JComboBox(hours);
+		combo_MonHrClose.setEnabled(false);
 		combo_MonHrClose.setBounds(359, 239, 46, 22);
 		mainPanel.add(combo_MonHrClose);
 		
 		combo_MonMinClose = new JComboBox(minutes);
+		combo_MonMinClose.setEnabled(false);
 		combo_MonMinClose.setBounds(430, 239, 46, 22);
 		mainPanel.add(combo_MonMinClose);
 		
 		combo_TuesHrOpen = new JComboBox(hours);
+		combo_TuesHrOpen.setEnabled(false);
 		combo_TuesHrOpen.setBounds(191, 274, 46, 22);
 		mainPanel.add(combo_TuesHrOpen);
 		
 		combo_TuesMinOpen = new JComboBox(minutes);
+		combo_TuesMinOpen.setEnabled(false);
 		combo_TuesMinOpen.setBounds(264, 274, 46, 22);
 		mainPanel.add(combo_TuesMinOpen);
 		
 		combo_TuesHrClose = new JComboBox(hours);
+		combo_TuesHrClose.setEnabled(false);
 		combo_TuesHrClose.setBounds(359, 274, 46, 22);
 		mainPanel.add(combo_TuesHrClose);
 		
 		combo_TuesMinClose = new JComboBox(minutes);
+		combo_TuesMinClose.setEnabled(false);
 		combo_TuesMinClose.setBounds(430, 274, 46, 22);
 		mainPanel.add(combo_TuesMinClose);
 		
 		combo_WedHrOpen = new JComboBox(hours);
+		combo_WedHrOpen.setEnabled(false);
 		combo_WedHrOpen.setBounds(191, 314, 46, 22);
 		mainPanel.add(combo_WedHrOpen);
 		
 		combo_WedMinOpen = new JComboBox(minutes);
+		combo_WedMinOpen.setEnabled(false);
 		combo_WedMinOpen.setBounds(264, 314, 46, 22);
 		mainPanel.add(combo_WedMinOpen);
 		
 		combo_WedHrClose = new JComboBox(hours);
+		combo_WedHrClose.setEnabled(false);
 		combo_WedHrClose.setBounds(359, 314, 46, 22);
 		mainPanel.add(combo_WedHrClose);
 		
 		combo_WedMinClose = new JComboBox(minutes);
+		combo_WedMinClose.setEnabled(false);
 		combo_WedMinClose.setBounds(430, 314, 46, 22);
 		mainPanel.add(combo_WedMinClose);
 		
 		combo_ThursHrOpen = new JComboBox(hours);
+		combo_ThursHrOpen.setEnabled(false);
 		combo_ThursHrOpen.setBounds(191, 353, 46, 22);
 		mainPanel.add(combo_ThursHrOpen);
 		
 		combo_ThursMinOpen = new JComboBox(minutes);
+		combo_ThursMinOpen.setEnabled(false);
 		combo_ThursMinOpen.setBounds(264, 353, 46, 22);
 		mainPanel.add(combo_ThursMinOpen);
 		
 		combo_ThursHrClose = new JComboBox(hours);
+		combo_ThursHrClose.setEnabled(false);
 		combo_ThursHrClose.setBounds(359, 353, 46, 22);
 		mainPanel.add(combo_ThursHrClose);
 		
 		combo_ThursMinClose = new JComboBox(minutes);
+		combo_ThursMinClose.setEnabled(false);
 		combo_ThursMinClose.setBounds(430, 353, 46, 22);
 		mainPanel.add(combo_ThursMinClose);
 		
 		combo_FriHrOpen = new JComboBox(hours);
+		combo_FriHrOpen.setEnabled(false);
 		combo_FriHrOpen.setBounds(191, 392, 46, 22);
 		mainPanel.add(combo_FriHrOpen);
 		
 		combo_FriMinOpen = new JComboBox(minutes);
+		combo_FriMinOpen.setEnabled(false);
 		combo_FriMinOpen.setBounds(264, 392, 46, 22);
 		mainPanel.add(combo_FriMinOpen);
 		
 		combo_FriHrClose = new JComboBox(hours);
+		combo_FriHrClose.setEnabled(false);
 		combo_FriHrClose.setBounds(360, 392, 46, 22);
 		mainPanel.add(combo_FriHrClose);
 		
 		combo_FriMinClose = new JComboBox(minutes);
+		combo_FriMinClose.setEnabled(false);
 		combo_FriMinClose.setBounds(430, 392, 46, 22);
 		mainPanel.add(combo_FriMinClose);
 		
 		combo_SatHrOpen = new JComboBox(hours);
+		combo_SatHrOpen.setEnabled(false);
 		combo_SatHrOpen.setBounds(191, 426, 46, 22);
 		mainPanel.add(combo_SatHrOpen);
 		
 		combo_SatMinOpen = new JComboBox(minutes);
+		combo_SatMinOpen.setEnabled(false);
 		combo_SatMinOpen.setBounds(264, 426, 46, 22);
 		mainPanel.add(combo_SatMinOpen);
 		
 		combo_SatHrClose = new JComboBox(hours);
+		combo_SatHrClose.setEnabled(false);
 		combo_SatHrClose.setBounds(360, 426, 46, 22);
 		mainPanel.add(combo_SatHrClose);
 		
 		combo_SatMinClose = new JComboBox(minutes);
+		combo_SatMinClose.setEnabled(false);
 		combo_SatMinClose.setBounds(430, 426, 46, 22);
 		mainPanel.add(combo_SatMinClose);
 		
 		combo_SunHrOpen = new JComboBox(hours);
+		combo_SunHrOpen.setEnabled(false);
 		combo_SunHrOpen.setBounds(191, 462, 46, 22);
 		mainPanel.add(combo_SunHrOpen);
 		
 		combo_SunMinOpen = new JComboBox(minutes);
+		combo_SunMinOpen.setEnabled(false);
 		combo_SunMinOpen.setBounds(264, 462, 46, 22);
 		mainPanel.add(combo_SunMinOpen);
 		
 		combo_SunHrClose = new JComboBox(hours);
+		combo_SunHrClose.setEnabled(false);
 		combo_SunHrClose.setBounds(359, 462, 46, 22);
 		mainPanel.add(combo_SunHrClose);
 		
 		combo_SunMinClose = new JComboBox(minutes);
+		combo_SunMinClose.setEnabled(false);
 		combo_SunMinClose.setBounds(430, 462, 46, 22);
 		mainPanel.add(combo_SunMinClose);
 		
@@ -378,52 +404,23 @@ public class EditRestaurantView extends JFrame{
 		lbl_h_13.setBounds(415, 466, 16, 14);
 		mainPanel.add(lbl_h_13);
 		
-		btn_modifyAll = new JButton("Modify All Times At Once");
-		btn_modifyAll.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_modifyAll.setBackground(new Color(244, 164, 96));
-		btn_modifyAll.setBounds(79, 508, 397, 36);
-		mainPanel.add(btn_modifyAll);
-		
 		JLabel lbl_deliveryArea = new JLabel("Delivery Area:");
 		lbl_deliveryArea.setForeground(Color.WHITE);
 		lbl_deliveryArea.setFont(new Font("Consolas", Font.BOLD, 20));
-		lbl_deliveryArea.setBounds(197, 555, 208, 30);
+		lbl_deliveryArea.setBounds(191, 505, 208, 30);
 		mainPanel.add(lbl_deliveryArea);
 		
 		txtA_deliveryArea = new JTextArea();
-		txtA_deliveryArea.setBounds(97, 588, 362, 107);
+		txtA_deliveryArea.setEnabled(false);
+		txtA_deliveryArea.setBounds(98, 546, 362, 107);
 		txtA_deliveryArea.setEditable(false);
 		mainPanel.add(txtA_deliveryArea);
 		
-		JLabel lbl_deliveryAreaTitle = new JLabel("Delivery Area:");
-		lbl_deliveryAreaTitle.setForeground(SystemColor.window);
-		lbl_deliveryAreaTitle.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryAreaTitle.setBounds(98, 714, 126, 14);
-		mainPanel.add(lbl_deliveryAreaTitle);
-		
-		txt_deliveryArea = new JTextField();
-		txt_deliveryArea.setBounds(220, 710, 86, 20);
-		mainPanel.add(txt_deliveryArea);
-		txt_deliveryArea.setColumns(10);
-		
-		btn_addDeliveryArea = new JButton("Add Delivery Area");
-		btn_addDeliveryArea.setBackground(new Color(244, 164, 96));
-		btn_addDeliveryArea.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_addDeliveryArea.setBounds(327, 706, 185, 36);
-		mainPanel.add(btn_addDeliveryArea);
-		
-		btn_deleteDeliveryArea = new JButton("Delete Delivery Area");
-		btn_deleteDeliveryArea.setBackground(new Color(244, 164, 96));
-		btn_deleteDeliveryArea.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_deleteDeliveryArea.setBounds(293, 753, 218, 30);
-		mainPanel.add(btn_deleteDeliveryArea);
-		
-		btn_saveButton = new JButton("Save");
-		btn_saveButton.setBackground(new Color(244, 164, 96));
-		btn_saveButton.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_saveButton.setBounds(150, 816, 104, 30);
-		btn_saveButton.setEnabled(false);
-		mainPanel.add(btn_saveButton);
+		btn_deleteButton = new JButton("Delete");
+		btn_deleteButton.setBackground(new Color(244, 164, 96));
+		btn_deleteButton.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_deleteButton.setBounds(163, 687, 104, 30);
+		mainPanel.add(btn_deleteButton);
 		
 		JLabel lbl_restoPhone = new JLabel("Telephone Number:");
 		lbl_restoPhone.setForeground(SystemColor.window);
@@ -450,16 +447,19 @@ public class EditRestaurantView extends JFrame{
 		mainPanel.add(lbl_dash);
 		
 		txt_restaurantAreaCode = new JTextField();
+		txt_restaurantAreaCode.setEnabled(false);
 		txt_restaurantAreaCode.setBounds(256, 138, 31, 20);
 		mainPanel.add(txt_restaurantAreaCode);
 		txt_restaurantAreaCode.setColumns(10);
 		
 		txt_restaurantPhone1 = new JTextField();
+		txt_restaurantPhone1.setEnabled(false);
 		txt_restaurantPhone1.setColumns(10);
 		txt_restaurantPhone1.setBounds(303, 138, 38, 20);
 		mainPanel.add(txt_restaurantPhone1);
 		
 		txt_restaurantPhone2 = new JTextField();
+		txt_restaurantPhone2.setEnabled(false);
 		txt_restaurantPhone2.setColumns(10);
 		txt_restaurantPhone2.setBounds(374, 138, 83, 20);
 		mainPanel.add(txt_restaurantPhone2);
@@ -467,7 +467,7 @@ public class EditRestaurantView extends JFrame{
 		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
 		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_cancel.setBounds(368, 816, 89, 30);
+		btn_cancel.setBounds(360, 687, 89, 30);
 		mainPanel.add(btn_cancel);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -502,14 +502,6 @@ public class EditRestaurantView extends JFrame{
 
 	public void setTxt_restoAddress(JTextField txt_restoAddress) {
 		this.txt_restoAddress = txt_restoAddress;
-	}
-
-	public JTextField getTxt_deliveryArea() {
-		return txt_deliveryArea;
-	}
-
-	public void setTxt_deliveryArea(JTextField txt_deliveryArea) {
-		this.txt_deliveryArea = txt_deliveryArea;
 	}
 
 
@@ -737,39 +729,14 @@ public class EditRestaurantView extends JFrame{
 		this.combo_SunMinClose = combo_HumMinClose;
 	}
 
-
-	public JButton getBtn_addDeliveryArea() {
-		return btn_addDeliveryArea;
-	}
-
-	public void setBtn_addDeliveryArea(JButton btn_addDeliveryArea) {
-		this.btn_addDeliveryArea = btn_addDeliveryArea;
-	}
-
-
 	public JButton getBtn_saveButton() {
-		return btn_saveButton;
+		return btn_deleteButton;
 	}
 
 	public void setBtn_saveButton(JButton btn_saveButton) {
-		this.btn_saveButton = btn_saveButton;
+		this.btn_deleteButton = btn_saveButton;
 	}
 
-	public JButton getBtn_deleteDeliveryArea() {
-		return btn_deleteDeliveryArea;
-	}
-
-	public void setBtn_deleteDeliveryArea(JButton btn_deleteDeliveryArea) {
-		this.btn_deleteDeliveryArea = btn_deleteDeliveryArea;
-	}
-	
-	public JButton getBtn_modifyAll() {
-		return btn_modifyAll;
-	}
-
-	public void setBtn_modifyAll(JButton btn_modifyAll) {
-		this.btn_modifyAll = btn_modifyAll;
-	}
 
 	public JTextField getTxt_restaurantAreaCode() {
 		return txt_restaurantAreaCode;
