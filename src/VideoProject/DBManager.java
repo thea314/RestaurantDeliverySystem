@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -399,8 +400,6 @@ public class DBManager {
 			getId.setString(1, restoName);
 			getId.setString(2, restoAddress);
 			getId.setString(3, restoAreaCode);
-			
-			String query = getId.toString();
 					
 			ResultSet restoId = getId.executeQuery();
 			
@@ -465,5 +464,39 @@ public class DBManager {
 		 *
 		 */
 		
-		
+		//get restaurant name to put in JTable
+		public ArrayList<String> restaurantName() {
+			
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+				PreparedStatement name = connection.prepareStatement("SELECT id, restoName FROM restaurant;");
+				
+				ResultSet restoNames = name.executeQuery();
+				
+				ArrayList<String> listOfRestoNames = new ArrayList<>();					
+				
+				while (restoNames.next()) {
+					
+					String restoName = restoNames.getString("restoName");
+					int restoId = restoNames.getInt("id");
+					String stringId = Integer.toString(restoId);
+					
+					String temp = stringId + " - " + restoName;
+					
+					listOfRestoNames.add(temp);
+				}
+				
+				return listOfRestoNames;
+				
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			return null;
+						
+						
+			
+		}
 }

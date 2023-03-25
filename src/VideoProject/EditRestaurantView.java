@@ -480,6 +480,14 @@ public class EditRestaurantView extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public JTable getRestoList() {
+		return restoList;
+	}
+
+	public void setRestoList(JTable restoList) {
+		this.restoList = restoList;
+	}
+
 	public JTextField getTxt_restoName() {
 		return txt_restoName;
 	}

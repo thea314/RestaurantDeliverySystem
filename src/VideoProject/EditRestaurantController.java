@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class EditRestaurantController implements ActionListener {
 	
@@ -23,6 +25,20 @@ public class EditRestaurantController implements ActionListener {
 		view.getBtn_deleteDeliveryArea().addActionListener(this);
 		view.getBtn_modifyAll().addActionListener(this);
 		view.getBtn_saveButton().addActionListener(this);
+		
+		DBManager populateTable = new DBManager();
+		
+		Object[] cols = {"Restaurant"};
+		
+		Object[] rows = populateTable.restaurantName().toArray(new Object[populateTable.restaurantName().size()]);
+		
+		JTable tempTable = view.getRestoList();
+		DefaultTableModel tableModel = (DefaultTableModel) tempTable.getModel();
+		tableModel.setColumnIdentifiers(cols);
+		
+		for (int i = 0; i < rows.length; i++) {
+		tableModel.addRow(new Object[]{rows[i]});
+		}
 		
 	}
 	

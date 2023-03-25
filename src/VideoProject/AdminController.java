@@ -48,7 +48,17 @@ public class AdminController implements ActionListener {
 				CreateRestaurantController controllerCreateResto = new CreateRestaurantController(viewCreateResto, modelCreateResto);
 				
 			}
-			
+			//edit resto button
+			if((JMenuItem)e.getSource() == view.getItem_editResto()) {
+				
+				EditRestaurantView editRestoView = new EditRestaurantView();
+				
+				EditRestaurantModel editRestoModel = new EditRestaurantModel();
+				
+				EditRestaurantController editRestoController = new EditRestaurantController(editRestoView, editRestoModel);
+				
+				
+			}
 			
 			
 			
