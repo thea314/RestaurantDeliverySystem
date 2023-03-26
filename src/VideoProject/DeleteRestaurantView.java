@@ -480,6 +480,14 @@ public class DeleteRestaurantView extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public JButton getBtn_deleteButton() {
+		return btn_deleteButton;
+	}
+
+	public void setBtn_deleteButton(JButton btn_deleteButton) {
+		this.btn_deleteButton = btn_deleteButton;
+	}
+
 	public JTable getRestoList() {
 		return restoList;
 	}

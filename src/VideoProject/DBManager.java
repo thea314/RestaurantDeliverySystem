@@ -613,4 +613,54 @@ public class DBManager {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update Restaurant", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 		}
+		
+
+/**
+ * Delete Restaurant 
+ *
+ */
+		
+		public void inactiveResto(int id) {
+			
+			//set restaurant account status to inactive
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+				
+				PreparedStatement setInactive = connection.prepareStatement("UPDATE `restaurant` SET `active` = 2 WHERE id = ?;");
+				setInactive.setInt(1, id);
+				
+				setInactive.executeUpdate();
+		
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database. -- delete restaurant", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+						
+		}
+		
+		/**
+		 * Create Menu
+		 *
+		 */
+		
+		public void addMenu(MenuItem menu) {
+			
+			//add all rows from menu to database with restaurant id
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+				PreparedStatement addMenu = connection.prepareStatement("INSERT INTO `menu`(`name`, `price`, `restaurant_id`) VALUES (?,?,?);");
+				addMenu.setString(1, menu.getItemName());
+				addMenu.setString(2, menu.getItemPrice());
+				addMenu.setInt(3, menu.getRestoId());
+				
+				addMenu.executeUpdate();
+				
+				
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database. -- delete restaurant", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		
 }

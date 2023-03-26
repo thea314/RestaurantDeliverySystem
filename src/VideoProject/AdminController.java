@@ -63,7 +63,31 @@ public class AdminController implements ActionListener {
 				
 				
 			}
-			
+			//delete resto button
+			if((JMenuItem)e.getSource() == view.getItem_deleteResto()) {
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				DeleteRestaurantView deleteRestoView = new DeleteRestaurantView();
+				
+				DeleteRestaurantModel deleteRestoModel = new DeleteRestaurantModel();
+				
+				DeleteRestaurantController deleteRestoController = new DeleteRestaurantController(deleteRestoView, deleteRestoModel, restaurant);
+			}
+			//create menu
+			if((JMenuItem)e.getSource() == view.getItem_menuCreate()) {
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				CreateMenuView createMenuView = new CreateMenuView();
+				
+				CreateMenuModel createMenuModel = new CreateMenuModel();
+				
+				CreateMenuController createMenuController = new CreateMenuController(createMenuView, createMenuModel);
+				
+			}
 			
 			
 		}
