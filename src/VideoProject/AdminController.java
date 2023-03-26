@@ -88,6 +88,16 @@ public class AdminController implements ActionListener {
 				CreateMenuController createMenuController = new CreateMenuController(createMenuView, createMenuModel);
 				
 			}
+			//edit menu
+			if ((JMenuItem)e.getSource() == view.getItem_menuEdit()) {
+				
+				EditMenuView editMenuView = new EditMenuView();
+				
+				EditMenuModel editMenuModel = new EditMenuModel();
+				
+				EditMenuController editMenuController = new EditMenuController(editMenuView, editMenuModel);
+				
+			}
 			
 			
 		}

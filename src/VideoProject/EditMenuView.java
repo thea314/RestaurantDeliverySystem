@@ -117,6 +117,22 @@ public class EditMenuView extends JFrame {
 		this.setVisible(true);
 	}
 
+	public JButton getBtn_edit() {
+		return btn_edit;
+	}
+
+	public void setBtn_edit(JButton btn_edit) {
+		this.btn_edit = btn_edit;
+	}
+
+	public JButton getBtn_updateMenu() {
+		return btn_updateMenu;
+	}
+
+	public void setBtn_updateMenu(JButton btn_updateMenu) {
+		this.btn_updateMenu = btn_updateMenu;
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */

@@ -663,4 +663,34 @@ public class DBManager {
 			}
 		}
 		
+		/**
+		 * Edit Menu
+		 *
+		 */
+		
+		public boolean hasMenu(int restoId) {
+			
+			//determine if given resto has a menu that can be edited/deleted
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+				PreparedStatement checkMenu = connection.prepareStatement("SELECT * FROM menu WHERE restaurant_id = ?;");
+				checkMenu.setInt(1, restoId);
+				
+				ResultSet resultSet = checkMenu.executeQuery();
+				
+				if (resultSet.next()) {				
+					return true;
+				}else
+					return false;
+			
+						
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database. -- edit menu", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+			return false;
+		}
+		
+		
 }
