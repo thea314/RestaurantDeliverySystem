@@ -90,7 +90,7 @@ public class EditRestaurantView extends JFrame{
 		mainPanel.setLayout(null);
 		
 		JLabel lbl_title = new JLabel();
-		lbl_title.setBounds(58, 11, 453, 53);
+		lbl_title.setBounds(10, 11, 764, 53);
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editResto.png"));
 		mainPanel.add(lbl_title);
 		
@@ -422,7 +422,6 @@ public class EditRestaurantView extends JFrame{
 		btn_saveButton.setBackground(new Color(244, 164, 96));
 		btn_saveButton.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_saveButton.setBounds(150, 816, 104, 30);
-		btn_saveButton.setEnabled(false);
 		mainPanel.add(btn_saveButton);
 		
 		JLabel lbl_restoPhone = new JLabel("Telephone Number:");

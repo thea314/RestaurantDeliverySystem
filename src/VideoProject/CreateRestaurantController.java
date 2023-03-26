@@ -116,40 +116,40 @@ public class CreateRestaurantController implements ActionListener {
 				
 				//define combobox values so they can be inserted into method
 				
-				int monHrOpen = (Integer)(view.getCombo_MonHrOpen().getSelectedIndex());
-				int monMinOpen = (Integer)(view.getCombo_MonMinOpen().getSelectedIndex());
-				int monHrClose = (Integer)(view.getCombo_MonHrClose().getSelectedIndex());
-				int monMinClose = (Integer)(view.getCombo_MonMinClose().getSelectedIndex());
-				
-				int tuesHrOpen = (Integer)(view.getCombo_TuesHrOpen().getSelectedIndex());
-				int tuesMinOpen = (Integer)(view.getCombo_TuesMinOpen().getSelectedIndex());
-				int tuesHrClose = (Integer)(view.getCombo_TuesHrClose().getSelectedIndex());
-				int tuesMinClose = (Integer)(view.getCombo_TuesMinClose().getSelectedIndex());
-				
-				int wedHrOpen = (Integer)(view.getCombo_WedHrOpen().getSelectedIndex());
-				int wedMinOpen = (Integer)(view.getCombo_WedMinOpen().getSelectedIndex());
-				int wedHrClose = (Integer)(view.getCombo_WedHrClose().getSelectedIndex());
-				int wedMinClose = (Integer)(view.getCombo_WedMinClose().getSelectedIndex());
-				
-				int thursHrOpen = (Integer)(view.getCombo_ThursHrOpen().getSelectedIndex());
-				int thursMinOpen = (Integer)(view.getCombo_ThursMinOpen().getSelectedIndex());
-				int thursHrClose = (Integer)(view.getCombo_ThursHrClose().getSelectedIndex());
-				int thursMinClose = (Integer)(view.getCombo_ThursMinClose().getSelectedIndex());
-				
-				int friHrOpen = (Integer)(view.getCombo_FriHrOpen().getSelectedIndex());
-				int friMinOpen = (Integer)(view.getCombo_FriMinOpen().getSelectedIndex());
-				int friHrClose = (Integer)(view.getCombo_FriHrClose().getSelectedIndex());
-				int friMinClose = (Integer)(view.getCombo_FriMinClose().getSelectedIndex());
-				
-				int satHrOpen = (Integer)(view.getCombo_SatHrOpen().getSelectedIndex());
-				int satMinOpen = (Integer)(view.getCombo_SatMinOpen().getSelectedIndex());
-				int satHrClose = (Integer)(view.getCombo_SatHrClose().getSelectedIndex());
-				int satMinClose = (Integer)(view.getCombo_SatMinClose().getSelectedIndex());
-				
-				int sunHrOpen = (Integer)(view.getCombo_SunHrOpen().getSelectedIndex());
-				int sunMinOpen = (Integer)(view.getCombo_SunMinOpen().getSelectedIndex());
-				int sunHrClose = (Integer)(view.getCombo_SunHrClose().getSelectedIndex());
-				int sunMinClose = (Integer)(view.getCombo_SunMinClose().getSelectedIndex());
+				int monHrOpen = Integer.parseInt((String)view.getCombo_MonHrOpen().getSelectedItem());						
+				int monMinOpen = Integer.parseInt((String)view.getCombo_MonMinOpen().getSelectedItem());						
+				int monHrClose = Integer.parseInt((String)view.getCombo_MonHrClose().getSelectedItem());						
+				int monMinClose = Integer.parseInt((String)view.getCombo_MonMinClose().getSelectedItem());
+										
+				int tuesHrOpen = Integer.parseInt((String)view.getCombo_TuesHrOpen().getSelectedItem());						
+				int tuesMinOpen = Integer.parseInt((String)view.getCombo_TuesMinOpen().getSelectedItem());						
+				int tuesHrClose = Integer.parseInt((String)view.getCombo_TuesHrClose().getSelectedItem());						
+				int tuesMinClose = Integer.parseInt((String)view.getCombo_TuesMinClose().getSelectedItem());
+										
+				int wedHrOpen = Integer.parseInt((String)view.getCombo_WedHrOpen().getSelectedItem());						
+				int wedMinOpen = Integer.parseInt((String)view.getCombo_WedMinOpen().getSelectedItem());						
+				int wedHrClose = Integer.parseInt((String)view.getCombo_WedHrClose().getSelectedItem());						
+				int wedMinClose = Integer.parseInt((String)view.getCombo_WedMinClose().getSelectedItem());
+										
+				int thursHrOpen = Integer.parseInt((String)view.getCombo_ThursHrOpen().getSelectedItem());						
+				int thursMinOpen = Integer.parseInt((String)view.getCombo_ThursMinOpen().getSelectedItem());						
+				int thursHrClose = Integer.parseInt((String)view.getCombo_ThursHrClose().getSelectedItem());						
+				int thursMinClose = Integer.parseInt((String)view.getCombo_ThursMinClose().getSelectedItem());
+										
+				int friHrOpen = Integer.parseInt((String)view.getCombo_FriHrOpen().getSelectedItem());						
+				int friMinOpen = Integer.parseInt((String)view.getCombo_FriMinOpen().getSelectedItem());						
+				int friHrClose = Integer.parseInt((String)view.getCombo_FriHrClose().getSelectedItem());						
+				int friMinClose = Integer.parseInt((String)view.getCombo_FriMinClose().getSelectedItem());
+										
+				int satHrOpen = Integer.parseInt((String)view.getCombo_SatHrOpen().getSelectedItem());						
+				int satMinOpen = Integer.parseInt((String)view.getCombo_SatMinOpen().getSelectedItem());						
+				int satHrClose = Integer.parseInt((String)view.getCombo_SatHrClose().getSelectedItem());						
+				int satMinClose = Integer.parseInt((String)view.getCombo_SatMinClose().getSelectedItem());
+										
+				int sunHrOpen = Integer.parseInt((String)view.getCombo_SunHrOpen().getSelectedItem());						
+				int sunMinOpen = Integer.parseInt((String)view.getCombo_SunMinOpen().getSelectedItem());						
+				int sunHrClose = Integer.parseInt((String)view.getCombo_SunHrClose().getSelectedItem());						
+				int sunMinClose = Integer.parseInt((String)view.getCombo_SunMinClose().getSelectedItem());
 				
 				//confirm before saving
 				//verify client info correct before saving

@@ -52,6 +52,9 @@ public class AdminController implements ActionListener {
 			//edit resto button
 			if((JMenuItem)e.getSource() == view.getItem_editResto()) {
 				
+				view.setVisible(false);
+				view.dispose();
+				
 				EditRestaurantView editRestoView = new EditRestaurantView();
 				
 				EditRestaurantModel editRestoModel = new EditRestaurantModel();

@@ -86,7 +86,7 @@ public class DeleteRestaurantView extends JFrame{
 		mainPanel.setLayout(null);
 		
 		JLabel lbl_title = new JLabel();
-		lbl_title.setBounds(58, 11, 453, 53);
+		lbl_title.setBounds(27, 11, 728, 53);
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteResto.png"));
 		mainPanel.add(lbl_title);
 		

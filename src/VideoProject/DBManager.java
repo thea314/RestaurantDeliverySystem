@@ -558,4 +558,59 @@ public class DBManager {
 			return null;
 			
 		}
+		
+		public void updateRestaurant(int id, String name, String address, String areaCode, String phone1, String phone2, String deliveryArea, int monHrOpen, int monMinOpen,
+				int monHrClose, int monMinClose, int tuesHrOpen, int tuesMinOpen, int tuesHrClose, int tuesMinClose, int wedHrOpen, int wedMinOpen,
+				int wedHrClose, int wedMinClose, int thursHrOpen, int thursMinOpen, int thursHrClose, int thursMinClose, int friHrOpen,
+				int friMinOpen, int friHrClose, int friMinClose, int satHrOpen, int satMinOpen, int satHrClose, int satMinClose,
+				int sunHrOpen, int sunMinOpen, int sunHrClose, int sunMinClose) {
+			
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+				
+				PreparedStatement updateResto = connection.prepareStatement("UPDATE `restaurant` SET `restoName`= ?,`restoAddress`=?,`areaCode`=?,`phone1`=?,`phone2`=?,`OpenSunAmHr`=?,`OpenSunMin`=?,`CloseSunHr`=?,`CloseSunMin`=?,`OpenMonHr`=?,`OpenMonMin`=?,`CloseMonHr`=?,`CloseMonMin`=?,`OpenTuesHr`=?,`OpenTuesMin`=?,`ClosedTuesHr`=?,`ClosedTuesMin`=?,`OpenWedHr`=?,`OpenWedMin`=?,`ClosedWedHr`=?,`ClosedWedMin`=?,`OpenThursHr`=?,`OpenThursMin`=?,`ClosedThursHr`=?,`ClosedThursMin`=?,`OpenFriHr`=?,`OpenFriMin`=?,`ClosedFriHr`=?,`ClosedFriMin`=?,`OpenSatHr`=?,`OpenSatMin`=?,`ClosedSatHr`=?,`ClosedSatMin`=?,`deliveryArea`=? WHERE id = ?");
+				updateResto.setString(1, name);
+				updateResto.setString(2, address);
+				updateResto.setString(3, areaCode);
+				updateResto.setString(4, phone1);
+				updateResto.setString(5, phone2);
+				updateResto.setLong(6, sunHrOpen);
+				updateResto.setLong(7, sunMinOpen);
+				updateResto.setLong(8, sunHrClose);
+				updateResto.setLong(9, sunMinClose);									
+				updateResto.setLong(10, monHrOpen);
+				updateResto.setLong(11, monMinOpen);
+				updateResto.setLong(12, monHrClose);
+				updateResto.setLong(13, monMinClose);
+				updateResto.setLong(14, tuesHrOpen);
+				updateResto.setLong(15, tuesMinOpen);
+				updateResto.setLong(16, tuesHrClose);
+				updateResto.setLong(17, tuesMinClose);
+				updateResto.setLong(18, wedHrOpen);
+				updateResto.setLong(19, wedMinOpen);
+				updateResto.setLong(20, wedHrClose);
+				updateResto.setLong(21, wedMinClose);
+				updateResto.setLong(22, thursHrOpen);
+				updateResto.setLong(23, thursMinOpen);
+				updateResto.setLong(24, thursHrClose);
+				updateResto.setLong(25, thursMinClose);
+				updateResto.setLong(26, friHrOpen);
+				updateResto.setLong(27, friMinOpen);
+				updateResto.setLong(28, friHrClose);
+				updateResto.setLong(29, friMinClose);
+				updateResto.setLong(30, satHrOpen);
+				updateResto.setLong(31, satMinOpen);
+				updateResto.setLong(32, satHrClose);
+				updateResto.setLong(33, satMinClose);
+				updateResto.setString(34, deliveryArea);
+				updateResto.setLong(35, id);
+				
+				updateResto.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update Restaurant", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		}
 }
