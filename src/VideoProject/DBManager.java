@@ -692,5 +692,42 @@ public class DBManager {
 			return false;
 		}
 		
+		public ArrayList<MenuItem> menuList(int restoId) {
+			
+			//get list of menu strings for a given restaurant
+			try {
+				
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			
+				PreparedStatement menuItems = connection.prepareStatement("SELECT * FROM menu WHERE restaurant_id = ?;");
+				menuItems.setInt(1, restoId);
+				
+				ResultSet menuNames = menuItems.executeQuery();
+				
+				ArrayList<MenuItem> listOfMenuNames = new ArrayList<>();					
+				
+				while (menuNames.next()) {
+					
+					MenuItem menuItem = new MenuItem();
+					
+					menuItem.setItemName(menuNames.getString("name"));
+					menuItem.setItemPrice(menuNames.getString("price"));
+					menuItem.setRestoId(menuNames.getInt("restaurant_id"));	
+					menuItem.setMenuId(menuNames.getInt("id"));
+					
+					listOfMenuNames.add(menuItem);
+				}
+				
+				return listOfMenuNames;
+				
+			}catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			return null;
+									
+			
+			
+		}
 		
 }

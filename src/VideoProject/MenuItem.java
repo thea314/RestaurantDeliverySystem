@@ -5,9 +5,16 @@ public class MenuItem {
 	private String itemName;
 	private String itemPrice;
 	private int restoId;
+	private int menuId;
 	
 	
 	
+	public int getMenuId() {
+		return menuId;
+	}
+	public void setMenuId(int menuId) {
+		this.menuId = menuId;
+	}
 	public String getItemName() {
 		return itemName;
 	}
