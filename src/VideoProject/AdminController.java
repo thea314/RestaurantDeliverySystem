@@ -115,6 +115,19 @@ public class AdminController implements ActionListener {
 				
 				
 			}
+			//add delivery guy
+			if ((JMenuItem)e.getSource() == view.getItem_createDeliveryGuy()) {
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				CreateDeliveryGuyView createDeliveryView = new CreateDeliveryGuyView();
+				
+				CreateDeliveryGuyModel createDeliveryModel = new CreateDeliveryGuyModel();
+				
+				CreateDeliveryGuyController createDeliveryController = new CreateDeliveryGuyController(createDeliveryView, createDeliveryModel);
+				
+			}
 			
 			
 		}

@@ -773,10 +773,33 @@ public class DBManager {
 	}
 	
 	/**
-	 * Order Food
+	 * Add Delivery Guy
 	 *
 	 */
 	
+	public void createDeliveryGuy(String name, String areaCode, String phone1, String phone2, String deliveryArea, String username, String password) {
+		
+		//create delivery guy 
+		
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement addDeliveryGuy = connection.prepareStatement("INSERT INTO `deliveryguy`(`name`, `areaCode`, `phone1`, `phone2`, `deliveryArea`, `username`, `password`) VALUES (?,?,?,?,?,?,?)");
+			addDeliveryGuy.setString(1, name);
+			addDeliveryGuy.setString(2, areaCode);
+			addDeliveryGuy.setString(3, phone1);
+			addDeliveryGuy.setString(4, phone2);
+			addDeliveryGuy.setString(5, deliveryArea);
+			addDeliveryGuy.setString(6, username);
+			addDeliveryGuy.setString(7, password);
+			
+			addDeliveryGuy.executeUpdate();
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Add delivery", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 	
 	
 }

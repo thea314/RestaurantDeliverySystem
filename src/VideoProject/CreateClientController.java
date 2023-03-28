@@ -81,7 +81,7 @@ public class CreateClientController implements ActionListener {
 							//add new client to client and user tables in database
 							 newClient.addClient(view.getTxt_username().getText(), view.getTxt_password().getText(), view.getTxt_lastname().getText(), view.getTxt_firstname().getText(), view.getTxt_address().getText(), view.getTxt_email().getText(), view.getTxt_areacode().getText(), view.getTxt_phone1().getText(), view.getTxt_phone2().getText());
 							 newClient.addUser(view.getTxt_username().getText(), view.getTxt_password().getText(), 2);		
-							 JOptionPane.showMessageDialog(null, "Client successfully created, you may login..", "Success", JOptionPane.INFORMATION_MESSAGE);
+							 JOptionPane.showMessageDialog(null, "Client successfully created, you may login.", "Success", JOptionPane.INFORMATION_MESSAGE);
 						 } else if (confirmNewClient == JOptionPane.NO_OPTION) {
 							 JOptionPane.showMessageDialog(null, "Please make your updates and try again.", "Incomplete", JOptionPane.INFORMATION_MESSAGE);
 						 } else {

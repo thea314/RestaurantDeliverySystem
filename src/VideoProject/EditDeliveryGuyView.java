@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
-public class CreateDeliveryGuyView extends JFrame{
+public class EditDeliveryGuyView extends JFrame{
 	private JTextField txt_areaCode;
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
@@ -23,14 +23,12 @@ public class CreateDeliveryGuyView extends JFrame{
 	private JButton btn_save;
 	private JButton btn_cancel;
 	private JTextField txt_username;
-	private JTextField txt_password;
-	private JButton btn_validateUsername;
 	private JTextArea txtArea_deliveryArea;
 
 	/**
 	 * Create the application.
 	 */
-	public CreateDeliveryGuyView() {
+	public EditDeliveryGuyView() {
 		initialize();
 	}
 
@@ -51,7 +49,7 @@ public class CreateDeliveryGuyView extends JFrame{
 		
 		JLabel lbl_title = new JLabel("");
 		lbl_title.setBounds(104, 15, 477, 67);
-		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/createDelivery.png"));
+		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editDelivery.png"));
 		panel.add(lbl_title);
 		
 		JLabel lbl_name = new JLabel("Name:");
@@ -73,6 +71,7 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(lbl_openBracket);
 		
 		txt_areaCode = new JTextField();
+		txt_areaCode.setEnabled(false);
 		txt_areaCode.setBounds(204, 129, 33, 20);
 		panel.add(txt_areaCode);
 		txt_areaCode.setColumns(10);
@@ -84,6 +83,7 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(lbl_closeBracket);
 		
 		txt_phone1 = new JTextField();
+		txt_phone1.setEnabled(false);
 		txt_phone1.setBounds(256, 129, 38, 20);
 		panel.add(txt_phone1);
 		txt_phone1.setColumns(10);
@@ -95,6 +95,7 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(lbl_dash);
 		
 		txt_phone2 = new JTextField();
+		txt_phone2.setEnabled(false);
 		txt_phone2.setBounds(321, 129, 57, 20);
 		panel.add(txt_phone2);
 		txt_phone2.setColumns(10);
@@ -106,12 +107,14 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(lbl_area);
 		
 		txt_driverName = new JTextField();
+		txt_driverName.setEnabled(false);
 		txt_driverName.setBounds(195, 89, 183, 20);
 		panel.add(txt_driverName);
 		txt_driverName.setColumns(10);
 		
 		txtArea_deliveryArea = new JTextArea();
 		txtArea_deliveryArea.setEditable(false);
+		txtArea_deliveryArea.setEnabled(false);
 		txtArea_deliveryArea.setBounds(118, 200, 282, 78);
 		panel.add(txtArea_deliveryArea);
 		
@@ -139,7 +142,6 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(btn_delete);
 		
 		btn_save = new JButton("Save");
-		btn_save.setEnabled(false);
 		btn_save.setBackground(new Color(244, 164, 96));
 		btn_save.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_save.setBounds(148, 375, 89, 42);
@@ -157,27 +159,11 @@ public class CreateDeliveryGuyView extends JFrame{
 		lbl_username.setBounds(119, 302, 83, 14);
 		panel.add(lbl_username);
 		
-		JLabel lbl_password = new JLabel("Password:");
-		lbl_password.setForeground(SystemColor.window);
-		lbl_password.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_password.setBounds(119, 338, 75, 14);
-		panel.add(lbl_password);
-		
 		txt_username = new JTextField();
+		txt_username.setEnabled(false);
 		txt_username.setBounds(204, 298, 108, 20);
 		panel.add(txt_username);
 		txt_username.setColumns(10);
-		
-		txt_password = new JTextField();
-		txt_password.setBounds(204, 334, 108, 20);
-		panel.add(txt_password);
-		txt_password.setColumns(10);
-		
-		btn_validateUsername = new JButton("Validate");
-		btn_validateUsername.setBackground(new Color(244, 164, 96));
-		btn_validateUsername.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_validateUsername.setBounds(346, 289, 108, 43);
-		panel.add(btn_validateUsername);
 		
 		this.setVisible(true);
 	}
