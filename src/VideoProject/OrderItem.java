@@ -21,6 +21,15 @@ public class OrderItem {
 	}
 	
 	
-	
+	public double getTotal() {
+		
+		double priceDouble = Double.parseDouble(menuItem.getItemPrice());
+		
+		double total = quantity * priceDouble;
+		
+		return total;
+		
+		
+	}
 
 }

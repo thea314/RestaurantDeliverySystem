@@ -112,7 +112,7 @@ public class CreateMenuController implements ActionListener, ListSelectionListen
 
 						addMenu.addMenu(menuItem);
 
-						JOptionPane.showMessageDialog(null, "Menu added, have a nice day!", "Canceled", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Menu added, have a nice day!", "Complete", JOptionPane.INFORMATION_MESSAGE);
 
 						view.setVisible(false);
 						view.dispose();

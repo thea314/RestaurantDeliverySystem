@@ -17,9 +17,10 @@ public class CreateOrderModel {
 	private Client client;
 	private ArrayList<MenuItem> menuitems;
 	private double total;
+	private int quantity;
 	
 	//validate fields are numeric
-	public boolean validateNumseric(String number) {
+	public boolean validateNumeric(String number) {
 		
 		try {
 			Integer.parseInt(number);
@@ -38,13 +39,18 @@ public class CreateOrderModel {
 			return false;
 		} else
 			return true;
-		
-		
+				
 	}
 	
-	
-	
-	
+	public boolean validateQuantity(int quantity) {
+		
+		if (quantity > 10) {
+			JOptionPane.showMessageDialog(null, "Each item can only be ordered 10 times.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} else
+			return true;	
+		
+	}
 
 	
 	public String getYear() {

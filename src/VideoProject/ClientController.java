@@ -66,6 +66,15 @@ public class ClientController implements ActionListener {
 			DeleteClientController deleteController = new DeleteClientController(deleteView, deleteModel, user);
 			
 			
+		} else if ((JMenuItem)e.getSource() == view.getItem_orderFood()) {
+			
+			CreateOrderView createOrderView = new CreateOrderView();
+			
+			CreateOrderModel createOrderModel = new CreateOrderModel();
+			
+			CreateOrderController createOrderController = new CreateOrderController(createOrderView, createOrderModel);
+			
+			
 		}
 		
 		
