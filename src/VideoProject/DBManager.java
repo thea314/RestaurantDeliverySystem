@@ -771,4 +771,12 @@ public class DBManager {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	
+	/**
+	 * Order Food
+	 *
+	 */
+	
+	
+	
 }

@@ -21,9 +21,14 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 	 ArrayList<OrderItem> orderItem;
 	JTable tempTable;
 	JTable menuTable;
+	JTable orderTable;
 	DefaultTableModel menuTableModel;
+	DefaultTableModel orderTableModel;
 	int restoId;
 	ArrayList<MenuItem> menuId;
+	double total = 0;
+	int quantity;
+	User user;
 	
 	//constructor
 	public CreateOrderController(CreateOrderView view, CreateOrderModel model) {
@@ -63,7 +68,7 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 
 				selectionModel.addListSelectionListener(this);
 
-				// menu display table, read-only
+				// menu display table
 				menuTable = view.getTable_menu();
 				menuTableModel = (DefaultTableModel) menuTable.getModel();
 				menuTableModel.addColumn("Id");
@@ -76,6 +81,15 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 
 				ListSelectionModel selectionModel2 = menuTable.getSelectionModel();
 				selectionModel2.addListSelectionListener(this);
+				
+				//order table, read-only
+				//menu display table, read-only
+				orderTable = view.getTable_order();
+				orderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				orderTableModel = (DefaultTableModel) orderTable.getModel();
+				orderTableModel.addColumn("Item");
+				orderTableModel.addColumn("Price");
+				orderTableModel.addColumn("Quantity");
 		
 	}
 	
@@ -84,10 +98,64 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 		//add an item to the order
 		if((JButton)e.getSource() == view.getBtn_add()) {
 			
+			quantity = Integer.parseInt(view.getTxt_quantity().getText());
+			String name = view.getTxt_meanName().getText();
+			String price = view.getTxt_price().getText();
+			String quantityInt = String.valueOf(quantity);
+			double subtotal;
+			
+			if ((model.validateQuantity(quantity))) {
+				
+				orderTable = view.getTable_order();
+				orderTableModel = (DefaultTableModel) orderTable.getModel();
+
+				String item[] = {name, price, quantityInt};
+				orderTableModel.addRow(item);
+				
+			}
+			
+			
+		}
+		if ((JButton)e.getSource() == view.getBtn_delete()) {
+						
+			orderTable = view.getTable_order();
+			orderTableModel = (DefaultTableModel) orderTable.getModel();
+			
+			int indexRow = orderTable.getSelectedRow();
+			
+			if (indexRow != -1) {
+				int modelIndex = orderTable.convertRowIndexToModel(indexRow);
+				orderTableModel.removeRow(modelIndex);
+			}
+			
+			
+		}
+		if ((JButton)e.getSource() == view.getBtn_cancel()) {
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			ClientMenuView clientMenu = new ClientMenuView();
+			
+			ClientController controlClientMenu = new ClientController(clientMenu, user);	
 			
 			
 		}
 		
+		if ((JButton)e.getSource() == view.getBtn_order()) {
+			
+			if ((model.validateNumeric(view.getTxt_hour().getText()) && (model.validateNumeric(view.getTxt_min().getText()) &&
+					(model.validateNumeric(view.getTxt_year().getText()) && (model.validateNumeric(view.getTxt_month().getText()) && 
+							(model.validateNumeric(view.getTxt_day().getText()) && 
+									(model.validatePostalCode(view.getTxt_postalCode().getText())))))))) {
+				
+				
+				
+				
+			}
+			
+			
+		}
 		
 	}
 	

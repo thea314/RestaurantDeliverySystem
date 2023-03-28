@@ -33,6 +33,10 @@ public class CreateOrderView extends JFrame{
 	private JTextField txt_month;
 	private JLabel lbl_day;
 	private JTextField txt_day;
+	private JLabel lbl_resto;
+	private JLabel lbl_menu;
+	private JLabel lbl_order;
+	private JButton btn_cancel;
 
 
 	/**
@@ -76,7 +80,7 @@ public class CreateOrderView extends JFrame{
 		scrollPane_menu.setViewportView(table_menu);
 		
 		JScrollPane scrollPane_order = new JScrollPane();
-		scrollPane_order.setBounds(444, 173, 136, 230);
+		scrollPane_order.setBounds(444, 173, 136, 190);
 		panel.add(scrollPane_order);
 		
 		table_order = new JTable();
@@ -226,7 +230,63 @@ public class CreateOrderView extends JFrame{
 		panel.add(txt_day);
 		txt_day.setColumns(10);
 		
+		lbl_resto = new JLabel("Restaurant:");
+		lbl_resto.setForeground(SystemColor.window);
+		lbl_resto.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lbl_resto.setBounds(24, 159, 99, 14);
+		panel.add(lbl_resto);
+		
+		lbl_menu = new JLabel("Menu:");
+		lbl_menu.setForeground(SystemColor.window);
+		lbl_menu.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lbl_menu.setBounds(157, 158, 46, 14);
+		panel.add(lbl_menu);
+		
+		lbl_order = new JLabel("Order:");
+		lbl_order.setForeground(SystemColor.window);
+		lbl_order.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lbl_order.setBounds(443, 158, 77, 14);
+		panel.add(lbl_order);
+		
+		btn_cancel = new JButton("Cancel");
+		btn_cancel.setBackground(new Color(244, 164, 96));
+		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_cancel.setBounds(491, 387, 89, 35);
+		panel.add(btn_cancel);
+		
 		this.setVisible(true);
+	}
+
+	public JLabel getLbl_resto() {
+		return lbl_resto;
+	}
+
+	public void setLbl_resto(JLabel lbl_resto) {
+		this.lbl_resto = lbl_resto;
+	}
+
+	public JLabel getLbl_menu() {
+		return lbl_menu;
+	}
+
+	public void setLbl_menu(JLabel lbl_menu) {
+		this.lbl_menu = lbl_menu;
+	}
+
+	public JLabel getLbl_order() {
+		return lbl_order;
+	}
+
+	public void setLbl_order(JLabel lbl_order) {
+		this.lbl_order = lbl_order;
+	}
+
+	public JButton getBtn_cancel() {
+		return btn_cancel;
+	}
+
+	public void setBtn_cancel(JButton btn_cancel) {
+		this.btn_cancel = btn_cancel;
 	}
 
 	public JLabel getLbl_year() {
