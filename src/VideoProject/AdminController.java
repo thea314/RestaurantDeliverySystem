@@ -91,11 +91,28 @@ public class AdminController implements ActionListener {
 			//edit menu
 			if ((JMenuItem)e.getSource() == view.getItem_menuEdit()) {
 				
+				view.setVisible(false);
+				view.dispose();
+				
 				EditMenuView editMenuView = new EditMenuView();
 				
 				EditMenuModel editMenuModel = new EditMenuModel();
 				
 				EditMenuController editMenuController = new EditMenuController(editMenuView, editMenuModel);
+				
+			}
+			//delete menu
+			if ((JMenuItem)e.getSource() == view.getItem_menuDelete()) {
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				DeleteMenuView deleteMenuView = new DeleteMenuView();
+				
+				DeleteMenuModel deleteMenuModel = new DeleteMenuModel();
+				
+				DeleteMenuController deleteMenuController = new DeleteMenuController(deleteMenuView, deleteMenuModel);
+				
 				
 			}
 			

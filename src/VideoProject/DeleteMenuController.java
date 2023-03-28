@@ -13,11 +13,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class EditMenuController implements ActionListener, ListSelectionListener {
+public class DeleteMenuController implements ActionListener, ListSelectionListener {
 
 	// properties
-	EditMenuView view;
-	EditMenuModel model;
+	DeleteMenuView view;
+	DeleteMenuModel model;
 	Restaurant restaurant;
 	MenuItem menuItem;
 	int restoId;
@@ -28,7 +28,7 @@ public class EditMenuController implements ActionListener, ListSelectionListener
 	ArrayList<MenuItem> menuId;
 
 	// controller
-	public EditMenuController(EditMenuView view, EditMenuModel model) {
+	public DeleteMenuController(DeleteMenuView view, DeleteMenuModel model) {
 		this.view = view;
 		this.model = model;
 
@@ -95,7 +95,7 @@ public class EditMenuController implements ActionListener, ListSelectionListener
 		if ((JButton)e.getSource() == view.getBtn_edit()) {
 			
 			//validate name and price before updating to db
-			if ((model.validatePrice(view.getTxt_price().getText()) && (model.validateName(view.getTxt_itemName().getText())))) {
+			
 				int menuRows = menuTable.getRowCount();
 
 				//confirm changes
@@ -108,19 +108,19 @@ public class EditMenuController implements ActionListener, ListSelectionListener
 
 				JTable confirmTable = new JTable(rows, cols);
 
-				int confirmAddMenu = JOptionPane.showConfirmDialog(null, new JScrollPane(menuTable));
+				int confirmAddMenu = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this item?", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 
 				if (confirmAddMenu == JOptionPane.YES_OPTION) {
 
-					DBManager editMenu = new DBManager();
+					DBManager deleteMenu = new DBManager();
 					
 					int row = view.getTable_menuList().getSelectedRow();
 					
 					int menuIdOfSelection = (int) view.getTable_menuList().getValueAt(row, 0);
 
-					editMenu.editMenuItem(menuIdOfSelection, view.getTxt_itemName().getText(), view.getTxt_price().getText());
+					deleteMenu.deleteMenuItem(menuIdOfSelection);
 
-						JOptionPane.showMessageDialog(null, "Menu item updated, have a nice day!", "Sucsess", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Menu item deleted, have a nice day!", "Sucsess", JOptionPane.INFORMATION_MESSAGE);
 
 						view.setVisible(false);
 						view.dispose();
@@ -149,7 +149,7 @@ public class EditMenuController implements ActionListener, ListSelectionListener
 			}
 		}
 			
-		}
+		
 
 	
 

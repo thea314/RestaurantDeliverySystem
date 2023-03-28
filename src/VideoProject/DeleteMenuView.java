@@ -13,20 +13,20 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class EditMenuView extends JFrame {
+public class DeleteMenuView extends JFrame {
 	private JTable table_menuList;
 	private JTable table_restaurant;
 	private JTextField txt_itemName;
 	private JTextField txt_price;
-	private JButton btn_edit;
+	private JButton btn_delete;
 	private JButton btn_cancel;
 
 
 	/**
 	 * Create the application.
 	 */
-	public EditMenuView() {
-		setTitle("Edit Menu Item");
+	public DeleteMenuView() {
+		setTitle("Delete Menu Item");
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -37,7 +37,7 @@ public class EditMenuView extends JFrame {
 		
 		JLabel lbl_title = new JLabel("");
 		lbl_title.setBounds(117, 11, 549, 46);
-		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editMenu.png"));
+		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteMenu.png"));
 		panel.add(lbl_title);
 		
 		JLabel lblNewLabel = new JLabel("Restaurant:");
@@ -66,11 +66,11 @@ public class EditMenuView extends JFrame {
 		lbl_menu.setBounds(472, 81, 100, 14);
 		panel.add(lbl_menu);
 		
-		JLabel lbl_editItem = new JLabel("Edit Item");
-		lbl_editItem.setForeground(SystemColor.window);
-		lbl_editItem.setFont(new Font("Consolas", Font.BOLD, 20));
-		lbl_editItem.setBounds(261, 136, 106, 24);
-		panel.add(lbl_editItem);
+		JLabel lbl_DeleteItem = new JLabel("Delete Item");
+		lbl_DeleteItem.setForeground(SystemColor.window);
+		lbl_DeleteItem.setFont(new Font("Consolas", Font.BOLD, 20));
+		lbl_DeleteItem.setBounds(261, 136, 151, 24);
+		panel.add(lbl_DeleteItem);
 		
 		JLabel lbl_item = new JLabel("Item:");
 		lbl_item.setForeground(SystemColor.window);
@@ -85,21 +85,23 @@ public class EditMenuView extends JFrame {
 		panel.add(lbl_price);
 		
 		txt_itemName = new JTextField();
+		txt_itemName.setEnabled(false);
 		txt_itemName.setBounds(285, 189, 139, 20);
 		panel.add(txt_itemName);
 		txt_itemName.setColumns(10);
 		
 		txt_price = new JTextField();
+		txt_price.setEnabled(false);
 		txt_price.setBounds(282, 233, 142, 20);
 		panel.add(txt_price);
 		txt_price.setColumns(10);
 		
-		btn_edit = new JButton("Edit");
-		btn_edit.setEnabled(false);
-		btn_edit.setBackground(new Color(244, 164, 96));
-		btn_edit.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_edit.setBounds(198, 278, 89, 35);
-		panel.add(btn_edit);
+		btn_delete = new JButton("Delete");
+		btn_delete.setEnabled(false);
+		btn_delete.setBackground(new Color(244, 164, 96));
+		btn_delete.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_delete.setBounds(198, 278, 89, 35);
+		panel.add(btn_delete);
 		
 		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
@@ -112,11 +114,11 @@ public class EditMenuView extends JFrame {
 	}
 
 	public JButton getBtn_edit() {
-		return btn_edit;
+		return btn_delete;
 	}
 
 	public void setBtn_edit(JButton btn_edit) {
-		this.btn_edit = btn_edit;
+		this.btn_delete = btn_edit;
 	}
 
 	/**
@@ -160,11 +162,11 @@ public class EditMenuView extends JFrame {
 	}
 
 	public JButton getBtn_add() {
-		return btn_edit;
+		return btn_delete;
 	}
 
 	public void setBtn_add(JButton btn_add) {
-		this.btn_edit = btn_add;
+		this.btn_delete = btn_add;
 	}
 
 	public JButton getBtn_cancel() {
