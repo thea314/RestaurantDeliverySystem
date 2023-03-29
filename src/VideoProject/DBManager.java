@@ -915,4 +915,17 @@ public class DBManager {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update delivery guy no password", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	
+	/**
+	 * Order food 
+	 *
+	 */
+	
+	//add new orderinfo for restaurants and deliveries
+	public void addOrderInfo(int clientId, int year, int month, int day, String postalCode, int deliveryHr, int deliveryMin, String address, int restoId) {
+		
+		
+		
+	}
+	
 }

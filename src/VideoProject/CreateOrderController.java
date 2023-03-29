@@ -18,7 +18,7 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 	 CreateOrderModel model;
 	 Restaurant restaurant;
 	 Client client;
-	 ArrayList<OrderItem> orderItem;
+	 ArrayList<OrderItem> orderItem = new ArrayList<>();
 	JTable tempTable;
 	JTable menuTable;
 	JTable orderTable;
@@ -115,9 +115,8 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 				
 				OrderItem currentOrderItem = new OrderItem();
 				
-				orderItem.add(currentOrderItem);
 				currentOrderItem.setQuantity(quantity);
-				
+		
 				//find menuitem in arraylist
 				
 				for (int i = 0; i < menuId.size(); i++) {
@@ -128,6 +127,8 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 					}
 					
 				}
+				
+				orderItem.add(currentOrderItem);
 				
 				
 				//add menuitem to currentOrderItem

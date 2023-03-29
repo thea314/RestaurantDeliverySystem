@@ -142,6 +142,16 @@ public class AdminController implements ActionListener {
 				EditDeliveryGuyController editDeliveryGuyController = new EditDeliveryGuyController(editDeliveryGuyView, editDeliveryGuyModel, deliveryGuy);
 				
 			}
+			//delete delivery guy
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			DeleteDeliveryGuyView deleteDeliveryGuyView = new DeleteDeliveryGuyView();
+			
+			DeleteDeliveryGuyModel deleteDeliveryGuyModel = new DeleteDeliveryGuyModel();
+			
+			DeleteDeliveryGuyController deleteDeliveryGuyController = new DeleteDeliveryGuyController(deleteDeliveryGuyView, deleteDeliveryGuyModel, deliveryGuy);
 			
 			
 		}

@@ -19,7 +19,7 @@ public class DeleteDeliveryGuyView extends JFrame{
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
 	private JTextField txt_driverName;
-	private JButton btn_save;
+	private JButton btn_delete;
 	private JButton btn_cancel;
 	private JTextField txt_username;
 	private JTextArea txtArea_deliveryArea;
@@ -48,7 +48,7 @@ public class DeleteDeliveryGuyView extends JFrame{
 		panel.setLayout(null);
 		
 		JLabel lbl_title = new JLabel("");
-		lbl_title.setBounds(104, 15, 477, 67);
+		lbl_title.setBounds(10, 11, 453, 67);
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteDelivery.png"));
 		panel.add(lbl_title);
 		
@@ -118,11 +118,11 @@ public class DeleteDeliveryGuyView extends JFrame{
 		txtArea_deliveryArea.setBounds(171, 200, 229, 78);
 		panel.add(txtArea_deliveryArea);
 		
-		btn_save = new JButton("Delete");
-		btn_save.setBackground(new Color(244, 164, 96));
-		btn_save.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_save.setBounds(148, 375, 89, 42);
-		panel.add(btn_save);
+		btn_delete = new JButton("Delete");
+		btn_delete.setBackground(new Color(244, 164, 96));
+		btn_delete.setFont(new Font("Consolas", Font.BOLD, 16));
+		btn_delete.setBounds(148, 375, 89, 42);
+		panel.add(btn_delete);
 		
 		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
@@ -152,14 +152,6 @@ public class DeleteDeliveryGuyView extends JFrame{
 
 		
 		this.setVisible(true);
-	}
-
-	public JTextField getTxt_password() {
-		return txt_password;
-	}
-
-	public void setTxt_password(JTextField txt_password) {
-		this.txt_password = txt_password;
 	}
 
 	public JTable getTable_deliveryGuy() {
@@ -202,20 +194,12 @@ public class DeleteDeliveryGuyView extends JFrame{
 		this.txt_driverName = txt_driverName;
 	}
 
-	public JTextField getTxt_addArea() {
-		return txt_addArea;
+	public JButton getBtn_save() {
+		return btn_delete;
 	}
 
-	public void setTxt_addArea(JTextField txt_addArea) {
-		this.txt_addArea = txt_addArea;
-	}
-
-	public JButton getBtn_addArea() {
-		return btn_addArea;
-	}
-
-	public void setBtn_addArea(JButton btn_addArea) {
-		this.btn_addArea = btn_addArea;
+	public void setBtn_save(JButton btn_save) {
+		this.btn_delete = btn_save;
 	}
 
 	public JButton getBtn_delete() {
@@ -224,14 +208,6 @@ public class DeleteDeliveryGuyView extends JFrame{
 
 	public void setBtn_delete(JButton btn_delete) {
 		this.btn_delete = btn_delete;
-	}
-
-	public JButton getBtn_save() {
-		return btn_save;
-	}
-
-	public void setBtn_save(JButton btn_save) {
-		this.btn_save = btn_save;
 	}
 
 	public JButton getBtn_cancel() {
