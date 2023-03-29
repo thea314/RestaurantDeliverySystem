@@ -18,6 +18,7 @@ public class CreateOrderModel {
 	private ArrayList<MenuItem> menuitems;
 	private double total;
 	private int quantity;
+	private String address;
 	
 	//validate fields are numeric
 	public boolean validateNumeric(String number) {
@@ -42,6 +43,16 @@ public class CreateOrderModel {
 				
 	}
 	
+	public boolean validateAddress(String address) {
+		
+		if (address.length() < 10) {
+			JOptionPane.showMessageDialog(null, "Address must be at least 10 characters.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} else
+			return true;
+				
+	}
+	
 	public boolean validateQuantity(int quantity) {
 		
 		if (quantity > 10) {
@@ -51,6 +62,8 @@ public class CreateOrderModel {
 			return true;	
 		
 	}
+	
+	
 
 	
 	public String getYear() {

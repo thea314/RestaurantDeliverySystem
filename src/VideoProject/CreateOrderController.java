@@ -130,9 +130,6 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 				
 				orderItem.add(currentOrderItem);
 				
-				
-				//add menuitem to currentOrderItem
-				
 				updateSubtotal();
 				
 			}
@@ -160,7 +157,7 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 			
 			ClientMenuView clientMenu = new ClientMenuView();
 			
-			ClientController controlClientMenu = new ClientController(clientMenu, user);	
+			ClientController controlClientMenu = new ClientController(clientMenu, client);	
 			
 			
 		}
@@ -169,10 +166,24 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 			
 			if ((model.validateNumeric(view.getTxt_hour().getText()) && (model.validateNumeric(view.getTxt_min().getText()) &&
 					(model.validateNumeric(view.getTxt_year().getText()) && (model.validateNumeric(view.getTxt_month().getText()) && 
-							(model.validateNumeric(view.getTxt_day().getText()) && 
+							(model.validateNumeric(view.getTxt_day().getText()) && (model.validateAddress(view.getTxt_address().getText())) &&
 									(model.validatePostalCode(view.getTxt_postalCode().getText())))))))) {
 				
+				DBManager db = new DBManager();
 				
+				int clientId = db.getClientId(client.getLastName(), client.getFirstName());
+				
+				//create client order info in db
+				db.createOrderInfo(clientId, Integer.parseInt(view.getTxt_year().getText()), Integer.parseInt(view.getTxt_month().getText()), 
+						Integer.parseInt(view.getTxt_day().getText()), view.getTxt_postalCode().getText(), 
+						Integer.parseInt(view.getTxt_hour().getText()), Integer.parseInt(view.getTxt_min().getText()),
+						view.getTxt_address().getText(), restoId);
+				
+				int orderId = db.getOrderId(Integer.parseInt(view.getTxt_year().getText()), Integer.parseInt(view.getTxt_month().getText()),
+						Integer.parseInt(view.getTxt_day().getText()), view.getTxt_address().getText(), clientId);
+				
+				//create order in db
+				db.createOrderItems(selectedMenuItem, quantity, orderId);
 				
 				
 			}

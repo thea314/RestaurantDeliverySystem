@@ -885,14 +885,14 @@ public class DBManager {
 			updateDeliveryGuy.setString(4, phone2);
 			updateDeliveryGuy.setString(5, deliveryArea);
 			updateDeliveryGuy.setString(6, username);
-			
+
 			updateDeliveryGuy.executeUpdate();
 
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update delivery guy no password", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 	public void updateDeliveryGuyWithPasswordChange(String username, String name, String areaCode, String phone1, String phone2, String deliveryArea, String password) {
 
 		//update delivery guy if admin opts not to change password
@@ -908,24 +908,122 @@ public class DBManager {
 			updateDeliveryGuy.setString(5, deliveryArea);
 			updateDeliveryGuy.setString(6, password);
 			updateDeliveryGuy.setString(7, username);
-			
+
 			updateDeliveryGuy.executeUpdate();
 
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update delivery guy no password", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Order food 
 	 *
 	 */
-	
+
 	//add new orderinfo for restaurants and deliveries
-	public void addOrderInfo(int clientId, int year, int month, int day, String postalCode, int deliveryHr, int deliveryMin, String address, int restoId) {
+	public void createOrderInfo(int clientId, int year, int month, int day, String postalCode, int deliveryHr, int deliveryMin, String address, int restoId) {
+
+		//add orderinfo to table
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement createOrder = connection.prepareStatement("INSERT INTO `orderinfo`(`client`, `year`, `month`, `day`, `postalCode`, `deliveryHr`, `deliveryMin`, `address`, `restaurant`) VALUES (?,?,?,?,?,?,?,?,?);");
+			createOrder.setInt(1, clientId);
+			createOrder.setInt(2, year);
+			createOrder.setInt(3, month);
+			createOrder.setInt(4, day);
+			createOrder.setString(5, postalCode);
+			createOrder.setInt(6, deliveryHr);
+			createOrder.setInt(7, deliveryMin);
+			createOrder.setString(8, address);
+			createOrder.setInt(9, restoId);
+
+			createOrder.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+	}
+
+	//add new order item for client's order history
+	public void createOrderItems(int menuItemId, int quantity, int orderId) {
+
+		//add orderinfo to table
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement createOrderItem = connection.prepareStatement("INSERT INTO `order_items`(`menu_item_id`, `quantity`, `order_id`) VALUES (?,?,?);");
+			createOrderItem.setInt(1, menuItemId);
+			createOrderItem.setInt(2, quantity);
+			createOrderItem.setInt(3, orderId);
+
+			createOrderItem.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	//get client id
+	public int getClientId(String lastName, String firstName) {
 		
+		//use client's first and last name to get their client id from db
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getClientId = connection.prepareStatement("SELECT id FROM clients WHERE lastName = ? AND firstName = ?;");
+			getClientId.setString(1, lastName);
+			getClientId.setString(2, firstName);
+			
+			ResultSet resultSet = getClientId.executeQuery();
+
+			resultSet.next();
+
+			int id = resultSet.getInt("id");
+
+			return id;
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
 		
+		return -1;
 		
 	}
 	
+	//get orderId
+	public int getOrderId(int year, int month, int day, String address, int clientId) {
+		
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderId = connection.prepareStatement("SELECT `id` FROM orderinfo WHERE year = ? and month = ? AND day = ? and address = ? and client = ?;");
+			getOrderId.setInt(1, year);
+			getOrderId.setInt(2, month);
+			getOrderId.setInt(3, day);
+			getOrderId.setString(4, address);
+			getOrderId.setInt(5, clientId);
+			
+			ResultSet resultSet = getOrderId.executeQuery();
+
+			resultSet.next();
+
+			int id = resultSet.getInt("id");
+
+			return id;
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		return -1;
+		
+		
+	}
 }

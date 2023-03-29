@@ -37,6 +37,8 @@ public class CreateOrderView extends JFrame{
 	private JLabel lbl_menu;
 	private JLabel lbl_order;
 	private JButton btn_cancel;
+	private JLabel lbl_address;
+	private JTextField txt_address;
 
 
 	/**
@@ -89,39 +91,39 @@ public class CreateOrderView extends JFrame{
 		JLabel lbl_deliveryDate = new JLabel("Delivery Date:");
 		lbl_deliveryDate.setForeground(SystemColor.window);
 		lbl_deliveryDate.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryDate.setBounds(112, 64, 136, 14);
+		lbl_deliveryDate.setBounds(24, 64, 136, 14);
 		panel.add(lbl_deliveryDate);
 		
 		JLabel lbl_deliveryTime = new JLabel("Delivery Time:");
 		lbl_deliveryTime.setForeground(SystemColor.window);
 		lbl_deliveryTime.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryTime.setBounds(112, 103, 123, 14);
+		lbl_deliveryTime.setBounds(24, 98, 123, 14);
 		panel.add(lbl_deliveryTime);
 		
 		JLabel lbl_postalCode = new JLabel("Postal Code:");
 		lbl_postalCode.setForeground(SystemColor.window);
 		lbl_postalCode.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_postalCode.setBounds(112, 128, 99, 14);
+		lbl_postalCode.setBounds(289, 98, 99, 14);
 		panel.add(lbl_postalCode);
 		
 		txt_hour = new JTextField();
-		txt_hour.setBounds(279, 94, 28, 20);
+		txt_hour.setBounds(157, 94, 28, 20);
 		panel.add(txt_hour);
 		txt_hour.setColumns(10);
 		
 		JLabel lbl_h = new JLabel("h");
 		lbl_h.setForeground(SystemColor.window);
 		lbl_h.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_h.setBounds(313, 98, 17, 14);
+		lbl_h.setBounds(195, 98, 17, 14);
 		panel.add(lbl_h);
 		
 		txt_min = new JTextField();
-		txt_min.setBounds(329, 94, 38, 20);
+		txt_min.setBounds(222, 94, 38, 20);
 		panel.add(txt_min);
 		txt_min.setColumns(10);
 		
 		txt_postalCode = new JTextField();
-		txt_postalCode.setBounds(281, 124, 86, 20);
+		txt_postalCode.setBounds(400, 94, 86, 20);
 		panel.add(txt_postalCode);
 		txt_postalCode.setColumns(10);
 		
@@ -200,33 +202,33 @@ public class CreateOrderView extends JFrame{
 		lbl_year = new JLabel("yyyy:");
 		lbl_year.setForeground(SystemColor.window);
 		lbl_year.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_year.setBounds(234, 63, 46, 14);
+		lbl_year.setBounds(157, 64, 46, 14);
 		panel.add(lbl_year);
 		
 		txt_year = new JTextField();
-		txt_year.setBounds(290, 60, 46, 20);
+		txt_year.setBounds(213, 60, 46, 20);
 		panel.add(txt_year);
 		txt_year.setColumns(10);
 		
 		lbl_month = new JLabel("mm:");
 		lbl_month.setForeground(SystemColor.window);
 		lbl_month.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_month.setBounds(348, 63, 28, 14);
+		lbl_month.setBounds(279, 64, 28, 14);
 		panel.add(lbl_month);
 		
 		txt_month = new JTextField();
-		txt_month.setBounds(376, 60, 28, 20);
+		txt_month.setBounds(313, 60, 28, 20);
 		panel.add(txt_month);
 		txt_month.setColumns(10);
 		
 		lbl_day = new JLabel("dd:");
 		lbl_day.setForeground(SystemColor.window);
 		lbl_day.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_day.setBounds(414, 63, 28, 14);
+		lbl_day.setBounds(348, 64, 28, 14);
 		panel.add(lbl_day);
 		
 		txt_day = new JTextField();
-		txt_day.setBounds(444, 58, 28, 20);
+		txt_day.setBounds(376, 60, 28, 20);
 		panel.add(txt_day);
 		txt_day.setColumns(10);
 		
@@ -254,7 +256,26 @@ public class CreateOrderView extends JFrame{
 		btn_cancel.setBounds(491, 387, 89, 35);
 		panel.add(btn_cancel);
 		
+		lbl_address = new JLabel("Address:");
+		lbl_address.setForeground(SystemColor.window);
+		lbl_address.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lbl_address.setBounds(24, 123, 70, 14);
+		panel.add(lbl_address);
+		
+		txt_address = new JTextField();
+		txt_address.setBounds(104, 119, 382, 20);
+		panel.add(txt_address);
+		txt_address.setColumns(10);
+		
 		this.setVisible(true);
+	}
+
+	public JTextField getTxt_address() {
+		return txt_address;
+	}
+
+	public void setTxt_address(JTextField txt_address) {
+		this.txt_address = txt_address;
 	}
 
 	public JLabel getLbl_resto() {
