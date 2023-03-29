@@ -851,23 +851,68 @@ public class DBManager {
 			ResultSet populate = getDeliveryGuy.executeQuery();
 
 			populate.next();
-			
+
 			DeliveryGuy deliveryGuy = new DeliveryGuy(populate.getString("username"), populate.getString("password"), 5);
-			
+
 			deliveryGuy.setAreaCode(populate.getString("areaCode"));
 			deliveryGuy.setDeliveryArea(populate.getString("deliveryArea"));
 			deliveryGuy.setName(populate.getString("name"));
 			deliveryGuy.setPhone1(populate.getString("phone1"));
 			deliveryGuy.setPhone2(populate.getString("phone2"));
 			deliveryGuy.setUsername(populate.getString("username"));
-			
+
 			return deliveryGuy;
-			
+
 
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 		return null;
+	}
+
+	public void updateDeliveryGuyNoPasswordChange(String username, String name, String areaCode, String phone1, String phone2, String deliveryArea) {
+
+		//update delivery guy if admin opts not to change password
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateDeliveryGuy = connection.prepareStatement("UPDATE `deliveryguy` SET `name`=?,`areaCode`=?,`phone1`=?,`phone2`=?,`deliveryArea`=? WHERE username = ?");
+			updateDeliveryGuy.setString(1, name);
+			updateDeliveryGuy.setString(2, areaCode);
+			updateDeliveryGuy.setString(3, phone1);
+			updateDeliveryGuy.setString(4, phone2);
+			updateDeliveryGuy.setString(5, deliveryArea);
+			updateDeliveryGuy.setString(6, username);
+			
+			updateDeliveryGuy.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update delivery guy no password", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void updateDeliveryGuyWithPasswordChange(String username, String name, String areaCode, String phone1, String phone2, String deliveryArea, String password) {
+
+		//update delivery guy if admin opts not to change password
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateDeliveryGuy = connection.prepareStatement("UPDATE `deliveryguy` SET `name`=?,`areaCode`=?,`phone1`=?,`phone2`=?,`deliveryArea`=?, `password` = ? WHERE username = ?");
+			updateDeliveryGuy.setString(1, name);
+			updateDeliveryGuy.setString(2, areaCode);
+			updateDeliveryGuy.setString(3, phone1);
+			updateDeliveryGuy.setString(4, phone2);
+			updateDeliveryGuy.setString(5, deliveryArea);
+			updateDeliveryGuy.setString(6, password);
+			updateDeliveryGuy.setString(7, username);
+			
+			updateDeliveryGuy.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update delivery guy no password", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 }

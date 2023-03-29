@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -81,7 +83,102 @@ public class EditDeliveryGuyController implements ActionListener, ListSelectionL
 
 		}
 		//save to db
-		//validate fields before confirming
+		if ((JButton)e.getSource() == view.getBtn_save()) {
+			
+			//validate fields before confirming
+			if ((model.validateareaCode(view.getTxt_areaCode().getText()) && (model.validateDeliveryArea(view.getTxtArea_deliveryArea().getText()) &&
+					(model.validateName(view.getTxt_driverName().getText()) && (model.validateNumeric(view.getTxt_areaCode().getText()) &&
+					(model.validateNumeric(view.getTxt_phone1().getText()) && (model.validateNumeric(view.getTxt_phone2().getText()) &&
+							(model.validatePhone1(view.getTxt_phone1().getText()) && (model.validatePhone2(view.getTxt_phone2().getText())))))))))) {
+				
+				//is password blank (being kept)
+				if (view.getTxt_password().getText().equals("")) {
+					//confirm changes
+					//verify item info correct before saving
+					
+					 Object[][] rows = {{"Name", view.getTxt_driverName().getText()}, {"Delivery Area", view.getTxtArea_deliveryArea().getText()},
+							 {"Phone:", view.getTxt_areaCode().getText() + " - " + view.getTxt_phone1().getText() + " - " + view.getTxt_phone2().getText()},
+							 };
+					 
+					 Object[] cols = {
+							 "Field", "Value"
+					 };
+					 
+
+					JTable confirmTable = new JTable(rows, cols);
+
+					int confirmEditDeliveryGuy = JOptionPane.showConfirmDialog(null, new JScrollPane(confirmTable));
+
+					if (confirmEditDeliveryGuy == JOptionPane.YES_OPTION) {
+						
+						DBManager db = new DBManager();
+						
+						db.updateDeliveryGuyNoPasswordChange(deliveryGuy.getUsername(), view.getTxt_driverName().getText(), view.getTxt_areaCode().getText(),
+								view.getTxt_phone1().getText(), view.getTxt_phone2().getText(), view.getTxtArea_deliveryArea().getText());
+						
+						JOptionPane.showMessageDialog(null, "Update Complete!", "Success", JOptionPane.INFORMATION_MESSAGE);
+						
+						view.setVisible(false);
+						view.dispose();
+						
+						AdminView adminView = new AdminView();
+						
+						AdminController adminController = new AdminController(adminView, user);
+						
+					 }else if (confirmEditDeliveryGuy == JOptionPane.NO_OPTION) {
+						 JOptionPane.showMessageDialog(null, "Please make your updates and try again.", "Incomplete", JOptionPane.INFORMATION_MESSAGE);
+					 } else {
+						 JOptionPane.showMessageDialog(null, "Please fill out form.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					 }
+					
+				} else {
+					//confirm changes
+					//verify item info correct before saving
+					
+					 Object[][] rows = {{"Name", view.getTxt_driverName().getText()}, {"Delivery Area", view.getTxtArea_deliveryArea().getText()},
+							 {"Phone:", view.getTxt_areaCode().getText() + " - " + view.getTxt_phone1().getText() + " - " + view.getTxt_phone2().getText()},
+							 };
+					 
+					 Object[] cols = {
+							 "Field", "Value"
+					 };
+					 
+
+					JTable confirmTable = new JTable(rows, cols);
+
+					int confirmEditDeliveryGuy = JOptionPane.showConfirmDialog(null, new JScrollPane(confirmTable));
+
+					if (confirmEditDeliveryGuy == JOptionPane.YES_OPTION) {
+						
+						DBManager db = new DBManager();
+						
+						db.updateDeliveryGuyWithPasswordChange(deliveryGuy.getUsername(), view.getTxt_driverName().getText(), view.getTxt_areaCode().getText(),
+								view.getTxt_phone1().getText(), view.getTxt_phone2().getText(), view.getTxtArea_deliveryArea().getText(), view.getTxt_password().getText());
+						
+						db.updateUserPasswordTable(deliveryGuy.getUsername(), view.getTxt_password().getText());
+						
+						JOptionPane.showMessageDialog(null, "Update Complete!", "Success", JOptionPane.INFORMATION_MESSAGE);
+						
+						view.setVisible(false);
+						view.dispose();
+						
+						AdminView adminView = new AdminView();
+						
+						AdminController adminController = new AdminController(adminView, user);
+						
+						
+				} else if (confirmEditDeliveryGuy == JOptionPane.NO_OPTION) {
+					 JOptionPane.showMessageDialog(null, "Please make your updates and try again.", "Incomplete", JOptionPane.INFORMATION_MESSAGE);
+				 } else {
+					 JOptionPane.showMessageDialog(null, "Please fill out form.", "Error", JOptionPane.INFORMATION_MESSAGE);
+				 }
+				
+			}
+			
+			
+		}
+		
+		}
 
 
 

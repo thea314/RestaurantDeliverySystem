@@ -14,27 +14,21 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class EditDeliveryGuyView extends JFrame{
+public class DeleteDeliveryGuyView extends JFrame{
 	private JTextField txt_areaCode;
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
 	private JTextField txt_driverName;
-	private JTextField txt_addArea;
-	private JButton btn_addArea;
-	private JButton btn_delete;
 	private JButton btn_save;
 	private JButton btn_cancel;
 	private JTextField txt_username;
 	private JTextArea txtArea_deliveryArea;
 	private JTable table_deliveryGuy;
-	private JLabel lbl_password;
-	private JTextField txt_password;
-	private JLabel lblNewLabel;
 
 	/**
 	 * Create the application.
 	 */
-	public EditDeliveryGuyView() {
+	public DeleteDeliveryGuyView() {
 		initialize();
 	}
 
@@ -43,19 +37,19 @@ public class EditDeliveryGuyView extends JFrame{
 	 */
 	private void initialize() {
 
-		this.setBounds(100, 100, 653, 469);
+		this.setBounds(100, 100, 486, 469);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(0, 0, 637, 430);
+		panel.setBounds(0, 0, 473, 430);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lbl_title = new JLabel("");
 		lbl_title.setBounds(104, 15, 477, 67);
-		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/editDelivery.png"));
+		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/deleteDelivery.png"));
 		panel.add(lbl_title);
 		
 		JLabel lbl_name = new JLabel("Name:");
@@ -77,6 +71,7 @@ public class EditDeliveryGuyView extends JFrame{
 		panel.add(lbl_openBracket);
 		
 		txt_areaCode = new JTextField();
+		txt_areaCode.setEnabled(false);
 		txt_areaCode.setBounds(222, 129, 33, 20);
 		panel.add(txt_areaCode);
 		txt_areaCode.setColumns(10);
@@ -88,6 +83,7 @@ public class EditDeliveryGuyView extends JFrame{
 		panel.add(lbl_closeBracket);
 		
 		txt_phone1 = new JTextField();
+		txt_phone1.setEnabled(false);
 		txt_phone1.setBounds(281, 129, 38, 20);
 		panel.add(txt_phone1);
 		txt_phone1.setColumns(10);
@@ -99,6 +95,7 @@ public class EditDeliveryGuyView extends JFrame{
 		panel.add(lbl_dash);
 		
 		txt_phone2 = new JTextField();
+		txt_phone2.setEnabled(false);
 		txt_phone2.setBounds(343, 129, 57, 20);
 		panel.add(txt_phone2);
 		txt_phone2.setColumns(10);
@@ -110,6 +107,7 @@ public class EditDeliveryGuyView extends JFrame{
 		panel.add(lbl_area);
 		
 		txt_driverName = new JTextField();
+		txt_driverName.setEnabled(false);
 		txt_driverName.setBounds(217, 89, 183, 20);
 		panel.add(txt_driverName);
 		txt_driverName.setColumns(10);
@@ -120,30 +118,7 @@ public class EditDeliveryGuyView extends JFrame{
 		txtArea_deliveryArea.setBounds(171, 200, 229, 78);
 		panel.add(txtArea_deliveryArea);
 		
-		JLabel lbl_addArea = new JLabel("Delivery Area:");
-		lbl_addArea.setForeground(SystemColor.window);
-		lbl_addArea.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_addArea.setBounds(410, 206, 123, 14);
-		panel.add(lbl_addArea);
-		
-		txt_addArea = new JTextField();
-		txt_addArea.setBounds(541, 202, 86, 20);
-		panel.add(txt_addArea);
-		txt_addArea.setColumns(10);
-		
-		btn_addArea = new JButton("Add");
-		btn_addArea.setBackground(new Color(244, 164, 96));
-		btn_addArea.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_addArea.setBounds(420, 231, 75, 42);
-		panel.add(btn_addArea);
-		
-		btn_delete = new JButton("Delete");
-		btn_delete.setBackground(new Color(244, 164, 96));
-		btn_delete.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_delete.setBounds(517, 231, 89, 42);
-		panel.add(btn_delete);
-		
-		btn_save = new JButton("Save");
+		btn_save = new JButton("Delete");
 		btn_save.setBackground(new Color(244, 164, 96));
 		btn_save.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_save.setBounds(148, 375, 89, 42);
@@ -158,12 +133,12 @@ public class EditDeliveryGuyView extends JFrame{
 		JLabel lbl_username = new JLabel("Username:");
 		lbl_username.setForeground(SystemColor.window);
 		lbl_username.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_username.setBounds(172, 289, 83, 14);
+		lbl_username.setBounds(171, 309, 83, 14);
 		panel.add(lbl_username);
 		
 		txt_username = new JTextField();
 		txt_username.setEnabled(false);
-		txt_username.setBounds(292, 289, 108, 20);
+		txt_username.setBounds(292, 305, 108, 20);
 		panel.add(txt_username);
 		txt_username.setColumns(10);
 		
@@ -174,23 +149,6 @@ public class EditDeliveryGuyView extends JFrame{
 		table_deliveryGuy = new JTable();
 		table_deliveryGuy.setBounds(10, 81, 108, 256);
 		scrollPane.setColumnHeaderView(table_deliveryGuy);
-		
-		lbl_password = new JLabel("Password:");
-		lbl_password.setForeground(SystemColor.window);
-		lbl_password.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_password.setBounds(171, 324, 84, 14);
-		panel.add(lbl_password);
-		
-		txt_password = new JTextField();
-		txt_password.setBounds(292, 320, 108, 20);
-		panel.add(txt_password);
-		txt_password.setColumns(10);
-		
-		lblNewLabel = new JLabel("*leave blank to keep old password");
-		lblNewLabel.setForeground(SystemColor.window);
-		lblNewLabel.setFont(new Font("Consolas", Font.PLAIN, 11));
-		lblNewLabel.setBounds(410, 323, 217, 14);
-		panel.add(lblNewLabel);
 
 		
 		this.setVisible(true);
