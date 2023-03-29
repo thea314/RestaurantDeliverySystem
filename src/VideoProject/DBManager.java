@@ -762,7 +762,7 @@ public class DBManager {
 
 			PreparedStatement deleteMenu = connection.prepareStatement("DELETE FROM `menu` WHERE id = ?");
 			deleteMenu.setInt(1, menuId);
-			
+
 			deleteMenu.executeUpdate();
 
 
@@ -771,16 +771,16 @@ public class DBManager {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Add Delivery Guy
 	 *
 	 */
-	
+
 	public void createDeliveryGuy(String name, String areaCode, String phone1, String phone2, String deliveryArea, String username, String password) {
-		
+
 		//create delivery guy 
-		
+
 		try {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
@@ -793,13 +793,81 @@ public class DBManager {
 			addDeliveryGuy.setString(5, deliveryArea);
 			addDeliveryGuy.setString(6, username);
 			addDeliveryGuy.setString(7, password);
-			
+
 			addDeliveryGuy.executeUpdate();
-			
+
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Add delivery", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
-	
+
+	/**
+	 * Edit Delivery Guy
+	 *
+	 */
+
+	public ArrayList<String> deliveryGuyName() {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement name = connection.prepareStatement("SELECT id, name FROM deliveryguy;");
+
+			ResultSet guyNames = name.executeQuery();
+
+			ArrayList<String> listOfGuyNames = new ArrayList<>();					
+
+			while (guyNames.next()) {
+
+				String dGuyName = guyNames.getString("name");
+				int guyId = guyNames.getInt("id");
+				String stringId = Integer.toString(guyId);
+
+				String temp = stringId + " - " + dGuyName;
+
+				listOfGuyNames.add(temp);
+			}
+
+			return listOfGuyNames;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+
+	}
+
+	public DeliveryGuy getDeliveryGuyById(int deliveryGuyId) {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getDeliveryGuy = connection.prepareStatement("SELECT * FROM deliveryguy WHERE id = ?");
+			getDeliveryGuy.setLong(1, deliveryGuyId);
+
+			ResultSet populate = getDeliveryGuy.executeQuery();
+
+			populate.next();
+			
+			DeliveryGuy deliveryGuy = new DeliveryGuy(populate.getString("username"), populate.getString("password"), 5);
+			
+			deliveryGuy.setAreaCode(populate.getString("areaCode"));
+			deliveryGuy.setDeliveryArea(populate.getString("deliveryArea"));
+			deliveryGuy.setName(populate.getString("name"));
+			deliveryGuy.setPhone1(populate.getString("phone1"));
+			deliveryGuy.setPhone2(populate.getString("phone2"));
+			deliveryGuy.setUsername(populate.getString("username"));
+			
+			return deliveryGuy;
+			
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+	}
 }

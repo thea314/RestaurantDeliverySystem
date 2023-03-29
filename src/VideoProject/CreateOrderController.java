@@ -25,6 +25,7 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 	DefaultTableModel menuTableModel;
 	DefaultTableModel orderTableModel;
 	int restoId;
+	int selectedMenuItem;
 	ArrayList<MenuItem> menuId;
 	double total = 0;
 	int quantity;
@@ -112,6 +113,27 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 				String item[] = {name, price, quantityInt};
 				orderTableModel.addRow(item);
 				
+				OrderItem currentOrderItem = new OrderItem();
+				
+				orderItem.add(currentOrderItem);
+				currentOrderItem.setQuantity(quantity);
+				
+				//find menuitem in arraylist
+				
+				for (int i = 0; i < menuId.size(); i++) {
+					
+					if (menuId.get(i).getMenuId() == selectedMenuItem) {
+						currentOrderItem.setMenuItem(menuId.get(i));
+						break;
+					}
+					
+				}
+				
+				
+				//add menuitem to currentOrderItem
+				
+				updateSubtotal();
+				
 			}
 			
 			
@@ -198,6 +220,7 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 
 				DefaultTableModel tableModel = (DefaultTableModel) view.getTable_menu().getModel();
 
+				selectedMenuItem = (int)tableModel.getValueAt(event.getFirstIndex(), 0);
 				String name = (String) tableModel.getValueAt(event.getFirstIndex(), 1);
 				String price = (String) tableModel.getValueAt(event.getFirstIndex(), 2);
 				
@@ -209,6 +232,23 @@ public class CreateOrderController implements ActionListener, ListSelectionListe
 			}
 
 		}
+	}
+	
+	private void updateSubtotal() {
+		
+		//loop through OrderItems to get total
+		double subtotal = 0;
+		
+		for (int i = 0; i < orderItem.size(); i++) {
+			
+			subtotal += orderItem.get(i).getTotal();
+						
+		}
+		
+		String stringSubtotal = String.valueOf(subtotal);
+		
+		view.getTxt_total().setText(stringSubtotal);
+		
 	}
 
 

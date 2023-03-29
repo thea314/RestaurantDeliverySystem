@@ -59,6 +59,9 @@ public class ClientController implements ActionListener {
 			
 		} else if ((JMenuItem)e.getSource() == view.getItem_delete()) {
 			
+			view.setVisible(false);
+			view.dispose();
+			
 			DeleteClientView deleteView = new DeleteClientView();
 			
 			DeleteClientModel deleteModel = new DeleteClientModel();
@@ -67,6 +70,9 @@ public class ClientController implements ActionListener {
 			
 			
 		} else if ((JMenuItem)e.getSource() == view.getItem_orderFood()) {
+			
+			view.setVisible(false);
+			view.dispose();
 			
 			CreateOrderView createOrderView = new CreateOrderView();
 			

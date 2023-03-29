@@ -11,6 +11,8 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class EditDeliveryGuyView extends JFrame{
 	private JTextField txt_areaCode;
@@ -24,6 +26,7 @@ public class EditDeliveryGuyView extends JFrame{
 	private JButton btn_cancel;
 	private JTextField txt_username;
 	private JTextArea txtArea_deliveryArea;
+	private JTable table_deliveryGuy;
 
 	/**
 	 * Create the application.
@@ -55,67 +58,63 @@ public class EditDeliveryGuyView extends JFrame{
 		JLabel lbl_name = new JLabel("Name:");
 		lbl_name.setForeground(SystemColor.window);
 		lbl_name.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_name.setBounds(119, 93, 46, 14);
+		lbl_name.setBounds(137, 93, 46, 14);
 		panel.add(lbl_name);
 		
 		JLabel lbl_phone = new JLabel("Phone:");
 		lbl_phone.setForeground(SystemColor.window);
 		lbl_phone.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_phone.setBounds(119, 133, 57, 14);
+		lbl_phone.setBounds(137, 133, 57, 14);
 		panel.add(lbl_phone);
 		
 		JLabel lbl_openBracket = new JLabel("(");
 		lbl_openBracket.setForeground(SystemColor.window);
 		lbl_openBracket.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_openBracket.setBounds(194, 132, 8, 14);
+		lbl_openBracket.setBounds(204, 133, 8, 14);
 		panel.add(lbl_openBracket);
 		
 		txt_areaCode = new JTextField();
-		txt_areaCode.setEnabled(false);
-		txt_areaCode.setBounds(204, 129, 33, 20);
+		txt_areaCode.setBounds(222, 129, 33, 20);
 		panel.add(txt_areaCode);
 		txt_areaCode.setColumns(10);
 		
 		JLabel lbl_closeBracket = new JLabel(")");
 		lbl_closeBracket.setForeground(SystemColor.window);
 		lbl_closeBracket.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_closeBracket.setBounds(240, 133, 8, 14);
+		lbl_closeBracket.setBounds(265, 133, 16, 14);
 		panel.add(lbl_closeBracket);
 		
 		txt_phone1 = new JTextField();
-		txt_phone1.setEnabled(false);
-		txt_phone1.setBounds(256, 129, 38, 20);
+		txt_phone1.setBounds(281, 129, 38, 20);
 		panel.add(txt_phone1);
 		txt_phone1.setColumns(10);
 		
 		JLabel lbl_dash = new JLabel("-");
 		lbl_dash.setForeground(SystemColor.window);
 		lbl_dash.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_dash.setBounds(304, 132, 16, 14);
+		lbl_dash.setBounds(329, 133, 16, 14);
 		panel.add(lbl_dash);
 		
 		txt_phone2 = new JTextField();
-		txt_phone2.setEnabled(false);
-		txt_phone2.setBounds(321, 129, 57, 20);
+		txt_phone2.setBounds(343, 129, 57, 20);
 		panel.add(txt_phone2);
 		txt_phone2.setColumns(10);
 		
 		JLabel lbl_area = new JLabel("Delivery Area");
 		lbl_area.setForeground(SystemColor.window);
 		lbl_area.setFont(new Font("Consolas", Font.BOLD, 20));
-		lbl_area.setBounds(194, 170, 154, 33);
+		lbl_area.setBounds(224, 167, 154, 33);
 		panel.add(lbl_area);
 		
 		txt_driverName = new JTextField();
-		txt_driverName.setEnabled(false);
-		txt_driverName.setBounds(195, 89, 183, 20);
+		txt_driverName.setBounds(217, 89, 183, 20);
 		panel.add(txt_driverName);
 		txt_driverName.setColumns(10);
 		
 		txtArea_deliveryArea = new JTextArea();
 		txtArea_deliveryArea.setEditable(false);
 		txtArea_deliveryArea.setEnabled(false);
-		txtArea_deliveryArea.setBounds(118, 200, 282, 78);
+		txtArea_deliveryArea.setBounds(171, 200, 229, 78);
 		panel.add(txtArea_deliveryArea);
 		
 		JLabel lbl_addArea = new JLabel("Delivery Area:");
@@ -156,16 +155,33 @@ public class EditDeliveryGuyView extends JFrame{
 		JLabel lbl_username = new JLabel("Username:");
 		lbl_username.setForeground(SystemColor.window);
 		lbl_username.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_username.setBounds(119, 302, 83, 14);
+		lbl_username.setBounds(172, 323, 83, 14);
 		panel.add(lbl_username);
 		
 		txt_username = new JTextField();
 		txt_username.setEnabled(false);
-		txt_username.setBounds(204, 298, 108, 20);
+		txt_username.setBounds(292, 319, 108, 20);
 		panel.add(txt_username);
 		txt_username.setColumns(10);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 91, 105, 257);
+		panel.add(scrollPane);
+		
+		table_deliveryGuy = new JTable();
+		table_deliveryGuy.setBounds(10, 81, 108, 256);
+		scrollPane.setColumnHeaderView(table_deliveryGuy);
+
+		
 		this.setVisible(true);
+	}
+
+	public JTable getTable_deliveryGuy() {
+		return table_deliveryGuy;
+	}
+
+	public void setTable_deliveryGuy(JTable table_deliveryGuy) {
+		this.table_deliveryGuy = table_deliveryGuy;
 	}
 
 	public JTextField getTxt_areaCode() {
@@ -248,22 +264,6 @@ public class EditDeliveryGuyView extends JFrame{
 		this.txt_username = txt_username;
 	}
 
-	public JTextField getTxt_password() {
-		return txt_password;
-	}
-
-	public void setTxt_password(JTextField txt_password) {
-		this.txt_password = txt_password;
-	}
-
-	public JButton getBtn_validateUsername() {
-		return btn_validateUsername;
-	}
-
-	public void setBtn_validateUsername(JButton btn_validateUsername) {
-		this.btn_validateUsername = btn_validateUsername;
-	}
-
 	public JTextArea getTxtArea_deliveryArea() {
 		return txtArea_deliveryArea;
 	}
@@ -271,7 +271,4 @@ public class EditDeliveryGuyView extends JFrame{
 	public void setTxtArea_deliveryArea(JTextArea txtArea_deliveryArea) {
 		this.txtArea_deliveryArea = txtArea_deliveryArea;
 	}
-	
-	
-	
 }

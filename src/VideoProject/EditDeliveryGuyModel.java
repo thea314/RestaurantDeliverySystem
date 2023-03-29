@@ -1,6 +1,6 @@
 package VideoProject;
 
-public class DeliveryGuy extends User {
+public class EditDeliveryGuyModel {
 	
 	//properties
 	private String name;
@@ -8,25 +8,7 @@ public class DeliveryGuy extends User {
 	private String phone1;
 	private String phone2;
 	private String deliveryArea;
-	
-	//constructor
-
-	public DeliveryGuy(String name, String areaCode, String phone1, String phone2, String deliveryArea, String username, String password, int type) {
-		super(username, password, type);
-		this.name = name;
-		this.areaCode = areaCode;
-		this.phone1 = phone1;
-		this.phone2 = phone2;
-		this.deliveryArea = deliveryArea;
-		
-	}
-	
-
-	public DeliveryGuy(String username, String password, int type) {
-		super(username, password, type);
-	}
-
-
+	private String username;
 	public String getName() {
 		return name;
 	}
@@ -57,7 +39,13 @@ public class DeliveryGuy extends User {
 	public void setDeliveryArea(String deliveryArea) {
 		this.deliveryArea = deliveryArea;
 	}
-
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	
 
 }

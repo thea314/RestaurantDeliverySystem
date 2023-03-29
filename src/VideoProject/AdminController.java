@@ -11,6 +11,7 @@ public class AdminController implements ActionListener {
 	private AdminView view;
 	private User user;
 	private Restaurant restaurant;
+	private DeliveryGuy deliveryGuy;
 	
 	//constructor
 	public AdminController(AdminView view, User user) {
@@ -126,6 +127,19 @@ public class AdminController implements ActionListener {
 				CreateDeliveryGuyModel createDeliveryModel = new CreateDeliveryGuyModel();
 				
 				CreateDeliveryGuyController createDeliveryController = new CreateDeliveryGuyController(createDeliveryView, createDeliveryModel);
+				
+			}
+			//edit delivery guy
+			if((JMenuItem)e.getSource() == view.getItem_editDeliveryGuy()) {
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				EditDeliveryGuyView editDeliveryGuyView = new EditDeliveryGuyView();
+				
+				EditDeliveryGuyModel editDeliveryGuyModel = new EditDeliveryGuyModel();
+				
+				EditDeliveryGuyController editDeliveryGuyController = new EditDeliveryGuyController(editDeliveryGuyView, editDeliveryGuyModel, deliveryGuy);
 				
 			}
 			
