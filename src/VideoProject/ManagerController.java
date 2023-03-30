@@ -9,11 +9,12 @@ public class ManagerController implements ActionListener{
 	
 	private ManagerView view;
 	private User user;
-	Manager manager;
+	private int managerId;
 	
 	//constructor
-	public ManagerController(ManagerView view, User user) {
+	public ManagerController(ManagerView view, int managerId, User user) {
 		this.view = view;
+		this.managerId = managerId;
 		this.user = user;
 		
 		//actionlisteners
@@ -50,9 +51,13 @@ public class ManagerController implements ActionListener{
 				view.setVisible(false);
 				view.dispose();
 				
+				DBManager db = new DBManager();
+				
+				int managerId = db.getManagerId(user.getUsername());
+				
 				ManagerRestaurantOrderView manageView = new ManagerRestaurantOrderView();
 				
-				ManageRestaurantOrderController manageController = new ManageRestaurantOrderController(manageView, manager);
+				ManageRestaurantOrderController manageController = new ManageRestaurantOrderController(manageView, managerId);
 				
 			}
 			

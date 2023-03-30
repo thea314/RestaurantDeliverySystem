@@ -102,16 +102,19 @@ public class ManagerRestaurantOrderView extends JFrame {
 		panel.add(btn_close);
 		
 		txt_date = new JTextField();
+		txt_date.setEnabled(false);
 		txt_date.setBounds(449, 95, 139, 20);
 		panel.add(txt_date);
 		txt_date.setColumns(10);
 		
 		txt_time = new JTextField();
+		txt_time.setEnabled(false);
 		txt_time.setBounds(447, 131, 141, 20);
 		panel.add(txt_time);
 		txt_time.setColumns(10);
 		
 		txt_postal = new JTextField();
+		txt_postal.setEnabled(false);
 		txt_postal.setBounds(449, 165, 139, 20);
 		panel.add(txt_postal);
 		txt_postal.setColumns(10);

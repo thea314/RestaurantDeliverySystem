@@ -79,7 +79,11 @@ public class LoginController implements ActionListener {
 						
 						ManagerView managerView = new ManagerView();
 						
-						ManagerController managerController = new ManagerController(managerView, loggedUser);
+						DBManager db = new DBManager();
+						
+						int managerId = db.getManagerId(view.getTxt_username().getText());
+						
+						ManagerController managerController = new ManagerController(managerView, managerId, loggedUser);
 						
 					}
 					

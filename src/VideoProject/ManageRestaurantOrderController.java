@@ -15,15 +15,15 @@ public class ManageRestaurantOrderController implements ActionListener, ListSele
 
 	//properties
 	private ManagerRestaurantOrderView view;
-	private Manager manager;
+	private int managerId;
 	private Restaurant restaurant;
 	private ArrayList<Order> orderTitle;
-
+	private User user;
 
 	//constructor
-	public ManageRestaurantOrderController(ManagerRestaurantOrderView view, Manager manager) {
+	public ManageRestaurantOrderController(ManagerRestaurantOrderView view, int managerId) {
 		this.view = view;
-		this.manager = manager;
+		this.managerId = managerId;
 
 		//actionlisteners
 		view.getBtn_close().addActionListener(this);
@@ -32,7 +32,7 @@ public class ManageRestaurantOrderController implements ActionListener, ListSele
 
 		Object[] cols = {"Order"};
 
-		int restoId = manager.getRestoId();
+		int restoId = db.RestoIdFromManager(managerId);
 
 		orderTitle = db.restoOrderList(restoId);
 
@@ -65,7 +65,7 @@ public class ManageRestaurantOrderController implements ActionListener, ListSele
 			view.dispose();
 			
 			ManagerView managerView = new ManagerView();
-			ManagerController managerController = new ManagerController(managerView, manager);
+			ManagerController managerController = new ManagerController(managerView, managerId, user);
 
 
 		}

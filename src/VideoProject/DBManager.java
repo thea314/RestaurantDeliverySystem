@@ -1191,4 +1191,57 @@ public class DBManager {
 
 		return null;
 	}
+
+	public int getManagerId(String username) {
+
+		//get the manager id from the username
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getManagerId = connection.prepareStatement("SELECT id FROM manager where username = ?;");
+			getManagerId.setString(1, username);
+			
+			ResultSet manager = getManagerId.executeQuery();
+			
+			manager.next();
+			
+			int id = manager.getInt("id");
+
+			return id;
+			
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return -1;
+	}
+	
+	public int RestoIdFromManager(int managerId) {
+		
+		//get the resto id from the managerid
+				try {
+
+					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+					PreparedStatement getRestoId = connection.prepareStatement("SELECT restaurant_id FROM manager where id = ?;");
+					getRestoId.setInt(1, managerId);
+					
+					ResultSet resto = getRestoId.executeQuery();
+					
+					resto.next();
+					
+					int id = resto.getInt("restaurant_id");
+
+					return id;
+					
+
+				}catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+				return -1;
+			}
+	
 }
