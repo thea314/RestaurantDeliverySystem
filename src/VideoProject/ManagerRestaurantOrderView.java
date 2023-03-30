@@ -13,20 +13,21 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class OrderHistoryView extends JFrame {
+public class ManagerRestaurantOrderView extends JFrame {
 	private JTable table_order;
 	private JTable table_meal;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JButton btn_close;
+	private JTable table_resto;
 
 
 
 	/**
 	 * Create the application.
 	 */
-	public OrderHistoryView() {
+	public ManagerRestaurantOrderView() {
 		setTitle("Order History");
 		initialize();
 	}
@@ -49,16 +50,16 @@ public class OrderHistoryView extends JFrame {
 		JLabel lbl_tableHistory = new JLabel("Your Orders:");
 		lbl_tableHistory.setForeground(SystemColor.window);
 		lbl_tableHistory.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_tableHistory.setBounds(42, 83, 96, 14);
+		lbl_tableHistory.setBounds(177, 83, 96, 14);
 		panel.add(lbl_tableHistory);
 		
 		JLabel lbl_title = new JLabel("");
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/orderHistory.png"));
-		lbl_title.setBounds(81, 11, 468, 61);
+		lbl_title.setBounds(63, 11, 486, 61);
 		panel.add(lbl_title);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(29, 97, 162, 308);
+		scrollPane.setBounds(177, 97, 135, 310);
 		panel.add(scrollPane);
 		
 		table_order = new JTable();
@@ -67,29 +68,29 @@ public class OrderHistoryView extends JFrame {
 		JLabel lbl_deliveryTime = new JLabel("(yyyy/mm/dd):");
 		lbl_deliveryTime.setForeground(SystemColor.window);
 		lbl_deliveryTime.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryTime.setBounds(268, 99, 187, 14);
+		lbl_deliveryTime.setBounds(318, 99, 112, 14);
 		panel.add(lbl_deliveryTime);
 		
 		JLabel lbl_deliveryTimeHrMin = new JLabel("Delivery Time:");
 		lbl_deliveryTimeHrMin.setForeground(SystemColor.window);
 		lbl_deliveryTimeHrMin.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryTimeHrMin.setBounds(268, 135, 112, 14);
+		lbl_deliveryTimeHrMin.setBounds(318, 135, 112, 14);
 		panel.add(lbl_deliveryTimeHrMin);
 		
 		JLabel lbl_postalCode = new JLabel("Postal Code:");
 		lbl_postalCode.setForeground(SystemColor.window);
 		lbl_postalCode.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_postalCode.setBounds(268, 169, 96, 14);
+		lbl_postalCode.setBounds(318, 160, 96, 14);
 		panel.add(lbl_postalCode);
 		
 		JLabel lbl_meal = new JLabel("Meal in Order:");
 		lbl_meal.setForeground(SystemColor.window);
 		lbl_meal.setFont(new Font("Consolas", Font.BOLD, 14));
-		lbl_meal.setBounds(268, 194, 112, 14);
+		lbl_meal.setBounds(394, 196, 112, 14);
 		panel.add(lbl_meal);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(268, 219, 195, 188);
+		scrollPane_1.setBounds(393, 219, 195, 171);
 		panel.add(scrollPane_1);
 		
 		table_meal = new JTable();
@@ -98,23 +99,36 @@ public class OrderHistoryView extends JFrame {
 		btn_close = new JButton("Close");
 		btn_close.setBackground(new Color(244, 164, 96));
 		btn_close.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_close.setBounds(499, 370, 89, 35);
+		btn_close.setBounds(499, 397, 89, 35);
 		panel.add(btn_close);
 		
 		textField = new JTextField();
-		textField.setBounds(406, 95, 139, 20);
+		textField.setBounds(449, 95, 139, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(404, 131, 141, 20);
+		textField_1.setBounds(447, 131, 141, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(406, 165, 139, 20);
+		textField_2.setBounds(449, 165, 139, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
+		
+		JLabel lbl_resto = new JLabel("Restaurant:");
+		lbl_resto.setForeground(SystemColor.window);
+		lbl_resto.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lbl_resto.setBounds(26, 82, 96, 14);
+		panel.add(lbl_resto);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 99, 135, 308);
+		panel.add(scrollPane_2);
+		
+		table_resto = new JTable();
+		scrollPane_2.setRowHeaderView(table_resto);
 		
 		this.setVisible(true);
 	}

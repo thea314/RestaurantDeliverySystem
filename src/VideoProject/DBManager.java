@@ -1032,7 +1032,7 @@ public class DBManager {
 	 *
 	 */
 	
-	public ArrayList<OrderItem> orderList(int clientId) {
+	public ArrayList<String> orderList(int clientId) {
 		
 		//get an arraylist of orderitems to display in the jtable
 		
@@ -1042,6 +1042,27 @@ public class DBManager {
 
 			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE client = ?;");
 			getOrderInfo.setInt(1, clientId);
+			
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<String> listOfClientOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+				String year = orders.getString("year");
+				String month = orders.getString("month");
+				String day = orders.getString("day");
+				String hour = orders.getString("deliveryHr");
+				String min = orders.getString("deliveryMin");
+				int orderId = orders.getInt("id");
+				String stringId = Integer.toString(orderId);
+
+				String temp = stringId + " - " + year + "/" + month + "/" + day + " - " + hour + ":" + min;
+
+				listOfClientOrderss.add(temp);
+			}
+
+			return listOfClientOrderss;
 			
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);

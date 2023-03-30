@@ -2,6 +2,7 @@ package VideoProject;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ public class OrderHistoryController implements ActionListener, ListSelectionList
 	private JTable mealTable;
 	private DefaultTableModel orderTableModel;
 	private DefaultTableModel mealTableModel;
+	private ArrayList<String> orderTitle;
 	
 	
 	//constructor
@@ -54,7 +56,19 @@ public class OrderHistoryController implements ActionListener, ListSelectionList
 
 			if (event.getValueIsAdjusting()) {
 				
+				DBManager db = new DBManager();
 				
+				int clientId = db.getClientId(client.getLastName(), client.getFirstName());
+				
+				orderTitle = db.orderList(clientId);
+				
+				DefaultTableModel tableModel = (DefaultTableModel) view.getTable_order().getModel();
+
+				for (int i = 0; i < orderTitle.size(); i++) {
+
+					tableModel.addRow(new Object[] { orderTitle.get(i) });
+
+				}
 				
 			}
 			

@@ -86,7 +86,23 @@ public class ClientController implements ActionListener {
 			CreateOrderController createOrderController = new CreateOrderController(createOrderView, createOrderModel, client);
 			
 			
+		} else if ((JMenuItem)e.getSource() == view.getItem_orderHistory()) {
+			// order history
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			OrderHistoryView orderHistoryView = new OrderHistoryView();
+			
+			DBManager db = new DBManager();
+			
+			Client client = db.populateClientInfoEdit(user.getUsername());
+			
+			OrderHistoryController orderHistoryController = new OrderHistoryController(orderHistoryView, client);
+			
 		}
+		
+		
 		
 		
 		
