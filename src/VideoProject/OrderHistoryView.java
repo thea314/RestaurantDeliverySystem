@@ -16,9 +16,9 @@ import javax.swing.JTextField;
 public class OrderHistoryView extends JFrame {
 	private JTable table_order;
 	private JTable table_meal;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txt_date;
+	private JTextField txt_time;
+	private JTextField txt_postal;
 	private JButton btn_close;
 
 
@@ -54,7 +54,7 @@ public class OrderHistoryView extends JFrame {
 		
 		JLabel lbl_title = new JLabel("");
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/orderHistory.png"));
-		lbl_title.setBounds(81, 11, 468, 61);
+		lbl_title.setBounds(10, 0, 588, 72);
 		panel.add(lbl_title);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -67,7 +67,7 @@ public class OrderHistoryView extends JFrame {
 		JLabel lbl_deliveryTime = new JLabel("(yyyy/mm/dd):");
 		lbl_deliveryTime.setForeground(SystemColor.window);
 		lbl_deliveryTime.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_deliveryTime.setBounds(268, 99, 187, 14);
+		lbl_deliveryTime.setBounds(268, 99, 129, 14);
 		panel.add(lbl_deliveryTime);
 		
 		JLabel lbl_deliveryTimeHrMin = new JLabel("Delivery Time:");
@@ -101,20 +101,23 @@ public class OrderHistoryView extends JFrame {
 		btn_close.setBounds(499, 370, 89, 35);
 		panel.add(btn_close);
 		
-		textField = new JTextField();
-		textField.setBounds(406, 95, 139, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txt_date = new JTextField();
+		txt_date.setEnabled(false);
+		txt_date.setBounds(406, 95, 139, 20);
+		panel.add(txt_date);
+		txt_date.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(404, 131, 141, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		txt_time = new JTextField();
+		txt_time.setEnabled(false);
+		txt_time.setBounds(404, 131, 141, 20);
+		panel.add(txt_time);
+		txt_time.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(406, 165, 139, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		txt_postal = new JTextField();
+		txt_postal.setEnabled(false);
+		txt_postal.setBounds(406, 165, 139, 20);
+		panel.add(txt_postal);
+		txt_postal.setColumns(10);
 		
 		this.setVisible(true);
 	}
@@ -135,28 +138,29 @@ public class OrderHistoryView extends JFrame {
 		this.table_meal = table_meal;
 	}
 
-	public JTextField getTextField() {
-		return textField;
+
+	public JTextField getTxt_date() {
+		return txt_date;
 	}
 
-	public void setTextField(JTextField textField) {
-		this.textField = textField;
+	public void setTxt_date(JTextField txt_date) {
+		this.txt_date = txt_date;
 	}
 
-	public JTextField getTextField_1() {
-		return textField_1;
+	public JTextField getTxt_time() {
+		return txt_time;
 	}
 
-	public void setTextField_1(JTextField textField_1) {
-		this.textField_1 = textField_1;
+	public void setTxt_time(JTextField txt_time) {
+		this.txt_time = txt_time;
 	}
 
-	public JTextField getTextField_2() {
-		return textField_2;
+	public JTextField getTxt_postal() {
+		return txt_postal;
 	}
 
-	public void setTextField_2(JTextField textField_2) {
-		this.textField_2 = textField_2;
+	public void setTxt_postal(JTextField txt_postal) {
+		this.txt_postal = txt_postal;
 	}
 
 	public JButton getBtn_close() {

@@ -967,10 +967,10 @@ public class DBManager {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 	//get client id
 	public int getClientId(String lastName, String firstName) {
-		
+
 		//use client's first and last name to get their client id from db
 		try {
 
@@ -979,7 +979,7 @@ public class DBManager {
 			PreparedStatement getClientId = connection.prepareStatement("SELECT id FROM clients WHERE lastName = ? AND firstName = ?;");
 			getClientId.setString(1, lastName);
 			getClientId.setString(2, firstName);
-			
+
 			ResultSet resultSet = getClientId.executeQuery();
 
 			resultSet.next();
@@ -987,18 +987,18 @@ public class DBManager {
 			int id = resultSet.getInt("id");
 
 			return id;
-			
+
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		return -1;
-		
+
 	}
-	
+
 	//get orderId
 	public int getOrderId(int year, int month, int day, String address, int clientId) {
-		
+
 		try {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
@@ -1009,7 +1009,7 @@ public class DBManager {
 			getOrderId.setInt(3, day);
 			getOrderId.setString(4, address);
 			getOrderId.setInt(5, clientId);
-			
+
 			ResultSet resultSet = getOrderId.executeQuery();
 
 			resultSet.next();
@@ -1017,58 +1017,178 @@ public class DBManager {
 			int id = resultSet.getInt("id");
 
 			return id;
-			
+
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		return -1;
-		
-		
+
+
 	}
-	
+
 	/**
 	 * Order history 
 	 *
 	 */
-	
-	public ArrayList<String> orderList(int clientId) {
-		
+
+	public ArrayList<Order> orderList(int clientId) {
+
 		//get an arraylist of orderitems to display in the jtable
-		
+
 		try {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
 
 			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE client = ?;");
 			getOrderInfo.setInt(1, clientId);
-			
+
 			ResultSet orders = getOrderInfo.executeQuery();
 
-			ArrayList<String> listOfClientOrderss = new ArrayList<>();					
+			ArrayList<Order> listOfClientOrderss = new ArrayList<>();					
 
 			while (orders.next()) {
 
-				String year = orders.getString("year");
-				String month = orders.getString("month");
-				String day = orders.getString("day");
-				String hour = orders.getString("deliveryHr");
-				String min = orders.getString("deliveryMin");
-				int orderId = orders.getInt("id");
-				String stringId = Integer.toString(orderId);
+				Order order = new Order();
 
-				String temp = stringId + " - " + year + "/" + month + "/" + day + " - " + hour + ":" + min;
+				order.setYear(orders.getInt("year"));
+				order.setMonth(orders.getInt("month"));
+				order.setDay(orders.getInt("day"));
+				order.setHour(orders.getInt("deliveryHr"));
+				order.setMinute(orders.getInt("deliveryMin"));
+				order.setId(orders.getInt("id"));
+				order.setClientId(orders.getInt("client"));
+				order.setPostalCode(orders.getString("postalCode"));
+				order.setAddress(orders.getString("address"));
+				order.setRestoId(orders.getInt("restaurant"));
+				order.setCompleted(orders.getInt("complete"));
+				order.setDelivered(orders.getInt("delivered"));
+				order.setItems(getOrderItemsByOrderId(order.getId()));								
 
-				listOfClientOrderss.add(temp);
+				listOfClientOrderss.add(order);
 			}
 
 			return listOfClientOrderss;
-			
+
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		return null;
 	}
-	
+
+	public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) {
+
+		//get an arraylist of orderitems to display in the jtable
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderItems = connection.prepareStatement("SELECT * FROM `order_items` WHERE order_id = ?;");
+			getOrderItems.setInt(1, orderId);
+
+			ResultSet orderItems = getOrderItems.executeQuery();
+
+			ArrayList<OrderItem> orderArrayList = new ArrayList<>();
+
+			while (orderItems.next()) {
+
+				OrderItem orderItem = new OrderItem();
+				orderItem.setQuantity(orderItems.getInt("quantity"));
+				orderItem.setMenuItem(getMenuItemById(orderItems.getInt("menu_item_id")));
+
+				orderArrayList.add(orderItem);
+
+			}
+
+			return orderArrayList;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+
+	}
+
+	public MenuItem getMenuItemById(int menuItemId) {
+
+		//get list of menu strings for a given restaurant
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement menuItems = connection.prepareStatement("SELECT * FROM menu WHERE id = ?;");
+			menuItems.setInt(1, menuItemId);
+
+			ResultSet menuNames = menuItems.executeQuery();
+
+
+			while (menuNames.next()) {
+
+				MenuItem menuItem = new MenuItem();
+
+				menuItem.setItemName(menuNames.getString("name"));
+				menuItem.setItemPrice(menuNames.getString("price"));
+				menuItem.setRestoId(menuNames.getInt("restaurant_id"));	
+				menuItem.setMenuId(menuNames.getInt("id"));
+
+				return menuItem;
+
+			}
+
+
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- Get Restaurant Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+
+	}
+	public ArrayList<Order> restoOrderList(int restoId) {
+
+		//get an arraylist of orderitems to display in the jtable
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE restaurant = ?;");
+			getOrderInfo.setInt(1, restoId);
+
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<Order> listOfClientOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+				Order order = new Order();
+
+				order.setYear(orders.getInt("year"));
+				order.setMonth(orders.getInt("month"));
+				order.setDay(orders.getInt("day"));
+				order.setHour(orders.getInt("deliveryHr"));
+				order.setMinute(orders.getInt("deliveryMin"));
+				order.setId(orders.getInt("id"));
+				order.setClientId(orders.getInt("client"));
+				order.setPostalCode(orders.getString("postalCode"));
+				order.setAddress(orders.getString("address"));
+				order.setRestoId(orders.getInt("restaurant"));
+				order.setCompleted(orders.getInt("complete"));
+				order.setDelivered(orders.getInt("delivered"));
+				order.setItems(getOrderItemsByOrderId(order.getId()));								
+
+				listOfClientOrderss.add(order);
+			}
+
+			return listOfClientOrderss;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+	}
 }

@@ -9,6 +9,7 @@ public class ManagerController implements ActionListener{
 	
 	private ManagerView view;
 	private User user;
+	Manager manager;
 	
 	//constructor
 	public ManagerController(ManagerView view, User user) {
@@ -46,7 +47,12 @@ public class ManagerController implements ActionListener{
 			}
 			else if ((JMenuItem)e.getSource() == view.getItem_viewOrder()) {
 				
+				view.setVisible(false);
+				view.dispose();
 				
+				ManagerRestaurantOrderView manageView = new ManagerRestaurantOrderView();
+				
+				ManageRestaurantOrderController manageController = new ManageRestaurantOrderController(manageView, manager);
 				
 			}
 			

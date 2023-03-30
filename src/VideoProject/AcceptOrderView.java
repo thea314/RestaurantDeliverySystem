@@ -52,7 +52,7 @@ public class AcceptOrderView extends JFrame{
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/acceptOrder.png"));
 		panel.add(lbl_title);
 		
-		JLabel lbl_pending = new JLabel("Pending Order");
+		JLabel lbl_pending = new JLabel("Pending Orders");
 		lbl_pending.setForeground(SystemColor.window);
 		lbl_pending.setFont(new Font("Consolas", Font.PLAIN, 14));
 		lbl_pending.setBounds(50, 73, 119, 14);

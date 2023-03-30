@@ -56,6 +56,8 @@ public class ManagerView extends JFrame{
 		
 		item_viewOrder = new JMenuItem("View Restaurant's Order");
 		mnOrder.add(item_viewOrder);
+		
+		this.setVisible(true);
 	}
 
 	public JMenuItem getItem_disconnect() {

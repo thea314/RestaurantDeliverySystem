@@ -11,35 +11,31 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class OrderHistoryController implements ActionListener, ListSelectionListener {
-	
+public class ManageRestaurantOrderController implements ActionListener, ListSelectionListener{
+
 	//properties
-	private OrderHistoryView view;
-	private Client client;
-	private JTable orderTable;
-	private JTable mealTable;
-	private DefaultTableModel orderTableModel;
-	private DefaultTableModel mealTableModel;
+	private ManagerRestaurantOrderView view;
+	private Manager manager;
+	private Restaurant restaurant;
 	private ArrayList<Order> orderTitle;
-	private JTable tempTable;
-	
-	
+
+
 	//constructor
-	public OrderHistoryController(OrderHistoryView view, Client client) {
+	public ManageRestaurantOrderController(ManagerRestaurantOrderView view, Manager manager) {
 		this.view = view;
-		this.client = client;
-		
+		this.manager = manager;
+
 		//actionlisteners
 		view.getBtn_close().addActionListener(this);
-		
+
 		DBManager db = new DBManager();
-		
+
 		Object[] cols = {"Order"};
-		
-		int clientId = db.getClientId(client.getLastName(), client.getFirstName());
-		
-		orderTitle = db.orderList(clientId);
-		
+
+		int restoId = manager.getRestoId();
+
+		orderTitle = db.restoOrderList(restoId);
+
 		DefaultTableModel tableModel = (DefaultTableModel) view.getTable_order().getModel();
 		tableModel.setColumnIdentifiers(cols);
 
@@ -48,33 +44,30 @@ public class OrderHistoryController implements ActionListener, ListSelectionList
 			tableModel.addRow(new Object[] { getStringTextFromOrder(orderTitle.get(i))});
 
 		}
-		
+
 		view.getTable_order().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		ListSelectionModel selectionModel = view.getTable_order().getSelectionModel();
-		
+
 		selectionModel.addListSelectionListener(this);
 		
-		
 		//meal table
-		Object[] colsMeal = {"name", "quantity"};
-		
-		DefaultTableModel tableModel2 = (DefaultTableModel) view.getTable_meal().getModel();
-		tableModel2.setColumnIdentifiers(colsMeal);
-		
+				Object[] colsMeal = {"name", "quantity"};
+				
+				DefaultTableModel tableModel2 = (DefaultTableModel) view.getTable_meal().getModel();
+				tableModel2.setColumnIdentifiers(colsMeal);
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		//close button
 		if ((JButton)e.getSource() == view.getBtn_close()) {
-			
+
 			view.setVisible(false);
 			view.dispose();
-
-			ClientMenuView clientMenu = new ClientMenuView();
-
-			ClientController controlClientMenu = new ClientController(clientMenu, client);	
-
 			
+			ManagerView managerView = new ManagerView();
+			ManagerController managerController = new ManagerController(managerView, manager);
+
+
 		}
 	}
 	
@@ -107,21 +100,18 @@ public class OrderHistoryController implements ActionListener, ListSelectionList
 				view.getTxt_time().setText(currentOrder.getHour() + "h " + currentOrder.getMinute());
 				view.getTxt_postal().setText(currentOrder.getPostalCode());
 				
-				
+			}
+		}
 				
 			}
-			
-		}
-		
-		
-	}
+	
 	
 	private String getStringTextFromOrder(Order order) {
-		
+
 		String displayLine = order.getYear() + "/" + order.getMonth() + "/" + order.getDay() + " - " + order.getHour() + "h " + order.getMinute();
-		
+
 		return displayLine;
-		
+
 	}
 
 }
