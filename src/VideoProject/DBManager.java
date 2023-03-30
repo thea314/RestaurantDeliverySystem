@@ -1003,7 +1003,7 @@ public class DBManager {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
 
-			PreparedStatement getOrderId = connection.prepareStatement("SELECT `id` FROM orderinfo WHERE year = ? and month = ? AND day = ? and address = ? and client = ?;");
+			PreparedStatement getOrderId = connection.prepareStatement("SELECT `id` FROM orderinfo WHERE year = ? and month = ? AND day = ? and address = ? and client = ? ORDER BY id DESC LIMIT 1;");
 			getOrderId.setInt(1, year);
 			getOrderId.setInt(2, month);
 			getOrderId.setInt(3, day);
@@ -1026,4 +1026,28 @@ public class DBManager {
 		
 		
 	}
+	
+	/**
+	 * Order history 
+	 *
+	 */
+	
+	public ArrayList<OrderItem> orderList(int clientId) {
+		
+		//get an arraylist of orderitems to display in the jtable
+		
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE client = ?;");
+			getOrderInfo.setInt(1, clientId);
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		return null;
+	}
+	
 }

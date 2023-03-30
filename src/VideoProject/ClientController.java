@@ -11,6 +11,7 @@ public class ClientController implements ActionListener {
 	private ClientMenuView view;
 	private User user;
 	
+	
 	//constructor
 	public ClientController (ClientMenuView view, User user) {
 		this.view = view;
@@ -78,7 +79,11 @@ public class ClientController implements ActionListener {
 			
 			CreateOrderModel createOrderModel = new CreateOrderModel();
 			
-			CreateOrderController createOrderController = new CreateOrderController(createOrderView, createOrderModel);
+			DBManager db = new DBManager();
+			
+			Client client = db.populateClientInfoEdit(user.getUsername());
+			
+			CreateOrderController createOrderController = new CreateOrderController(createOrderView, createOrderModel, client);
 			
 			
 		}
