@@ -1201,15 +1201,15 @@ public class DBManager {
 
 			PreparedStatement getManagerId = connection.prepareStatement("SELECT id FROM manager where username = ?;");
 			getManagerId.setString(1, username);
-			
+
 			ResultSet manager = getManagerId.executeQuery();
-			
+
 			manager.next();
-			
+
 			int id = manager.getInt("id");
 
 			return id;
-			
+
 
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -1217,33 +1217,33 @@ public class DBManager {
 
 		return -1;
 	}
-	
+
 	public int RestoIdFromManager(int managerId) {
-		
+
 		//get the resto id from the managerid
-				try {
+		try {
 
-					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
 
-					PreparedStatement getRestoId = connection.prepareStatement("SELECT restaurant_id FROM manager where id = ?;");
-					getRestoId.setInt(1, managerId);
-					
-					ResultSet resto = getRestoId.executeQuery();
-					
-					resto.next();
-					
-					int id = resto.getInt("restaurant_id");
+			PreparedStatement getRestoId = connection.prepareStatement("SELECT restaurant_id FROM manager where id = ?;");
+			getRestoId.setInt(1, managerId);
 
-					return id;
-					
+			ResultSet resto = getRestoId.executeQuery();
 
-				}catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
-				}
+			resto.next();
 
-				return -1;
-			}
-	
+			int id = resto.getInt("restaurant_id");
+
+			return id;
+
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return -1;
+	}
+
 	public int getRestauranteurId(String username) {
 
 		//get the restauranteur id from the username
@@ -1253,15 +1253,15 @@ public class DBManager {
 
 			PreparedStatement getRestauranteurId = connection.prepareStatement("SELECT id FROM restauranteur where username = ?;");
 			getRestauranteurId.setString(1, username);
-			
+
 			ResultSet restauranteur = getRestauranteurId.executeQuery();
-			
+
 			restauranteur.next();
-			
+
 			int id = restauranteur.getInt("id");
 
 			return id;
-			
+
 
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -1269,5 +1269,232 @@ public class DBManager {
 
 		return -1;
 	}
-	
+
+	public int restoIdFromRestauranteur(int restauranteurId) {
+
+		//get the resto id from the restauranteur
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getRestoId = connection.prepareStatement("SELECT restaurant_id FROM restauranteur where id = ?;");
+			getRestoId.setInt(1, restauranteurId);
+
+			ResultSet resto = getRestoId.executeQuery();
+
+			resto.next();
+
+			int id = resto.getInt("restaurant_id");
+
+			return id;
+
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- get resto id", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return -1;
+	}
+
+	public ArrayList<Order> restoOrderListPending(int restoId) {
+
+		//get an arraylist of orderitems to display in the jtable
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE restaurant = ? AND complete = 0;");
+			getOrderInfo.setInt(1, restoId);
+
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<Order> listOfClientOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+				Order order = new Order();
+
+				order.setYear(orders.getInt("year"));
+				order.setMonth(orders.getInt("month"));
+				order.setDay(orders.getInt("day"));
+				order.setHour(orders.getInt("deliveryHr"));
+				order.setMinute(orders.getInt("deliveryMin"));
+				order.setId(orders.getInt("id"));
+				order.setClientId(orders.getInt("client"));
+				order.setPostalCode(orders.getString("postalCode"));
+				order.setAddress(orders.getString("address"));
+				order.setRestoId(orders.getInt("restaurant"));
+				order.setCompleted(orders.getInt("complete"));
+				order.setDelivered(orders.getInt("delivered"));
+				order.setItems(getOrderItemsByOrderId(order.getId()));								
+
+				listOfClientOrderss.add(order);
+			}
+
+			return listOfClientOrderss;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+	}
+
+	public void acceptOrder(int orderId) {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateOrderInfo = connection.prepareStatement("UPDATE orderinfo SET complete = 1 WHERE id = ?;");
+			updateOrderInfo.setInt(1, orderId);
+
+			updateOrderInfo.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	public void orderReady(int orderId) {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateOrderInfo = connection.prepareStatement("UPDATE orderinfo SET complete = 2 WHERE id = ?;");
+			updateOrderInfo.setInt(1, orderId);
+
+			updateOrderInfo.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- update", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	public ArrayList<Order> restoOrderListReady(int restoId) {
+
+		//get an arraylist of orderitems to display in the jtable
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM `orderinfo` WHERE restaurant = ? AND complete = 1;");
+			getOrderInfo.setInt(1, restoId);
+
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<Order> listOfClientOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+				Order order = new Order();
+
+				order.setYear(orders.getInt("year"));
+				order.setMonth(orders.getInt("month"));
+				order.setDay(orders.getInt("day"));
+				order.setHour(orders.getInt("deliveryHr"));
+				order.setMinute(orders.getInt("deliveryMin"));
+				order.setId(orders.getInt("id"));
+				order.setClientId(orders.getInt("client"));
+				order.setPostalCode(orders.getString("postalCode"));
+				order.setAddress(orders.getString("address"));
+				order.setRestoId(orders.getInt("restaurant"));
+				order.setCompleted(orders.getInt("complete"));
+				order.setDelivered(orders.getInt("delivered"));
+				order.setItems(getOrderItemsByOrderId(order.getId()));								
+
+				listOfClientOrderss.add(order);
+			}
+
+			return listOfClientOrderss;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+	}
+
+	public ArrayList<Order> readyDeliveries(int deliveryGuyId) {
+		//create a list of orders that the delivery guy can pick up in his area
+
+		try {
+
+			String postal = getPostalCodesServed(deliveryGuyId);
+
+			postal = postal.toLowerCase();
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM orderinfo WHERE complete = 2 and delivered = 0;");
+
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<Order> listOfClientOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+				String tempPostalFromOrder = orders.getString("postalCode").toLowerCase();
+
+				int indexPostal = postal.indexOf(tempPostalFromOrder);
+
+				if (indexPostal != -1) {
+
+					Order order = new Order();
+
+					order.setYear(orders.getInt("year"));
+					order.setMonth(orders.getInt("month"));
+					order.setDay(orders.getInt("day"));
+					order.setHour(orders.getInt("deliveryHr"));
+					order.setMinute(orders.getInt("deliveryMin"));
+					order.setId(orders.getInt("id"));
+					order.setClientId(orders.getInt("client"));
+					order.setPostalCode(orders.getString("postalCode"));
+					order.setAddress(orders.getString("address"));
+					order.setRestoId(orders.getInt("restaurant"));
+					order.setCompleted(orders.getInt("complete"));
+					order.setDelivered(orders.getInt("delivered"));
+					order.setItems(getOrderItemsByOrderId(order.getId()));								
+
+					listOfClientOrderss.add(order);
+				}
+			}
+
+			return listOfClientOrderss;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+	}
+
+	public String getPostalCodesServed(int deliveryGuyId) {
+
+		//find areas serviced by delivery guy
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getPostalInfo = connection.prepareStatement("SELECT deliveryArea from deliveryguy WHERE id = ?;");
+			getPostalInfo.setInt(1, deliveryGuyId);
+
+			ResultSet postal = getPostalInfo.executeQuery();
+
+			postal.next();
+
+			String postalCodes = postal.getString("deliveryArea");
+
+			return postalCodes;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+
+	}
 }

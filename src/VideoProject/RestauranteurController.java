@@ -18,6 +18,12 @@ public class RestauranteurController implements ActionListener {
 		this.user = user;
 		this.restauranteurId = restauranteurId;
 		
+		//actionlisteners
+		view.getItem_accept().addActionListener(this);
+		view.getItem_disconnect().addActionListener(this);
+		view.getItem_quit().addActionListener(this);
+		view.getItem_ready().addActionListener(this);
+		
 	}
 
 	@Override
@@ -49,7 +55,28 @@ public class RestauranteurController implements ActionListener {
 			view.setVisible(false);
 			view.dispose();
 			
+			AcceptOrderView acceptView = new AcceptOrderView();
 			
+			DBManager db = new DBManager();
+			
+			restauranteurId = db.getRestauranteurId(user.getUsername());
+			
+			AcceptOrderController acceptController = new AcceptOrderController(acceptView, restauranteurId, user);
+			
+		}
+		//order ready
+		if((JMenuItem)e.getSource() == view.getItem_ready()) {
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			OrderReadyView readyView = new OrderReadyView();
+			
+			DBManager db = new DBManager();
+			
+			restauranteurId = db.getRestauranteurId(user.getUsername());
+			
+			OrderReadyController readyController = new OrderReadyController(readyView, restauranteurId, user);
 			
 		}
 		

@@ -11,7 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class ManageRestaurantOrderController implements ActionListener, ListSelectionListener{
+public class ManagerRestaurantOrderController implements ActionListener, ListSelectionListener{
 
 	//properties
 	private ManagerRestaurantOrderView view;
@@ -21,7 +21,7 @@ public class ManageRestaurantOrderController implements ActionListener, ListSele
 	private User user;
 
 	//constructor
-	public ManageRestaurantOrderController(ManagerRestaurantOrderView view, int managerId) {
+	public ManagerRestaurantOrderController(ManagerRestaurantOrderView view, int managerId) {
 		this.view = view;
 		this.managerId = managerId;
 

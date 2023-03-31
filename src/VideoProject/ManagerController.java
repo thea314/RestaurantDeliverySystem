@@ -57,7 +57,7 @@ public class ManagerController implements ActionListener{
 				
 				ManagerRestaurantOrderView manageView = new ManagerRestaurantOrderView();
 				
-				ManageRestaurantOrderController manageController = new ManageRestaurantOrderController(manageView, managerId);
+				ManagerRestaurantOrderController manageController = new ManagerRestaurantOrderController(manageView, managerId);
 				
 			}
 			

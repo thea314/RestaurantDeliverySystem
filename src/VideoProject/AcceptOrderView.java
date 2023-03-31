@@ -17,8 +17,7 @@ public class AcceptOrderView extends JFrame{
 	private JTable table_pending;
 	private JTable table_meal;
 	private JTextField txt_date;
-	private JTextField txt_hr;
-	private JTextField txt_min;
+	private JTextField txt_time;
 	private JTextField txt_postal;
 	private JButton btn_accept;
 	private JButton btn_cancel;
@@ -100,13 +99,13 @@ public class AcceptOrderView extends JFrame{
 		btn_accept = new JButton("Accept Order");
 		btn_accept.setBackground(new Color(244, 164, 96));
 		btn_accept.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_accept.setBounds(530, 328, 141, 37);
+		btn_accept.setBounds(526, 328, 157, 37);
 		panel.add(btn_accept);
 		
 		btn_cancel = new JButton("Cancel");
 		btn_cancel.setBackground(new Color(244, 164, 96));
 		btn_cancel.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_cancel.setBounds(530, 376, 141, 37);
+		btn_cancel.setBounds(526, 376, 157, 37);
 		panel.add(btn_cancel);
 		
 		txt_date = new JTextField();
@@ -115,23 +114,11 @@ public class AcceptOrderView extends JFrame{
 		panel.add(txt_date);
 		txt_date.setColumns(10);
 		
-		txt_hr = new JTextField();
-		txt_hr.setEnabled(false);
-		txt_hr.setBounds(466, 141, 31, 20);
-		panel.add(txt_hr);
-		txt_hr.setColumns(10);
-		
-		JLabel lbl_h = new JLabel("h");
-		lbl_h.setForeground(SystemColor.window);
-		lbl_h.setFont(new Font("Consolas", Font.PLAIN, 14));
-		lbl_h.setBounds(507, 144, 15, 14);
-		panel.add(lbl_h);
-		
-		txt_min = new JTextField();
-		txt_min.setEnabled(false);
-		txt_min.setBounds(524, 141, 61, 20);
-		panel.add(txt_min);
-		txt_min.setColumns(10);
+		txt_time = new JTextField();
+		txt_time.setEnabled(false);
+		txt_time.setBounds(466, 141, 119, 20);
+		panel.add(txt_time);
+		txt_time.setColumns(10);
 		
 		txt_postal = new JTextField();
 		txt_postal.setEnabled(false);
@@ -167,19 +154,19 @@ public class AcceptOrderView extends JFrame{
 	}
 
 	public JTextField getTxt_hr() {
-		return txt_hr;
+		return txt_time;
 	}
 
 	public void setTxt_hr(JTextField txt_hr) {
-		this.txt_hr = txt_hr;
+		this.txt_time = txt_hr;
 	}
 
-	public JTextField getTxt_min() {
-		return txt_min;
+	public JTextField getTxt_time() {
+		return txt_time;
 	}
 
-	public void setTxt_min(JTextField txt_min) {
-		this.txt_min = txt_min;
+	public void setTxt_time(JTextField txt_time) {
+		this.txt_time = txt_time;
 	}
 
 	public JTextField getTxt_postal() {
