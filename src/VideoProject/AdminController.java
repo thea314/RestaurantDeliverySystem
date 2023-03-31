@@ -47,7 +47,7 @@ public class AdminController implements ActionListener {
 
 			CreateRestaurantModel modelCreateResto = new CreateRestaurantModel();
 
-			CreateRestaurantController controllerCreateResto = new CreateRestaurantController(viewCreateResto, modelCreateResto);
+			CreateRestaurantController controllerCreateResto = new CreateRestaurantController(viewCreateResto, modelCreateResto, user);
 
 		}
 		//edit resto button
@@ -154,6 +154,25 @@ public class AdminController implements ActionListener {
 
 			DeleteDeliveryGuyController deleteDeliveryGuyController = new DeleteDeliveryGuyController(deleteDeliveryGuyView, deleteDeliveryGuyModel, deliveryGuy);
 
+		}
+		if ((JMenuItem)e.getSource() == view.getItem_Disconnect()) {
+			
+			LoginController.loggedUser = new User("0", "0", 0);
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			LoginView view = new LoginView();
+			
+			LoginModel model = new LoginModel();
+			
+			LoginController controlLogin = new LoginController(model, view);
+			
+		}
+		
+		if ((JMenuItem)e.getSource() == view.getItem_quit()) {
+			
+			System.exit(0);
 		}
 	}
 

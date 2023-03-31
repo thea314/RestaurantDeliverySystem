@@ -55,20 +55,24 @@ public class CreateDeliveryGuyController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Username already taken, try again", "Error", JOptionPane.INFORMATION_MESSAGE);				
 		} 
 		//add delivery area to the delivery area string
-		if ((JButton)e.getSource() == view.getBtn_addArea()) {
-
-			deliveryAreas = deliveryAreas + " " + view.getTxt_addArea().getText();
-			view.getTxtArea_deliveryArea().setText(deliveryAreas);			
-		}
-		//deletes last item in delivery area
-		if ((JButton)e.getSource() == view.getBtn_delete()) {
-
-			if (deliveryAreas.length() >= 3) {
-				String deliveryAreasDeleted = deliveryAreas.substring(deliveryAreas.lastIndexOf(" "), deliveryAreas.length() - 4);
-				view.getTxtArea_deliveryArea().setText(deliveryAreasDeleted);	
-			}
-
-		}
+				if ((JButton)e.getSource() == view.getBtn_addArea()) {
+					
+					deliveryAreas = deliveryAreas + " " + view.getTxt_addArea().getText();
+					view.getTxtArea_deliveryArea().setText(deliveryAreas);	
+					
+					view.getTxt_addArea().setText("");
+				}
+				//deletes last item in delivery area
+				if ((JButton)e.getSource() == view.getBtn_delete()) {
+					
+					if (deliveryAreas.length() >= 3) {
+						deliveryAreas = deliveryAreas.substring(0, deliveryAreas.lastIndexOf(" "));
+					
+					} else
+						deliveryAreas = "";
+					
+					view.getTxtArea_deliveryArea().setText(deliveryAreas);	
+				}
 		//saves delivery guy to db
 		if((JButton)e.getSource() == view.getBtn_save()) {
 			//validate form inputs

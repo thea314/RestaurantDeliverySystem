@@ -28,7 +28,7 @@ public class DBManager {
 
 			//prepare a statement to check username and password from users
 			PreparedStatement checkCredentials = connection.prepareStatement("SELECT * FROM `users` "
-					+ "WHERE LOWER(username) =  ? and LOWER(password) = ?;");
+					+ "WHERE LOWER(username) =  ? and LOWER(password) = ? AND active <> 2;");
 			checkCredentials.setString(1, username);
 			checkCredentials.setString(2, password);
 
@@ -37,7 +37,7 @@ public class DBManager {
 			if (resultSet.next()) {				
 				return true;
 			} else {
-				JOptionPane.showMessageDialog(null, "Incorrect username of password.", "Error", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Incorrect username of password or account inactive.", "Error", JOptionPane.INFORMATION_MESSAGE);
 				return false;
 			}
 
@@ -471,7 +471,7 @@ public class DBManager {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
 
-			PreparedStatement name = connection.prepareStatement("SELECT id, restoName FROM restaurant;");
+			PreparedStatement name = connection.prepareStatement("SELECT id, restoName FROM restaurant WHERE active <> 2;");
 
 			ResultSet restoNames = name.executeQuery();
 
@@ -1497,7 +1497,7 @@ public class DBManager {
 		return null;
 
 	}
-	
+
 	public int getDeliveryGuyId(String username) {
 
 		//get the restauranteur id from the username
@@ -1523,9 +1523,9 @@ public class DBManager {
 
 		return -1;
 	}
-	
+
 	public void acceptDelivery(int orderId, int deliveryGuyId) {
-		
+
 		try {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
@@ -1533,12 +1533,79 @@ public class DBManager {
 			PreparedStatement updateDeliveryInfo = connection.prepareStatement("UPDATE `orderinfo` SET `delivered`=1,`delivery_guy_id`=? WHERE id = ?;");
 			updateDeliveryInfo.setInt(1, deliveryGuyId);
 			updateDeliveryInfo.setInt(2, orderId);
-			
+
 			updateDeliveryInfo.executeUpdate();
-			
+
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
-			
+
 	}
+
+	public void completeDelivery(int orderId, int deliveryGuyId) {
+
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateDeliveryInfo = connection.prepareStatement("UPDATE `orderinfo` SET `delivered`=2,`delivery_guy_id`=? WHERE id = ?;");
+			updateDeliveryInfo.setInt(1, deliveryGuyId);
+			updateDeliveryInfo.setInt(2, orderId);
+
+			updateDeliveryInfo.executeUpdate();
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+	}
+
+	public ArrayList<Order> assignedOrders(int deliveryGuyId) {
+
+		try {
+
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getOrderInfo = connection.prepareStatement("SELECT * FROM orderinfo WHERE complete = 2 and delivered = 1 AND delivery_guy_id = ?;");
+			getOrderInfo.setInt(1, deliveryGuyId);
+
+			ResultSet orders = getOrderInfo.executeQuery();
+
+			ArrayList<Order> listOfDGOrderss = new ArrayList<>();					
+
+			while (orders.next()) {
+
+
+					Order order = new Order();
+
+					order.setYear(orders.getInt("year"));
+					order.setMonth(orders.getInt("month"));
+					order.setDay(orders.getInt("day"));
+					order.setHour(orders.getInt("deliveryHr"));
+					order.setMinute(orders.getInt("deliveryMin"));
+					order.setId(orders.getInt("id"));
+					order.setClientId(orders.getInt("client"));
+					order.setPostalCode(orders.getString("postalCode"));
+					order.setAddress(orders.getString("address"));
+					order.setRestoId(orders.getInt("restaurant"));
+					order.setCompleted(orders.getInt("complete"));
+					order.setDelivered(orders.getInt("delivered"));
+					order.setItems(getOrderItemsByOrderId(order.getId()));								
+
+					listOfDGOrderss.add(order);
+				}
+			
+
+			return listOfDGOrderss;
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return null;
+
+	}
+	
+	
 }

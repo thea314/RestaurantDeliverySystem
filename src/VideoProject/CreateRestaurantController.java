@@ -16,11 +16,13 @@ public class CreateRestaurantController implements ActionListener {
 	private boolean managerValidated;
 	private boolean restauranteurValidated;
 	private String deliveryAreas = "";
+	private User user;
 	
 	//constructor
-	public CreateRestaurantController(CreateRestaurantView view, CreateRestaurantModel model) {
+	public CreateRestaurantController(CreateRestaurantView view, CreateRestaurantModel model, User user) {
 		this.view = view;
 		this.model = model;
+		this.user = user;
 		
 		//add actionlisteners for buttons
 		view.getBtn_addDeliveryArea().addActionListener(this);
@@ -99,17 +101,33 @@ public class CreateRestaurantController implements ActionListener {
 		if ((JButton)e.getSource() == view.getBtn_addDeliveryArea()) {
 			
 			deliveryAreas = deliveryAreas + " " + view.getTxt_deliveryArea().getText();
-			view.getTxtA_deliveryArea().setText(deliveryAreas);			
+			view.getTxtA_deliveryArea().setText(deliveryAreas);	
+			
+			view.getTxt_deliveryArea().setText("");
 		}
 		//deletes last item in delivery area
 		if ((JButton)e.getSource() == view.getBtn_deleteDeliveryArea()) {
 			
 			if (deliveryAreas.length() >= 3) {
-			String deliveryAreasDeleted = deliveryAreas.substring(deliveryAreas.lastIndexOf(" "), deliveryAreas.length() - 4);
-			view.getTxtA_deliveryArea().setText(deliveryAreasDeleted);	
-			}
+				deliveryAreas = deliveryAreas.substring(0, deliveryAreas.lastIndexOf(" "));
+			
+			} else
+				deliveryAreas = "";
+			
+			view.getTxtA_deliveryArea().setText(deliveryAreas);	
 			
 		}
+		if ((JButton)e.getSource() == view.getBtn_cancel()) {
+			
+			view.setVisible(false);
+			view.dispose();
+			
+			 AdminView adminView = new AdminView();
+			 
+			 AdminController adminController = new AdminController(adminView, user);
+			
+		}
+		
 		if ((JButton)e.getSource() == view.getBtn_saveButton()) {
 			//save to database
 			if (validateJTextFieldsSave() && validateOpeningHours()) {				
@@ -202,7 +220,12 @@ public class CreateRestaurantController implements ActionListener {
 				saveResto.addRestauranteur(view.getTxt_restaraunteurUsername().getText(), view.getTxt_restauranteurPassword().getText(), restoId);
 				 JOptionPane.showMessageDialog(null, "Restaurant successfully created, you may take orders.", "Success", JOptionPane.INFORMATION_MESSAGE);
 				 
-				 
+				 view.setVisible(false);
+					view.dispose();
+					
+					 AdminView adminView = new AdminView();
+					 
+					 AdminController adminController = new AdminController(adminView, user);
 				 
 				 
 				 } else if (confirmNewClient == JOptionPane.NO_OPTION) {

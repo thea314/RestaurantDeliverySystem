@@ -78,6 +78,8 @@ public class CreateMenuController implements ActionListener, ListSelectionListen
 
 				String item[] = {name, price};
 				menuTableModel.addRow(item);
+				
+				view.getTxt_itemName().setText("");
 			}
 		}
 		//save menu to db

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -16,8 +18,8 @@ import javax.swing.JButton;
 public class CreateClientView extends JFrame{
 
 	private JTextField txt_username;
-	private JTextField txt_password;
-	private JTextField txt_confirmPassword;
+	private JPasswordField  txt_password;
+	private JPasswordField  txt_confirmPassword;
 	private JTextField txt_lastname;
 	private JTextField txt_firstname;
 	private JTextField txt_address;
@@ -131,13 +133,15 @@ public class CreateClientView extends JFrame{
 		mainPanel.add(txt_username);
 		txt_username.setColumns(10);
 		
-		txt_password = new JTextField();
+		txt_password = new JPasswordField ();
 		txt_password.setColumns(10);
+		txt_password.setEchoChar('*');
 		txt_password.setBounds(379, 180, 177, 20);
 		mainPanel.add(txt_password);
 		
-		txt_confirmPassword = new JTextField();
+		txt_confirmPassword = new JPasswordField ();
 		txt_confirmPassword.setColumns(10);
+		txt_confirmPassword.setEchoChar('*');
 		txt_confirmPassword.setBounds(379, 217, 177, 20);
 		mainPanel.add(txt_confirmPassword);
 		
@@ -235,7 +239,7 @@ public class CreateClientView extends JFrame{
 		return txt_password;
 	}
 
-	public void setTxt_password(JTextField txt_password) {
+	public void setTxt_password(JPasswordField  txt_password) {
 		this.txt_password = txt_password;
 	}
 
@@ -243,7 +247,7 @@ public class CreateClientView extends JFrame{
 		return txt_confirmPassword;
 	}
 
-	public void setTxt_confirmPassword(JTextField txt_confirmPassword) {
+	public void setTxt_confirmPassword(JPasswordField  txt_confirmPassword) {
 		this.txt_confirmPassword = txt_confirmPassword;
 	}
 

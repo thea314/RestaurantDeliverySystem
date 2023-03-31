@@ -3,6 +3,8 @@ package VideoProject;
 import java.awt.EventQueue;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -14,8 +16,8 @@ import java.awt.SystemColor;
 public class EditClientView extends JFrame{
 
 	private JTextField txt_username;
-	private JTextField txt_oldPassword;
-	private JTextField txt_confirmNewPassword;
+	private JPasswordField  txt_oldPassword;
+	private JPasswordField  txt_confirmNewPassword;
 	private JTextField txt_lastname;
 	private JTextField txt_firstname;
 	private JTextField txt_address;
@@ -138,13 +140,15 @@ public class EditClientView extends JFrame{
 		txt_username.setEnabled(false);
 		mainPanel.add(txt_username);
 		
-		txt_oldPassword = new JTextField();
+		txt_oldPassword = new JPasswordField ();
+		txt_oldPassword.setEchoChar('*');
 		txt_oldPassword.setBounds(379, 146, 177, 20);
 		txt_oldPassword.setColumns(10);
 		mainPanel.add(txt_oldPassword);
 		
-		txt_confirmNewPassword = new JTextField();
+		txt_confirmNewPassword = new JPasswordField ();
 		txt_confirmNewPassword.setBounds(379, 196, 177, 20);
+		txt_confirmNewPassword.setEchoChar('*');
 		txt_confirmNewPassword.setColumns(10);
 		mainPanel.add(txt_confirmNewPassword);
 		
@@ -247,19 +251,19 @@ public class EditClientView extends JFrame{
 		this.txt_username = txt_username;
 	}
 
-	public JTextField getTxt_oldPassword() {
+	public JPasswordField  getTxt_oldPassword() {
 		return txt_oldPassword;
 	}
 
-	public void setTxt_oldPassword(JTextField txt_oldPassword) {
+	public void setTxt_oldPassword(JPasswordField  txt_oldPassword) {
 		this.txt_oldPassword = txt_oldPassword;
 	}
 
-	public JTextField getTxt_confirmNewPassword() {
+	public JPasswordField  getTxt_confirmNewPassword() {
 		return txt_confirmNewPassword;
 	}
 
-	public void setTxt_confirmNewPassword(JTextField txt_confirmNewPassword) {
+	public void setTxt_confirmNewPassword(JPasswordField  txt_confirmNewPassword) {
 		this.txt_confirmNewPassword = txt_confirmNewPassword;
 	}
 

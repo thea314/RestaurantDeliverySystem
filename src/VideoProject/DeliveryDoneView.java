@@ -20,10 +20,12 @@ public class DeliveryDoneView extends JFrame{
 	private JTextField txt_address;
 	private JTextField txt_postal;
 	private JButton btn_complete;
-
+	private JButton btn_close;
 
 
 	
+
+
 	/**
 	 * Create the application.
 	 */
@@ -48,7 +50,7 @@ public class DeliveryDoneView extends JFrame{
 		panel.setLayout(null);
 		
 		JLabel lbl_title = new JLabel("");
-		lbl_title.setBounds(130, 11, 337, 45);
+		lbl_title.setBounds(38, 11, 522, 45);
 		lbl_title.setIcon(new javax.swing.ImageIcon("./Logos/completeDelivery.png"));
 		panel.add(lbl_title);
 		
@@ -89,7 +91,7 @@ public class DeliveryDoneView extends JFrame{
 		lbl_postalCode.setBounds(250, 195, 104, 14);
 		panel.add(lbl_postalCode);
 		
-		JButton btn_close = new JButton("Close");
+		btn_close = new JButton("Close");
 		btn_close.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_close.setBackground(new Color(244, 164, 96));
 		btn_close.setBounds(424, 258, 89, 35);
@@ -122,7 +124,7 @@ public class DeliveryDoneView extends JFrame{
 		btn_complete = new JButton("Complete");
 		btn_complete.setBackground(new Color(244, 164, 96));
 		btn_complete.setFont(new Font("Consolas", Font.BOLD, 16));
-		btn_complete.setBounds(282, 258, 104, 35);
+		btn_complete.setBounds(261, 258, 125, 35);
 		panel.add(btn_complete);
 		
 		this.setVisible(true);
@@ -173,6 +175,13 @@ public class DeliveryDoneView extends JFrame{
 
 	public void setBtn_complete(JButton btn_complete) {
 		this.btn_complete = btn_complete;
+	}
+	public JButton getBtn_close() {
+		return btn_close;
+	}
+
+	public void setBtn_close(JButton btn_close) {
+		this.btn_close = btn_close;
 	}
 
 }

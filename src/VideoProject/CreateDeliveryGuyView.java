@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -23,7 +24,7 @@ public class CreateDeliveryGuyView extends JFrame{
 	private JButton btn_save;
 	private JButton btn_cancel;
 	private JTextField txt_username;
-	private JTextField txt_password;
+	private JPasswordField  txt_password;
 	private JButton btn_validateUsername;
 	private JTextArea txtArea_deliveryArea;
 
@@ -168,7 +169,8 @@ public class CreateDeliveryGuyView extends JFrame{
 		panel.add(txt_username);
 		txt_username.setColumns(10);
 		
-		txt_password = new JTextField();
+		txt_password = new JPasswordField ();
+		txt_password.setEchoChar('*');
 		txt_password.setBounds(204, 334, 108, 20);
 		panel.add(txt_password);
 		txt_password.setColumns(10);
@@ -262,11 +264,11 @@ public class CreateDeliveryGuyView extends JFrame{
 		this.txt_username = txt_username;
 	}
 
-	public JTextField getTxt_password() {
+	public JPasswordField  getTxt_password() {
 		return txt_password;
 	}
 
-	public void setTxt_password(JTextField txt_password) {
+	public void setTxt_password(JPasswordField  txt_password) {
 		this.txt_password = txt_password;
 	}
 

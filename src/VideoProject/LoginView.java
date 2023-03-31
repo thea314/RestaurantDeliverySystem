@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -14,7 +15,7 @@ import javax.swing.JButton;
 public class LoginView extends JFrame{
 
 	private JTextField txt_username;
-	private JTextField txt_password;
+	private JPasswordField txt_password;
 	
 	JButton btn_connect = new JButton("Connect");
 	JButton btn_newClient = new JButton("New Client");
@@ -87,8 +88,9 @@ public class LoginView extends JFrame{
 		mainPanel.add(txt_username);
 		txt_username.setColumns(10);
 		
-		txt_password = new JTextField();
+		txt_password = new JPasswordField();
 		txt_password.setColumns(10);
+		txt_password.setEchoChar('*');
 		txt_password.setBounds(359, 263, 134, 20);
 		mainPanel.add(txt_password);
 		
@@ -122,11 +124,11 @@ public class LoginView extends JFrame{
 		this.txt_username = txt_username;
 	}
 
-	public JTextField getTxt_password() {
+	public JPasswordField getTxt_password() {
 		return txt_password;
 	}
 
-	public void setTxt_password(JTextField txt_password) {
+	public void setTxt_password(JPasswordField txt_password) {
 		this.txt_password = txt_password;
 	}
 	

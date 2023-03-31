@@ -43,6 +43,13 @@ public class DeliveryGuyController implements ActionListener {
 				//complete delivery
 				if ((JMenuItem)e.getSource() == view.getItem_deliveryDone()) {
 					
+					view.setVisible(false);
+					view.dispose();
+					
+					DeliveryDoneView doneView = new DeliveryDoneView();
+					
+					DeliveryDoneController doneController = new DeliveryDoneController(doneView, deliveryGuyId, user);
+					
 					
 					
 				}

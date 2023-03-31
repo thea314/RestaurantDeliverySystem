@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -18,9 +19,9 @@ public class CreateRestaurantView extends JFrame{
 	private JTextField txt_restoAddress;
 	private JTextField txt_deliveryArea;
 	private JTextField txt_managerUsername;
-	private JTextField txt_managerPassword;
+	private JPasswordField  txt_managerPassword;
 	private JTextField txt_restaraunteurUsername;
-	private JTextField txt_restauranteurPassword;
+	private JPasswordField  txt_restauranteurPassword;
 	private JComboBox combo_MonHrOpen;
 	private JComboBox combo_MonMinOpen;
 	private JComboBox combo_MonHrClose;
@@ -451,8 +452,9 @@ public class CreateRestaurantView extends JFrame{
 		lbl_managerPassword.setBounds(79, 855, 145, 14);
 		mainPanel.add(lbl_managerPassword);
 		
-		txt_managerPassword = new JTextField();
+		txt_managerPassword = new JPasswordField ();
 		txt_managerPassword.setBounds(238, 851, 129, 20);
+		txt_managerPassword.setEchoChar('*');
 		mainPanel.add(txt_managerPassword);
 		txt_managerPassword.setColumns(10);
 		
@@ -480,8 +482,9 @@ public class CreateRestaurantView extends JFrame{
 		lbl_restauranteurPassword.setBounds(79, 932, 190, 14);
 		mainPanel.add(lbl_restauranteurPassword);
 		
-		txt_restauranteurPassword = new JTextField();
+		txt_restauranteurPassword = new JPasswordField ();
 		txt_restauranteurPassword.setBounds(238, 928, 129, 20);
+		txt_restauranteurPassword.setEchoChar('*');
 		mainPanel.add(txt_restauranteurPassword);
 		txt_restauranteurPassword.setColumns(10);
 		
@@ -565,11 +568,11 @@ public class CreateRestaurantView extends JFrame{
 		this.txt_managerUsername = txt_managerUsername;
 	}
 
-	public JTextField getTxt_managerPassword() {
+	public JPasswordField  getTxt_managerPassword() {
 		return txt_managerPassword;
 	}
 
-	public void setTxt_managerPassword(JTextField txt_managerPassword) {
+	public void setTxt_managerPassword(JPasswordField  txt_managerPassword) {
 		this.txt_managerPassword = txt_managerPassword;
 	}
 
@@ -581,11 +584,11 @@ public class CreateRestaurantView extends JFrame{
 		this.txt_restaraunteurUsername = txt_restaraunteurUsername;
 	}
 
-	public JTextField getTxt_restauranteurPassword() {
+	public JPasswordField  getTxt_restauranteurPassword() {
 		return txt_restauranteurPassword;
 	}
 
-	public void setTxt_restauranteurPassword(JTextField txt_restauranteurPassword) {
+	public void setTxt_restauranteurPassword(JPasswordField  txt_restauranteurPassword) {
 		this.txt_restauranteurPassword = txt_restauranteurPassword;
 	}
 

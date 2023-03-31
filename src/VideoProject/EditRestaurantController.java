@@ -59,20 +59,25 @@ public class EditRestaurantController implements ActionListener, ListSelectionLi
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		//add delivery area to the delivery area string
 				if ((JButton)e.getSource() == view.getBtn_addDeliveryArea()) {
 					
 					deliveryAreas = deliveryAreas + " " + view.getTxt_deliveryArea().getText();
-					view.getTxtA_deliveryArea().setText(deliveryAreas);			
+					view.getTxtA_deliveryArea().setText(deliveryAreas);	
+					
+					view.getTxt_deliveryArea().setText("");
 				}
 				//deletes last item in delivery area
 				if ((JButton)e.getSource() == view.getBtn_deleteDeliveryArea()) {
 					
 					if (deliveryAreas.length() >= 3) {
-					String deliveryAreasDeleted = deliveryAreas.substring(deliveryAreas.lastIndexOf(" "), deliveryAreas.length() - 4);
-					view.getTxtA_deliveryArea().setText(deliveryAreasDeleted);	
-					}
+						deliveryAreas = deliveryAreas.substring(0, deliveryAreas.lastIndexOf(" "));
 					
+					} else
+						deliveryAreas = "";
+					
+					view.getTxtA_deliveryArea().setText(deliveryAreas);	
 				}
 				//updates all comboboxes based on Monday's values
 				if((JButton)e.getSource() == view.getBtn_modifyAll()) {
