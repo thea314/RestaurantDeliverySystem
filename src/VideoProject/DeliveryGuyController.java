@@ -9,11 +9,13 @@ public class DeliveryGuyController implements ActionListener {
 	
 	private DeliveryGuyView view;
 	private User user;
+	private int deliveryGuyId;
 	
 	//constructor
-	public DeliveryGuyController(DeliveryGuyView view, User user) {
+	public DeliveryGuyController(DeliveryGuyView view, int deliveryGuyId, User user) {
 		this.view = view;
 		this.user = user;
+		this.deliveryGuyId = deliveryGuyId;
 		
 		//actionlisteners
 		view.getItem_acceptDelivery().addActionListener(this);
@@ -30,7 +32,12 @@ public class DeliveryGuyController implements ActionListener {
 				//accept delivery
 				if ((JMenuItem)e.getSource() == view.getItem_acceptDelivery()) {
 					
+					view.setVisible(false);
+					view.dispose();
 					
+					AcceptDeliveryView deliveryView = new AcceptDeliveryView();
+					
+					AcceptDeliveryController deliveryController = new AcceptDeliveryController(deliveryView, deliveryGuyId, user);
 					
 				}
 				//complete delivery
@@ -42,6 +49,12 @@ public class DeliveryGuyController implements ActionListener {
 				//view deliveries
 				if ((JMenuItem)e.getSource() == view.getItem_deliveryView()) {
 					
+					view.setVisible(false);
+					view.dispose();
+					
+					ViewDeliveriesView viewDeliveries = new ViewDeliveriesView();
+
+					ViewDeliveriesController viewController = new ViewDeliveriesController(viewDeliveries, deliveryGuyId, user);
 					
 					
 				}

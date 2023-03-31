@@ -1497,4 +1497,48 @@ public class DBManager {
 		return null;
 
 	}
+	
+	public int getDeliveryGuyId(String username) {
+
+		//get the restauranteur id from the username
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getRestauranteurId = connection.prepareStatement("SELECT id FROM deliveryguy where username = ?;");
+			getRestauranteurId.setString(1, username);
+
+			ResultSet restauranteur = getRestauranteurId.executeQuery();
+
+			restauranteur.next();
+
+			int id = restauranteur.getInt("id");
+
+			return id;
+
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return -1;
+	}
+	
+	public void acceptDelivery(int orderId, int deliveryGuyId) {
+		
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement updateDeliveryInfo = connection.prepareStatement("UPDATE `orderinfo` SET `delivered`=1,`delivery_guy_id`=? WHERE id = ?;");
+			updateDeliveryInfo.setInt(1, deliveryGuyId);
+			updateDeliveryInfo.setInt(2, orderId);
+			
+			updateDeliveryInfo.executeUpdate();
+			
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+			
+	}
 }

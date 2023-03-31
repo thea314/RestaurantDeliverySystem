@@ -104,6 +104,24 @@ public class LoginController implements ActionListener {
 						
 						
 					}
+					//delivery guy
+					if (login.checkUserType(view.getTxt_username().getText()) == 5) {
+						
+						view.setVisible(false);
+						view.dispose();
+						
+						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 5);
+						
+						DeliveryGuyView deliveryView = new DeliveryGuyView();
+						
+						DBManager db = new DBManager();
+						
+						int deliveryGuyId = db.getDeliveryGuyId(view.getTxt_username().getText());
+						
+						DeliveryGuyController deliveryControl = new DeliveryGuyController(deliveryView, deliveryGuyId, loggedUser);
+						
+						
+					}
 					
 			} else {
 				}

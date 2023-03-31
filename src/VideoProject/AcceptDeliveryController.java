@@ -5,15 +5,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class ViewDeliveriesController implements ActionListener, ListSelectionListener {
+public class AcceptDeliveryController implements ActionListener, ListSelectionListener {
 
 	//properties
-	private ViewDeliveriesView view;
+	private AcceptDeliveryView view;
 	private int deliveryGuyId;
 	private ArrayList<Order> orderTitle;
 	private Order order;
@@ -22,13 +23,14 @@ public class ViewDeliveriesController implements ActionListener, ListSelectionLi
 
 
 	//constructor
-	public ViewDeliveriesController(ViewDeliveriesView view, int deliveryGuyId, User user) {
+	public AcceptDeliveryController(AcceptDeliveryView view, int deliveryGuyId, User user) {
 		this.view = view;
 		this.deliveryGuyId = deliveryGuyId;
 		this.user = user;
 
 		//actionListeners
 		view.getBtn_close().addActionListener(this);
+		view.getBtn_accept().addActionListener(this);
 
 		String tableCellContent = "";
 
@@ -91,6 +93,29 @@ public class ViewDeliveriesController implements ActionListener, ListSelectionLi
 
 			DeliveryGuyController viewController = new DeliveryGuyController(viewDelivery, deliveryGuyId, user);
 
+		}
+		if((JButton)e.getSource() == view.getBtn_accept()) {
+			
+			int confirmAddMenu = JOptionPane.showConfirmDialog(null, "Do you wish to accept this order?");
+
+			if (confirmAddMenu == JOptionPane.YES_OPTION) {
+				
+				DBManager db = new DBManager();
+				
+				db.acceptDelivery(currentOrder.getId(), deliveryGuyId);
+				JOptionPane.showMessageDialog(null, "Order accepted, get driving!!", "Complete", JOptionPane.INFORMATION_MESSAGE);
+				
+				view.setVisible(false);
+				view.dispose();
+				
+				DeliveryGuyView dGView = new DeliveryGuyView();
+				
+				DeliveryGuyController dGController = new DeliveryGuyController(dGView, deliveryGuyId, user);
+			}else if (confirmAddMenu == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "Try again when you're ready", "Complete", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Come back soon!", "Complete", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 
 	}

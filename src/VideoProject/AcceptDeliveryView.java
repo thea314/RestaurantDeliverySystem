@@ -20,10 +20,12 @@ public class AcceptDeliveryView extends JFrame{
 	private JTextField txt_address;
 	private JTextField txt_postal;
 	private JButton btn_accept;
-
+	private JButton btn_close;
 
 
 	
+
+
 	/**
 	 * Create the application.
 	 */
@@ -89,7 +91,7 @@ public class AcceptDeliveryView extends JFrame{
 		lbl_postalCode.setBounds(250, 195, 104, 14);
 		panel.add(lbl_postalCode);
 		
-		JButton btn_close = new JButton("Close");
+		btn_close = new JButton("Close");
 		btn_close.setFont(new Font("Consolas", Font.BOLD, 16));
 		btn_close.setBackground(new Color(244, 164, 96));
 		btn_close.setBounds(424, 258, 89, 35);
@@ -174,5 +176,11 @@ public class AcceptDeliveryView extends JFrame{
 	public void setBtn_accept(JButton btn_accept) {
 		this.btn_accept = btn_accept;
 	}
+	public JButton getBtn_close() {
+		return btn_close;
+	}
 
+	public void setBtn_close(JButton btn_close) {
+		this.btn_close = btn_close;
+	}
 }
