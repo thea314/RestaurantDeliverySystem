@@ -1244,4 +1244,30 @@ public class DBManager {
 				return -1;
 			}
 	
+	public int getRestauranteurId(String username) {
+
+		//get the restauranteur id from the username
+		try {
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject", "root", ""); // establish connection
+
+			PreparedStatement getRestauranteurId = connection.prepareStatement("SELECT id FROM restauranteur where username = ?;");
+			getRestauranteurId.setString(1, username);
+			
+			ResultSet restauranteur = getRestauranteurId.executeQuery();
+			
+			restauranteur.next();
+			
+			int id = restauranteur.getInt("id");
+
+			return id;
+			
+
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error connecting to database. -- add order item", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return -1;
+	}
+	
 }

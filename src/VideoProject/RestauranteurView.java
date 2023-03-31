@@ -35,7 +35,7 @@ public class RestauranteurView extends JFrame{
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 261);
+		panel.setBounds(0, 0, 434, 239);
 		panel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(panel);
 		panel.setLayout(null);

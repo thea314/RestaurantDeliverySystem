@@ -199,7 +199,7 @@ public class CreateRestaurantController implements ActionListener {
 				saveResto.addManager(view.getTxt_managerUsername().getText(), view.getTxt_managerPassword().getText(), restoId);
 				
 				//create restauranteur
-				saveResto.addRestauranteur(view.getTxt_managerUsername().getText(), view.getTxt_managerPassword().getText(), restoId);
+				saveResto.addRestauranteur(view.getTxt_restaraunteurUsername().getText(), view.getTxt_restauranteurPassword().getText(), restoId);
 				 JOptionPane.showMessageDialog(null, "Restaurant successfully created, you may take orders.", "Success", JOptionPane.INFORMATION_MESSAGE);
 				 
 				 

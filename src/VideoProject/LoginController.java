@@ -75,7 +75,7 @@ public class LoginController implements ActionListener {
 						view.setVisible(false);
 						view.dispose();
 						
-						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 1);
+						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 3);
 						
 						ManagerView managerView = new ManagerView();
 						
@@ -84,6 +84,24 @@ public class LoginController implements ActionListener {
 						int managerId = db.getManagerId(view.getTxt_username().getText());
 						
 						ManagerController managerController = new ManagerController(managerView, managerId, loggedUser);
+						
+					}
+					//restauranteur
+					if (login.checkUserType(view.getTxt_username().getText()) == 4) {
+						
+						view.setVisible(false);
+						view.dispose();
+						
+						loggedUser = new User(view.getTxt_username().getText(), view.getTxt_password().getText(), 4);
+						
+						RestauranteurView restoView = new RestauranteurView();
+						
+						DBManager db = new DBManager();
+						
+						int restauranteurId = db.getRestauranteurId(view.getTxt_username().getText());
+						
+						RestauranteurController restoController = new RestauranteurController(restoView, restauranteurId, loggedUser);
+						
 						
 					}
 					
