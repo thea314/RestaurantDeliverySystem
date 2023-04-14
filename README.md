@@ -1,2 +1,2 @@
 # RestaurantDeliverySystem
- Java school project
+ Java school project, final grade 96%
